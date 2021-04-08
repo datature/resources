@@ -1,0 +1,27 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+
+# testing
+
+# production
+
+# misc
+
+# debug
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*/**/*.vscode
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# File extension to ignore
+.ipynb_checkpoints
+*.pickle
+*/**/Pipfile
+*.lock
