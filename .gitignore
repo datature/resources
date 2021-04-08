@@ -21,7 +21,7 @@ pip-log.txt
 pip-delete-this-directory.txt
 
 # File extension to ignore
-.ipynb_checkpoints
+*/**/.ipynb_checkpoints
 *.pickle
 */**/Pipfile
 *.lock
