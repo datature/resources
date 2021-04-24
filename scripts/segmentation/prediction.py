@@ -106,10 +106,10 @@ def apply_mask(image, mask, colors, alpha=0.5):
     """Apply the given mask to the image.
 
     Args:
-      image: original image array
-      mask: predict mask array of image
-      colors: color to apply for mask
-      alpha: transparency of mask
+      image: original image array.
+      mask: predict mask array of image.
+      colors: color to apply for mask.
+      alpha: transparency of mask.
 
     Returns:
       array of image with mask overlay
