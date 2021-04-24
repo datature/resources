@@ -94,6 +94,9 @@ def main():
     if os.path.exists(args.output) is False:
         raise Exception("Output Folder Path Do Not Exists")
 
+    if os.path.exists(args.model) is False:
+        raise Exception("Model Folder Do Not Exists")
+
     category_index = load_label_map(args.label)
 
     ## Load color map
@@ -200,16 +203,16 @@ def main():
                     cv2.LINE_AA,
                 )
 
-        ## Save predicted image
-        filename = os.path.basename(each_image)
-        image_predict = Image.fromarray(image_origi)
-        image_predict.save(os.path.join(args.output, filename))
+            ## Save predicted image
+            filename = os.path.basename(each_image)
+            image_predict = Image.fromarray(image_origi)
+            image_predict.save(os.path.join(args.output, filename))
 
-        print(
-            "Saving predicted images to {}...".format(
-                os.path.join(args.output, filename)
+            print(
+                "Saving predicted images to {}...".format(
+                    os.path.join(args.output, filename)
+                )
             )
-        )
 
 
 if __name__ == "__main__":

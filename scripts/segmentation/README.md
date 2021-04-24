@@ -1,4 +1,4 @@
-## Datature Open Source Prediction Script ##
+## Datature Open Source Prediction Script
 
 This folder contains script to run prediction for Datature's trained model
 
@@ -18,12 +18,14 @@ Description for each file and folder in terms of its content or purpose.
 ```
 python3 prediction.py --input "path_to_input_folder" --output "path_to_output_folder" --size "640x640" --threshold 0.7 --model "path_to_model" --label "path_to_labelmap"
 ```
+
 ### Arguments
+
 ```
 --input "path_to_input_folder" (Required)
 --output "path_to_output_folder" (Required)
 --size "size of image to load" (Optional) (default: 1024x1024)
 --threshold "confidence threshold" (Optional) (default: 0.7)
 --model "path_to_model" (Optional) (default: "./saved_model")
---label "path_to_labelmap" (Optional) (default: "./labelmap.pbtxt")
+--label "path_to_labelmap" (Optional) (default: "./label_map.pbtxt")
 ```
