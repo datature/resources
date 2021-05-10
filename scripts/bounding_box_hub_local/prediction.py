@@ -11,8 +11,8 @@ import argparse
 import numpy as np
 import tensorflow as tf
 import cv2
-from dataturehub.hub import hub
-from dataturehub.visualize import visualize
+from dataturehub.hub import HubModel
+from dataturehub.visualize import Visualize
 from PIL import Image
 
 # Comment out next line to use GPU
@@ -63,17 +63,17 @@ def main():
     if args.size is not None:
         height, width = args.size.split("x")
 
-    hubb = hub()
-    trained_model = hubb.load_tf_model(model_dir=args.model)
-    category_index = hubb.load_label_map_from_file(label_map_path=args.label)
+    hub_model = HubModel()
+    trained_model = hub_model.load_tf_model(model_dir=args.model)
+    category_index = hub_model.load_label_map_from_file(label_map_path=args.label)
     # Run prediction on each image
     for each_image in glob.glob(os.path.join(args.input, "*")):
         print("Predicting for {}...".format(each_image))
-        input_tensor = hubb.load_image(each_image, int(height), int(width))
+        input_tensor = hub_model.load_image(each_image, int(height), int(width))
         # Feed image into model
         detections_output = trained_model(input_tensor)
 
-        visualized_image = visualize(
+        visualized_image = Visualize(
             each_image, detections_output, category_index, args.threshold
         ).visualize_bbox()
 
