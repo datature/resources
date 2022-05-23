@@ -34,8 +34,7 @@ Description for each file and folder in terms of its content or purpose are show
 - prediction_[model].py: Python3 script to run for prediction
 - prediction_[model].ipynb: Jupyter notebook script to run for prediction
 
-<!-- Predict with Different Model --!>
-
+<!-- Predict with Different Model -->
 ## Bounding Box with Tensorflow Model
 ### Command to Run Script in Python3
 ```
