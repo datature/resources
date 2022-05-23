@@ -53,13 +53,11 @@ python3 prediction.py --input "path_to_input_folder" --output "path_to_output_fo
 
 
 
+
 ## Segmentation
 ### Command to Run Script in Python3
-```
-python3 prediction.py --input "path_to_input_folder" --output "path_to_output_folder" --size "640x640" --threshold 0.7 --model "path_to_model" --label "path_to_labelmap"
-```
-### Arguments for Python3 File
 
+### Arguments for Python3 File
 
 ### Set Up and Running in Jupyter Notebook
 
