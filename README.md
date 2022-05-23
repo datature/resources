@@ -3,8 +3,7 @@ A repository of resources used in our tutorials and guides ⚡️
 
 
 <!-- INTRODUCTION -->
-
-
+This repository is provided to Nexus users who may want to load model in to their own code or modify some parameters instead of using Portal to predict directly. 
 
 
 <!-- GETTING STARTED -->
