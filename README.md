@@ -51,15 +51,15 @@ pip install -r requirements.txt
 ```
 
 ```
-python3 prediction.py --input "path_to_input_folder" --output "path_to_output_folder" --size "640x640" --threshold 0.7 --model "path_to_model" --label "path_to_labelmap"
+python prediction.py --input "path_to_input_folder" --output "path_to_output_folder" --size "640x640" --threshold 0.7 --model "path_to_model" --label "path_to_labelmap"
 ```
 
 Example Default Command
 ```
-python3 prediction_bb.py --input "./input" --output "./output" --size "640x640" --threshold 0.7 --model "./saved_model" --label "./label_map.pbtxt"
+python prediction_bb.py --input "./input" --output "./output" --size "640x640" --threshold 0.7 --model "./saved_model" --label "./label_map.pbtxt"
 ```
 
-### Arguments for Python3 File
+#### Arguments for Python3 File
 ```
 --input "path_to_input_folder" (Required)
 --output "path_to_output_folder" (Required)
@@ -68,9 +68,13 @@ python3 prediction_bb.py --input "./input" --output "./output" --size "640x640" 
 --model "path_to_model" (Optional) (default: "./saved_model")
 --label "path_to_labelmap" (Optional) (default: "./label_map.pbtxt")
 ```
-### Set Up and Running in Jupyter Notebook
-
-
+### Command to Run Script in Jupyter Notebook
+```
+pip install jupyter
+```
+```
+jupyter-notebook prediction_bb.ipynb
+```
 
 
 
