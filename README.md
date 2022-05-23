@@ -9,7 +9,7 @@ This repository is provided to Nexus users who may want to load model in to thei
 
 <!-- GETTING STARTED -->
 ## Getting Started
-
+There are two kinds of model can be downloaded from Nexus
 ### File Structure
 
 Description for each file and folder in terms of its content or purpose.
@@ -23,9 +23,16 @@ Description for each file and folder in terms of its content or purpose.
 
 ## Bounding Box
 ### Command to Run Script in Python3
+```
+pip install -r requirements.txt
+```
 
 ```
 python3 prediction.py --input "path_to_input_folder" --output "path_to_output_folder" --size "640x640" --threshold 0.7 --model "path_to_model" --label "path_to_labelmap"
+```
+Example Default Command
+```
+python3 prediction.py --input "./input" --output "./output" --size "640x640" --threshold 0.7 --model "./saved_model" --label "./label_map.pbtxt"
 ```
 ### Arguments for Python3 File
 
