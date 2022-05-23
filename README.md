@@ -9,19 +9,30 @@ This repository is provided to Nexus users who may want to load model in to thei
 
 <!-- GETTING STARTED -->
 ## Getting Started
-There are two kinds of model can be downloaded from Nexus
+There are two kinds of model can be downloaded from Nexus: TensorFlow model and TFlite model. Users can download model derectly from Nexus or port the trained model
+through Datature Hub. For the second method, users should get two sets of Keys: Model Key and Project Secret Key in advance.
+Firstly, users should clone this repository and cd to resource folder.
+
+The usage of the following six different models though both python3 and jupyter notebook will be introduced：
+*Bounding Box with Tensorflow Model (Download model derectly)
+*Bounding Box Hub with Tensorflow Model (Access model by datature Hub)
+*Segmentation with Tensorflow Model (Download model derectly)
+*Bounding Box with TFlite Model (Download model derectly)
+*Bounding Box Hub with TFlite Model (Access model by datature Hub)
+*Segmentation with TFlite Model (Download model derectly)
+
 ### File Structure
 
 Description for each file and folder in terms of its content or purpose.
 
 - input/: Some sample test images for prediction
 - output/: Output folder to store predicted images
-- saved_model/: Contains trained Tensorflow Model
+- saved_model/: Contains trained model
 - labelmap.pbtxt: Label map used for prediction
 - requirements.txt: Contains Python3 dependencies
 - prediction.py: Script to run for prediction
 
-## Bounding Box
+## Bounding Box with Tensorflow Model
 ### Command to Run Script in Python3
 ```
 pip install -r requirements.txt
@@ -50,7 +61,7 @@ python3 prediction.py --input "./input" --output "./output" --size "640x640" --t
 
 
 
-## Bounding Box Hub
+## Bounding Box Hub with Tensorflow Model
 ### Command to Run Script in Python3
 
 ### Arguments for Python3 File
@@ -61,7 +72,7 @@ python3 prediction.py --input "./input" --output "./output" --size "640x640" --t
 
 
 
-## Segmentation
+## Segmentation with Tensorflow Model
 ### Command to Run Script in Python3
 
 ### Arguments for Python3 File
