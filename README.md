@@ -14,12 +14,13 @@ through Datature Hub. For the second method, users should get two sets of Keys: 
 Firstly, users should clone this repository and cd to resource folder.
 
 The usage of the following six different models though both python3 and jupyter notebook will be introduced：
-*Bounding Box with Tensorflow Model (Download model derectly)
-*Bounding Box Hub with Tensorflow Model (Access model by datature Hub)
-*Segmentation with Tensorflow Model (Download model derectly)
-*Bounding Box with TFlite Model (Download model derectly)
-*Bounding Box Hub with TFlite Model (Access model by datature Hub)
-*Segmentation with TFlite Model (Download model derectly)
+
+* Bounding Box with Tensorflow Model (Download model derectly)
+* Bounding Box Hub with Tensorflow Model (Access model by datature Hub)
+* Segmentation with Tensorflow Model (Download model derectly)
+* Bounding Box with TFlite Model (Download model derectly)
+* Bounding Box Hub with TFlite Model (Access model by datature Hub)
+* Segmentation with TFlite Model (Download model derectly)
 
 ### File Structure
 
