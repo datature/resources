@@ -38,7 +38,7 @@ Description for each file and folder in terms of its content or purpose are show
 ## Bounding Box with Tensorflow Model
 ### Command to Run Script in Python3
 ```
-cd ./tensorflow_scripts/bounding_box
+cd tensorflow_scripts/bounding_box
 ```
 
 ```
