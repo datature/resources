@@ -10,20 +10,55 @@ A repository of resources used in our tutorials and guides ⚡️
 <!-- GETTING STARTED -->
 ## Getting Started
 
+### File Structure
+
+Description for each file and folder in terms of its content or purpose.
+
+- input/: Some sample test images for prediction
+- output/: Output folder to store predicted images
+- saved_model/: Contains trained Tensorflow Model
+- labelmap.pbtxt: Label map used for prediction
+- requirements.txt: Contains Python3 dependencies
+- prediction.py: Script to run for prediction
+
+## Bounding Box
+### Command to Run Script in Python3
+
+```
+python3 prediction.py --input "path_to_input_folder" --output "path_to_output_folder" --size "640x640" --threshold 0.7 --model "path_to_model" --label "path_to_labelmap"
+```
+### Arguments for Python3 File
+
+```
+--input "path_to_input_folder" (Required)
+--output "path_to_output_folder" (Required)
+--size "size of image to load" (Optional) (default: 320x320)
+--threshold "confidence threshold" (Optional) (default: 0.7)
+--model "path_to_model" (Optional) (default: "./saved_model")
+--label "path_to_labelmap" (Optional) (default: "./label_map.pbtxt")
+```
+### Set Up and Running in Jupyter Notebook
 
 
 
-### Prerequisites
-
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
 
 
-<!-- USING EXAMPLE -->
+## Bounding Box Hub
+### Command to Run Script in Python3
+
+### Arguments for Python3 File
+
+### Set Up and Running in Jupyter Notebook
+
+
+
+
+## Segmentation
+### Command to Run Script in Python3
+
+### Arguments for Python3 File
+
+### Set Up and Running in Jupyter Notebook
 
 
 
