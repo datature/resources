@@ -35,9 +35,9 @@ Description for each file and folder in terms of its content or purpose are show
 - prediction_[model].ipynb: Jupyter notebook script to run for prediction
 
 ### Environment Information
-python 3.10 \<br>
-Anaconda Navagator 2.1.1 \<br>
-Jupyter Notebook 6.4.5 \<br>
+python 3.10<br>
+Anaconda Navagator 2.1.1<br>
+Jupyter Notebook 6.4.5<br>
 
 <!-- Predict with Different Model -->
 ## Bounding Box with Tensorflow Model
