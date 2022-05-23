@@ -23,18 +23,25 @@ The usage of the following six different models though both python3 and jupyter 
 * Segmentation with TFlite Model (Download model derectly)
 
 ### File Structure
-
-Description for each file and folder in terms of its content or purpose.
+All the six kinds of models have a common file structure.
+Description for each file and folder in terms of its content or purpose are shown below.
 
 - input/: Some sample test images for prediction
 - output/: Output folder to store predicted images
 - saved_model/: Contains trained model
 - labelmap.pbtxt: Label map used for prediction
 - requirements.txt: Contains Python3 dependencies
-- prediction.py: Script to run for prediction
+- prediction_[model].py: Python3 script to run for prediction
+- prediction_[model].ipynb: Jupyter notebook script to run for prediction
+
+<!-- Predict with Different Model --!>
 
 ## Bounding Box with Tensorflow Model
 ### Command to Run Script in Python3
+```
+cd ./tensorflow_scripts/bounding_box
+```
+
 ```
 pip install -r requirements.txt
 ```
@@ -42,12 +49,13 @@ pip install -r requirements.txt
 ```
 python3 prediction.py --input "path_to_input_folder" --output "path_to_output_folder" --size "640x640" --threshold 0.7 --model "path_to_model" --label "path_to_labelmap"
 ```
+
 Example Default Command
 ```
-python3 prediction.py --input "./input" --output "./output" --size "640x640" --threshold 0.7 --model "./saved_model" --label "./label_map.pbtxt"
+python3 prediction_bb.py --input "./input" --output "./output" --size "640x640" --threshold 0.7 --model "./saved_model" --label "./label_map.pbtxt"
 ```
-### Arguments for Python3 File
 
+### Arguments for Python3 File
 ```
 --input "path_to_input_folder" (Required)
 --output "path_to_output_folder" (Required)
