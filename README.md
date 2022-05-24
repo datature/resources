@@ -51,7 +51,7 @@ pip install -r requirements.txt
 ```
 
 ```
-python prediction.py --input "path_to_input_folder" --output "path_to_output_folder" --size "640x640" --threshold 0.7 --model "path_to_model" --label "path_to_labelmap"
+python prediction_bb.py --input "path_to_input_folder" --output "path_to_output_folder" --size "640x640" --threshold 0.7 --model "path_to_model" --label "path_to_labelmap"
 ```
 
 Example Default Command
@@ -81,7 +81,22 @@ jupyter-notebook prediction_bb.ipynb
 
 ## Bounding Box Hub with Tensorflow Model
 ### Command to Run Script in Python3
+```
+cd tensorflow_scripts/bounding_box_hub
+```
 
+```
+pip install -r requirements.txt
+```
+
+```
+python prediction_bbhub.py --input "path_to_input_folder" --output "path_to_output_folder"  --threshold 0.7 --secret "Project_secret" --key "Your_model_key"
+```
+
+Example Default Command
+```
+python prediction_bb.py  --secret "Project_secret" --key "Your_model_key"
+```
 #### Arguments for Python3 File
 
 ### Set Up and Running in Jupyter Notebook
