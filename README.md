@@ -120,11 +120,40 @@ python -m notebook prediction_bbhub.ipynb
 
 ## Segmentation with Tensorflow Model
 ### Command to Run Script in Python3
+```
+cd tensorflow_scripts/segmentation
+```
+
+```
+pip install -r requirements.txt
+```
+
+```
+python prediction_seg.py --input "path_to_input_folder" --output "path_to_output_folder" --size "640x640" --threshold 0.7 --model "path_to_model" --label "path_to_labelmap"
+```
+
+Example Default Command
+```
+python prediction_seg.py --input "./input" --output "./output" --size "640x640" --threshold 0.7 --model "./saved_model" --label "./label_map.pbtxt"
+```
 
 #### Arguments for Python3 File
-
-### Set Up and Running in Jupyter Notebook
-
+Parameters below can be modified before prediction.
+```
+--input "path_to_input_folder" (Required)
+--output "path_to_output_folder" (Required)
+--size "size of image to load" (Optional) (default: 320x320)
+--threshold "confidence threshold" (Optional) (default: 0.7)
+--model "path_to_model" (Optional) (default: "./saved_model")
+--label "path_to_labelmap" (Optional) (default: "./label_map.pbtxt")
+```
+### Command to Run Script in Jupyter Notebook
+```
+pip install jupyter
+```
+```
+python -m notebook prediction_seg.ipynb
+```
 
 
 
