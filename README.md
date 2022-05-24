@@ -29,7 +29,7 @@ Description for each file and folder in terms of its content or purpose are show
 - input/: Some sample test images for prediction
 - output/: Output folder to store predicted images
 - saved_model/: Contains trained model ("hub" one donot need)
-- labelmap.pbtxt: Label map used for prediction
+- labelmap.pbtxt: Label map used for prediction ("hub" one donot need)
 - requirements.txt: Contains Python3 dependencies
 - prediction_[model].py: Python3 script to run for prediction
 - prediction_[model].ipynb: Jupyter notebook script to run for prediction
@@ -95,7 +95,7 @@ python prediction_bbhub.py --input "path_to_input_folder" --output "path_to_outp
 
 Example Default Command
 ```
-python prediction_bb.py  --secret "Project_secret" --key "Your_model_key"
+python prediction_bb.py  --secret "37c3d3c0fa994c7c42780a0f9ba78c425553376dd6f54073b4d2d9ca0279ce90" --key "628b0d10ac7c28b84de9f578"
 ```
 #### Arguments for Python3 File
 
