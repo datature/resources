@@ -98,12 +98,13 @@ Example Default Command
 python prediction_bbhub.py  --secret "76d97105923491bfa13c84d74eb5457b3b04dceda19ca009d7af111bd7d05344" --key "c71dab8d8da9522c8dfebe44a2927ad3"
 ```
 #### Arguments for Python3 File
+```
 --input "path_to_input_folder" (Optional) (default:"./input/")
 --output "path_to_output_folder" (Optional)(default:"./output")
 --threshold "confidence threshold" (Optional) (default: 0.7)
 --secret "Project secret" (Required)
 --key "Your model key" (Required) 
-
+```
 ### Set Up and Running in Jupyter Notebook
 First, go to jupyter notebook to change PROJECT_SECRETE and MODUEL_KEY to own one. 
 ```
