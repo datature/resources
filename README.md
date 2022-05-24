@@ -74,7 +74,7 @@ Parameters below can be modified before prediction.
 pip install jupyter
 ```
 ```
-jupyter-notebook prediction_bb.ipynb
+python -m notebook prediction_bb.ipynb
 ```
 
 
