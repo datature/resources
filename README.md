@@ -111,7 +111,7 @@ First, go to jupyter notebook to change PROJECT_SECRETE and MODUEL_KEY to own on
 pip install jupyter
 ```
 ```
-python -m notebook prediction_bb.ipynb
+python -m notebook prediction_bbhub.ipynb
 ```
 
 
