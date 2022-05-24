@@ -35,10 +35,10 @@ Description for each file and folder in terms of its content or purpose are show
 - prediction_[model].ipynb: Jupyter notebook script to run for prediction
 
 ### Environment Information
-python 3.10<br>
-Anaconda Navagator 2.1.1<br>
-Jupyter Notebook 6.4.5<br>
-
+python 3.7<version<3.9<br>
+Anaconda Navagator <br>
+Jupyter Notebook <br>
+If python version in Jupyter Notebook not in range(3.7,3.9),change the version in Environments in ANACONDA,NAVIGATOR
 <!-- Predict with Different Model -->
 ## Bounding Box with Tensorflow Model
 ### Command to Run Script in Python3
@@ -99,7 +99,15 @@ python prediction_bbhub.py  --secret "37c3d3c0fa994c7c42780a0f9ba78c425553376dd6
 ```
 #### Arguments for Python3 File
 
+
 ### Set Up and Running in Jupyter Notebook
+First, go to jupyter notebook to change PROJECT_SECRETE and MODUEL_KEY to own one. 
+```
+pip install jupyter
+```
+```
+python -m notebook prediction_bb.ipynb
+```
 
 
 
