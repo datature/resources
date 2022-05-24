@@ -95,7 +95,7 @@ python prediction_bbhub.py --input "path_to_input_folder" --output "path_to_outp
 
 Example Default Command
 ```
-python prediction_bb.py  --secret "37c3d3c0fa994c7c42780a0f9ba78c425553376dd6f54073b4d2d9ca0279ce90" --key "628b0d10ac7c28b84de9f578"
+python prediction_bbhub.py  --secret "37c3d3c0fa994c7c42780a0f9ba78c425553376dd6f54073b4d2d9ca0279ce90" --key "628b0d10ac7c28b84de9f578"
 ```
 #### Arguments for Python3 File
 
