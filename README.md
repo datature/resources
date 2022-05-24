@@ -28,7 +28,7 @@ Description for each file and folder in terms of its content or purpose are show
 
 - input/: Some sample test images for prediction
 - output/: Output folder to store predicted images
-- saved_model/: Contains trained model
+- saved_model/: Contains trained model ("hub" one donot need)
 - labelmap.pbtxt: Label map used for prediction
 - requirements.txt: Contains Python3 dependencies
 - prediction_[model].py: Python3 script to run for prediction
@@ -60,6 +60,7 @@ python prediction_bb.py --input "./input" --output "./output" --size "640x640" -
 ```
 
 #### Arguments for Python3 File
+Parameters below can be modified before prediction.
 ```
 --input "path_to_input_folder" (Required)
 --output "path_to_output_folder" (Required)
@@ -81,7 +82,7 @@ jupyter-notebook prediction_bb.ipynb
 ## Bounding Box Hub with Tensorflow Model
 ### Command to Run Script in Python3
 
-### Arguments for Python3 File
+#### Arguments for Python3 File
 
 ### Set Up and Running in Jupyter Notebook
 
@@ -92,7 +93,7 @@ jupyter-notebook prediction_bb.ipynb
 ## Segmentation with Tensorflow Model
 ### Command to Run Script in Python3
 
-### Arguments for Python3 File
+#### Arguments for Python3 File
 
 ### Set Up and Running in Jupyter Notebook
 
