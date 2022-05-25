@@ -233,7 +233,7 @@ python prediction_bblite.py --INPUT "path_to_input_folder" --OUTPUT "path_to_out
 
 Example Default Command
 ```
-python prediction_bblite.py --INPUT "./input" --OUTPUT "./output" --SIZE [640,640] --THRESHOLD 0.7 --MODEL "./tf.lite" --LABEL "./label_map.pbtxt"
+python prediction_bblite.py --INPUT "./input" --OUTPUT "./output" --SIZE "640,640" --THRESHOLD 0.7 --MODEL "./tf.lite" --LABEL "./label_map.pbtxt"
 ```
 
 ##### Arguments for Python3 File
