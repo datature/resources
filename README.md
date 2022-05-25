@@ -35,7 +35,7 @@ Jupyter Notebook <br>
      <summary>Click to expand</summary>
      
 ### File Structure
-All the six kinds of models have a common file structure.
+All the three kinds of models have a common file structure.
 Description for each file and folder in terms of its content or purpose are shown below.
 
 - input/: Some sample test images for prediction
@@ -174,6 +174,80 @@ python -m notebook prediction_seg.ipynb
 
 
 
+## TensorflowLITE Models
+<details>
+     <summary>Click to expand</summary>
+     
+### File Structure
+All the three kinds of models have a common file structure.
+Description for each file and folder in terms of its content or purpose are shown below.
+
+- input/: Some sample test images for prediction
+- output/: Output folder to store predicted images
+- tf.lite: Trained model ("hub" one donot need)
+- labelmap.pbtxt: Label map used for prediction ("hub" one donot need)
+- requirements.txt: Contains Python3 dependencies
+- prediction_[model]lite.py: Python3 script to run for prediction
+- prediction_[model]lite.ipynb: Jupyter notebook script to run for prediction
+     
+### Bounding Box with Tensorflowlite Model
+<details>
+     <summary>Click to expand</summary>
+	
+#### Command to Run Script in Python3
+```
+cd tensorflowlite_scripts/bounding_box
+```
+
+```
+pip install -r requirements.txt
+```
+
+```
+python prediction_bblite.py --INPUT "path_to_input_folder" --OUTPUT "path_to_output_folder" --SIZE [640,640] --THRESHOLD 0.7 --MODEL "path_to_model" --LABEL "path_to_labelmap"
+```
+
+Example Default Command
+```
+python prediction_bblite.py --INPUT "./input" --OUTPUT "./output" --SIZE [640,640] --THRESHOLD 0.7 --MODEL "./tf.lite" --LABEL "./label_map.pbtxt"
+```
+
+##### Arguments for Python3 File
+Parameters below can be modified before prediction.
+```
+--INPUT "path_to_input_folder" (Optional) (default:"./input")
+--OUTPUT "path_to_output_folder" (Optional) (default:"./output")
+--SIZE "size of image to load" (Optional) (default: [640,640])
+--THRESHOLD "confidence threshold" (Optional) (default: 0.7)
+--MODEL "path_to_model" (Optional) (default: "./tf.lite")
+--LABEL "path_to_labelmap" (Optional) (default: "./label_map.pbtxt")
+```
+#### Command to Run Script in Jupyter Notebook
+```
+pip install jupyter
+```
+```
+python -m notebook prediction_bblite.ipynb
+```
+</details>
+
+### Bounding Box Hub with Tensorflowlite Model
+<details>
+     <summary>Click to expand</summary>
+	
+
+</details>
+
+
+
+
+### Segmentation with Tensorflowlite Model
+<details>
+     <summary>Click to expand</summary>
+	
+
+</details>
+</details>
 
 
 
