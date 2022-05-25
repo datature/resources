@@ -15,13 +15,15 @@ through Datature Hub. For the second method, users should get two sets of Keys: 
 Firstly, users should clone this repository and cd to resource folder.
 
 The usage of the following six different models though both python3 and jupyter notebook will be introduced：
+<ol>
+    <li><a href="#bounding-box-with-tensorflow-model">Bounding Box with Tensorflow Model (Download model derectly)</a></li>
+    <li><a href="#bounding-box-hub-with-tensorflow-model">Bounding Box Hub with Tensorflow Model (Access model by datature Hub)</a></li>
+    <li><a href="#segmentation-with-tensorflow-model">Segmentation with Tensorflow Model (Download model derectly)</a></li>
+    <li><a href="#bounding-box-with-tensorflowlite-model">Bounding Box with TFlite Model (Download model derectly)</a></li>
+    <li><a href="#bounding-box-hub-with-tensorflowlite-model">Bounding Box Hub with TFlite Model (Access model by datature Hub)</a></li>
+    <li><a href="#segmentation-with-tensorflowlite-model">Segmentation with TFlite Model (Download model derectly)</a></li>
+</ol>
 
-* Bounding Box with Tensorflow Model (Download model derectly)
-* Bounding Box Hub with Tensorflow Model (Access model by datature Hub)
-* Segmentation with Tensorflow Model (Download model derectly)
-* Bounding Box with TFlite Model (Download model derectly)
-* Bounding Box Hub with TFlite Model (Access model by datature Hub)
-* Segmentation with TFlite Model (Download model derectly)
 
 
 ### Environment Information
@@ -31,7 +33,7 @@ Jupyter Notebook <br>
 <!-- Predict with Different Model -->
 
 ## Tensorflow Models
-<details>
+<details open>
      <summary>Click to expand</summary>
      
 ### File Structure
@@ -175,7 +177,7 @@ python -m notebook prediction_seg.ipynb
 
 
 ## TensorflowLITE Models
-<details>
+<details open>
      <summary>Click to expand</summary>
      
 ### File Structure
