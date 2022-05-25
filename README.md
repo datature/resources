@@ -1,3 +1,5 @@
+<div id="top"></div>
+
 # resources
 A repository of resources used in our tutorials and guides ⚡️
 
@@ -87,6 +89,12 @@ pip install jupyter
 ```
 python -m notebook prediction_bb.ipynb
 ```
+
+<br/>
+<div align="right">
+    <b><a href="#top">↥ back to top</a></b>
+</div>
+<br/>
 </details>
 
 ### Bounding Box Hub with Tensorflow Model
@@ -126,6 +134,12 @@ pip install jupyter
 ```
 python -m notebook prediction_bbhub.ipynb
 ```
+<br/>
+<div align="right">
+    <b><a href="#top">↥ back to top</a></b>
+</div>
+<br/>
+	
 </details>
 
 
@@ -170,6 +184,13 @@ pip install jupyter
 ```
 python -m notebook prediction_seg.ipynb
 ```	
+	
+<br/>
+<div align="right">
+    <b><a href="#top">↥ back to top</a></b>
+</div>
+<br/>
+	
 </details>
 </details>
 
@@ -231,13 +252,25 @@ pip install jupyter
 ```
 python -m notebook prediction_bblite.ipynb
 ```
+	
+<br/>
+<div align="right">
+    <b><a href="#top">↥ back to top</a></b>
+</div>
+<br/>
+	
 </details>
 
 ### Bounding Box Hub with Tensorflowlite Model
 <details>
      <summary>Click to expand</summary>
 	
-
+<br/>
+<div align="right">
+    <b><a href="#top">↥ back to top</a></b>
+</div>
+<br/>
+	
 </details>
 
 
@@ -247,7 +280,12 @@ python -m notebook prediction_bblite.ipynb
 <details>
      <summary>Click to expand</summary>
 	
-
+<br/>
+<div align="right">
+    <b><a href="#top">↥ back to top</a></b>
+</div>
+<br/>
+	
 </details>
 </details>
 
