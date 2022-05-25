@@ -31,7 +31,8 @@ The usage of the following six different models though both python3 and jupyter 
 ### Environment Information
 python 3.7<version<3.9<br>
 Jupyter Notebook <br>
-
+tensorflow == 2.3.0 (for tensorflow model)<br>
+tensorflow == 2.5.0 (for tensorflowlite model)<br>
 <!-- Predict with Different Model -->
 
 ## Tensorflow Models
