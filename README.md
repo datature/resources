@@ -282,7 +282,7 @@ python -m notebook prediction_bblite.ipynb
      <summary>Click to expand</summary>
 	
 <br/>
-<div align="right">
+<div align="right"> 
     <b><a href="#top">↥ back to top</a></b>
 </div>
 <br/>
