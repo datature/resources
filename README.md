@@ -22,6 +22,14 @@ The usage of the following six different models though both python3 and jupyter 
 * Bounding Box Hub with TFlite Model (Access model by datature Hub)
 * Segmentation with TFlite Model (Download model derectly)
 
+
+### Environment Information
+python 3.7<version<3.9<br>
+Jupyter Notebook <br>
+<!-- Predict with Different Model -->
+
+
+## Tensorflow Models
 ### File Structure
 All the six kinds of models have a common file structure.
 Description for each file and folder in terms of its content or purpose are shown below.
@@ -33,15 +41,8 @@ Description for each file and folder in terms of its content or purpose are show
 - requirements.txt: Contains Python3 dependencies
 - prediction_[model].py: Python3 script to run for prediction
 - prediction_[model].ipynb: Jupyter notebook script to run for prediction
-
-### Environment Information
-python 3.7<version<3.9<br>
-Anaconda Navagator <br>
-Jupyter Notebook <br>
-If python version in Jupyter Notebook not in range(3.7,3.9),change the version in Environments in ANACONDA,NAVIGATOR
-<!-- Predict with Different Model -->
-## Bounding Box with Tensorflow Model
-### Command to Run Script in Python3
+### Bounding Box with Tensorflow Model
+#### Command to Run Script in Python3
 ```
 cd tensorflow_scripts/bounding_box
 ```
@@ -59,7 +60,7 @@ Example Default Command
 python prediction_bb.py --input "./input" --output "./output" --size "640x640" --threshold 0.7 --model "./saved_model" --label "./label_map.pbtxt"
 ```
 
-#### Arguments for Python3 File
+##### Arguments for Python3 File
 Parameters below can be modified before prediction.
 ```
 --input "path_to_input_folder" (Required)
@@ -69,7 +70,7 @@ Parameters below can be modified before prediction.
 --model "path_to_model" (Optional) (default: "./saved_model")
 --label "path_to_labelmap" (Optional) (default: "./label_map.pbtxt")
 ```
-### Command to Run Script in Jupyter Notebook
+#### Command to Run Script in Jupyter Notebook
 ```
 pip install jupyter
 ```
@@ -79,8 +80,8 @@ python -m notebook prediction_bb.ipynb
 
 
 
-## Bounding Box Hub with Tensorflow Model
-### Command to Run Script in Python3
+### Bounding Box Hub with Tensorflow Model
+#### Command to Run Script in Python3
 ```
 cd tensorflow_scripts/bounding_box_hub
 ```
@@ -97,7 +98,7 @@ Example Default Command
 ```
 python prediction_bbhub.py  --secret "76d97105923491bfa13c84d74eb5457b3b04dceda19ca009d7af111bd7d05344" --key "f2324a0064025c01da8fe3482177a83a"
 ```
-#### Arguments for Python3 File
+##### Arguments for Python3 File
 ```
 --input "path_to_input_folder" (Optional) (default:"./input/")
 --output "path_to_output_folder" (Optional)(default:"./output")
@@ -105,7 +106,7 @@ python prediction_bbhub.py  --secret "76d97105923491bfa13c84d74eb5457b3b04dceda1
 --secret "Project secret" (Required)
 --key "Your model key" (Required) 
 ```
-### Set Up and Running in Jupyter Notebook
+#### Set Up and Running in Jupyter Notebook
 First, go to jupyter notebook to change PROJECT_SECRETE and MODUEL_KEY to own one. 
 ```
 pip install jupyter
@@ -118,8 +119,8 @@ python -m notebook prediction_bbhub.ipynb
 
 
 
-## Segmentation with Tensorflow Model
-### Command to Run Script in Python3
+### Segmentation with Tensorflow Model
+#### Command to Run Script in Python3
 ```
 cd tensorflow_scripts/segmentation
 ```
@@ -137,7 +138,7 @@ Example Default Command
 python prediction_seg.py --input "./input" --output "./output" --size "640x640" --threshold 0.7 --model "./saved_model" --label "./label_map.pbtxt"
 ```
 
-#### Arguments for Python3 File
+##### Arguments for Python3 File
 Parameters below can be modified before prediction.
 ```
 --input "path_to_input_folder" (Required)
@@ -147,7 +148,7 @@ Parameters below can be modified before prediction.
 --model "path_to_model" (Optional) (default: "./saved_model")
 --label "path_to_labelmap" (Optional) (default: "./label_map.pbtxt")
 ```
-### Command to Run Script in Jupyter Notebook
+#### Command to Run Script in Jupyter Notebook
 ```
 pip install jupyter
 ```
