@@ -17,7 +17,7 @@ Users can download model derectly from Nexus or port the trained model through D
 <br>
 Firstly, users should clone this repository and cd to the resource folder.<br>
 ```
-git clone
+git clone https://github.com/pxdn323/resources.git
 ```
 <br>
 The usage of the following four different models though both python3 and jupyter notebook will be introduced：
