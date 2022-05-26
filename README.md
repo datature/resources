@@ -12,11 +12,12 @@ This repository is provided to Nexus users who may want to load model in to thei
 
 <!-- GETTING STARTED -->
 ## Getting Started
-There are two kinds of model can be downloaded from Nexus: TensorFlow model and TFlite model. Users can download model derectly from Nexus or port the trained model
-through Datature Hub. For the second method, users should get two sets of Keys: Model Key and Project Secret Key in advance.
-Firstly, users should clone this repository and cd to resource folder.
-
-The usage of the following six different models though both python3 and jupyter notebook will be introduced：
+There are two kinds of model can be downloaded from Nexus: TensorFlow model and TFlite model.<br>
+Users can download model derectly from Nexus or port the trained model through Datature Hub. For the second method, users should get two sets of Keys: Model Key and Project Secret Key in advance.<br>
+<br>
+Firstly, users should clone this repository and cd to resource folder.<br>
+<br>
+The usage of the following four different models though both python3 and jupyter notebook will be introduced：
 <ol>
     <li><a href="#bounding-box-with-tensorflow-model">Bounding Box with Tensorflow Model (Download model derectly)</a></li>
     <li><a href="#bounding-box-hub-with-tensorflow-model">Bounding Box Hub with Tensorflow Model (Access model by datature Hub)</a></li>
