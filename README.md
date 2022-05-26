@@ -12,14 +12,12 @@ This repository is provided to Nexus users who may want to load model in to thei
 
 <!-- GETTING STARTED -->
 ## Getting Started
-There are two kinds of model can be downloaded from Nexus: TensorFlow model and TFlite model.<br>
-Users can download model derectly from Nexus or port the trained model through Datature Hub. For the second method, users should get two sets of Keys: Model Key and Project Secret Key in advance.<br>
-<br>
 Firstly, users should clone this repository and cd to the resource folder.<br>
 ```
 git clone https://github.com/pxdn323/resources.git
 ```
 <br>
+There are two kinds of model can be downloaded from Nexus: TensorFlow model and TFlite model.<br>
 The usage of the following four different models though both python3 and jupyter notebook will be introduced：
 <ol>
     <li><a href="#bounding-box-with-tensorflow-model">Bounding Box with Tensorflow Model (Download model directly)</a></li>
@@ -29,6 +27,14 @@ The usage of the following four different models though both python3 and jupyter
     
 </ol>
 
+### Moduel Downloading
+Users can download model derectly from Nexus or port the trained model through Datature Hub. For the second method, users should get two sets of Keys: Model Key and Project Secret Key in advance.<br>
+<br>
+#### Model Key
+To convert that artifact into an exported model for the prediction service, in Nexus select “Artifacts” under Project Overview. Within the artifacts page, select your chosen artifact and generate an API key for deployment by clicking the triple dots box, which is shown as below.<br> The API key is Model Key.
+
+#### Secret Key
+You can generate the Project Secret key on the Nexus platform by going to “API Management” and hit the “Generate New Secret” button, as shown below.
 
 
 ### Environment Requirements
