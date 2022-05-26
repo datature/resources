@@ -77,12 +77,12 @@ pip install -r requirements.txt
 ```
 
 ```
-python bbbox.py --input "path_to_input_folder" --output "path_to_output_folder" --size "640x640" --threshold 0.7 --model "path_to_model" --label "path_to_labelmap"
+python bbox.py --input "path_to_input_folder" --output "path_to_output_folder" --size "640x640" --threshold 0.7 --model "path_to_model" --label "path_to_labelmap"
 ```
 
 Example Default Command
 ```
-python bbbox.py --input "./input" --output "./output" --size "640x640" --threshold 0.7 --model "./saved_model" --label "./label_map.pbtxt"
+python bbox.py --input "./input" --output "./output" --size "640x640" --threshold 0.7 --model "./saved_model" --label "./label_map.pbtxt"
 ```
 
 ##### Arguments for Python3 File
@@ -100,7 +100,7 @@ Parameters below can be modified before prediction.
 pip install jupyter
 ```
 ```
-python -m notebook bbbox.ipynb
+python -m notebook bbox.ipynb
 ```
 
 <br/>
@@ -124,12 +124,12 @@ pip install -r requirements.txt
 ```
 
 ```
-python bbbox.py --input "path_to_input_folder" --output "path_to_output_folder"  --threshold 0.7 --secret "Project_secret" --key "Your_model_key"
+python bbox.py --input "path_to_input_folder" --output "path_to_output_folder"  --threshold 0.7 --secret "Project_secret" --key "Your_model_key"
 ```
 
 Example Default Command
 ```
-python bbbox.py  --secret "76d97105923491bfa13c84d74eb5457b3b04dceda19ca009d7af111bd7d05344" --key "f2324a0064025c01da8fe3482177a83a"
+python bbox.py  --secret "76d97105923491bfa13c84d74eb5457b3b04dceda19ca009d7af111bd7d05344" --key "f2324a0064025c01da8fe3482177a83a"
 ```
 ##### Arguments for Python3 File
 ```
@@ -145,7 +145,7 @@ First, go to jupyter notebook to change PROJECT_SECRETE and MODUEL_KEY to own on
 pip install jupyter
 ```
 ```
-python -m notebook bbbox.ipynb
+python -m notebook bbox.ipynb
 ```
 <br/>
 <div align="right">
@@ -240,12 +240,12 @@ pip install -r requirements.txt
 ```
 
 ```
-python bbbox.py --INPUT "path_to_input_folder" --OUTPUT "path_to_output_folder" --SIZE [640,640] --THRESHOLD 0.7 --MODEL "path_to_model" --LABEL "path_to_labelmap"
+python bbox.py --INPUT "path_to_input_folder" --OUTPUT "path_to_output_folder" --SIZE [640,640] --THRESHOLD 0.7 --MODEL "path_to_model" --LABEL "path_to_labelmap"
 ```
 
 Example Default Command
 ```
-python bbbox.py --INPUT "./input" --OUTPUT "./output" --SIZE "640,640" --THRESHOLD 0.7 --MODEL "./tf.lite" --LABEL "./label_map.pbtxt"
+python bbox.py --INPUT "./input" --OUTPUT "./output" --SIZE "640,640" --THRESHOLD 0.7 --MODEL "./tf.lite" --LABEL "./label_map.pbtxt"
 ```
 
 ##### Arguments for Python3 File
@@ -263,7 +263,7 @@ Parameters below can be modified before prediction.
 pip install jupyter
 ```
 ```
-python -m notebook bbbox.ipynb
+python -m notebook bbox.ipynb
 ```
 	
 <br/>
