@@ -48,8 +48,8 @@ Description for each file and folder in terms of its content or purpose are show
 
 - input/: Some sample test images for prediction
 - output/: Output folder to store predicted images
-- saved_model/: Contains trained model ("hub" one donot need)
-- labelmap.pbtxt: Label map used for prediction ("hub" one donot need)
+- saved_model/: Contains trained model ("hub" one don't need)
+- labelmap.pbtxt: Label map used for prediction ("hub" one don't need)
 - requirements.txt: Contains Python3 dependencies
 - prediction_[model].py: Python3 script to run for prediction
 - prediction_[model].ipynb: Jupyter notebook script to run for prediction
@@ -211,8 +211,8 @@ Description for each file and folder in terms of its content or purpose are show
 
 - input/: Some sample test images for prediction
 - output/: Output folder to store predicted images
-- tf.lite: Trained model ("hub" one donot need)
-- labelmap.pbtxt: Label map used for prediction ("hub" one donot need)
+- tf.lite: Trained model ("hub" one don't need)
+- labelmap.pbtxt: Label map used for prediction ("hub" one don't need)
 - requirements.txt: Contains Python3 dependencies
 - prediction_[model]lite.py: Python3 script to run for prediction
 - prediction_[model]lite.ipynb: Jupyter notebook script to run for prediction
