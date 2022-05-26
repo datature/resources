@@ -22,8 +22,7 @@ The usage of the following six different models though both python3 and jupyter 
     <li><a href="#bounding-box-hub-with-tensorflow-model">Bounding Box Hub with Tensorflow Model (Access model by datature Hub)</a></li>
     <li><a href="#segmentation-with-tensorflow-model">Segmentation with Tensorflow Model (Download model derectly)</a></li>
     <li><a href="#bounding-box-with-tensorflowlite-model">Bounding Box with TFlite Model (Download model derectly)</a></li>
-    <li><a href="#bounding-box-hub-with-tensorflowlite-model">Bounding Box Hub with TFlite Model (Access model by datature Hub)</a></li>
-    <li><a href="#segmentation-with-tensorflowlite-model">Segmentation with TFlite Model (Download model derectly)</a></li>
+    
 </ol>
 
 
@@ -203,7 +202,7 @@ python -m notebook prediction_seg.ipynb
      <summary>Click to expand</summary>
      
 ### File Structure
-All the three kinds of models have a common file structure.
+The model have file structure below.
 Description for each file and folder in terms of its content or purpose are shown below.
 
 - input/: Some sample test images for prediction
@@ -262,32 +261,7 @@ python -m notebook prediction_bblite.ipynb
 	
 </details>
 
-### Bounding Box Hub with Tensorflowlite Model
-<details>
-     <summary>Click to expand</summary>
-	
-<br/>
-<div align="right">
-    <b><a href="#top">↥ back to top</a></b>
-</div>
-<br/>
-	
-</details>
 
-
-
-
-### Segmentation with Tensorflowlite Model
-<details>
-     <summary>Click to expand</summary>
-	
-<br/>
-<div align="right"> 
-    <b><a href="#top">↥ back to top</a></b>
-</div>
-<br/>
-	
-</details>
 </details>
 
 
