@@ -33,9 +33,12 @@ Users can download model derectly from Nexus or port the trained model through D
 #### Model Key
 To convert that artifact into an exported model for the prediction service, in Nexus select “Artifacts” under Project Overview. Within the artifacts page, select your chosen artifact and generate an API key for deployment by clicking the triple dots box, which is shown as below.<br> The API key is Model Key.
 
+![img1](https://github.com/pxdn323/resources/blob/test/img/img.PNG)
+
 #### Secret Key
 You can generate the Project Secret key on the Nexus platform by going to “API Management” and hit the “Generate New Secret” button, as shown below.
 
+![img2](https://github.com/pxdn323/resources/blob/test/img/img2.PNG)
 
 ### Environment Requirements
 python 3.7<version<3.9<br>
