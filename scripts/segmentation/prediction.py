@@ -139,7 +139,7 @@ def load_image_into_numpy_array(path, height, width):
     image = Image.open(path).convert("RGB")
     image_shape = np.asarray(image).shape
 
-    image_resized = image.resize((height, width))
+    image_resized = image.resize((width, height))
     return np.array(image_resized), (image_shape[0], image_shape[1])
 
 
