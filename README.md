@@ -140,7 +140,7 @@ python bbox.py  --secret "76d97105923491bfa13c84d74eb5457b3b04dceda19ca009d7af11
 --key "Your model key" (Required) 
 ```
 #### Set Up and Running in Jupyter Notebook
-First, go to jupyter notebook to change PROJECT_SECRETE and MODUEL_KEY to own one. 
+First, go to jupyter notebook to change PROJECT_SECRET and MODUEL_KEY to own one. 
 ```
 pip install jupyter
 ```
