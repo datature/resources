@@ -27,7 +27,7 @@ The usage of the following four different models through both python3 and jupyte
     
 </ol>
 
-### Module Downloading
+### Model Downloading
 Users can download the model directly from Nexus or export the trained model through Datature Hub. For the second method, users should get two sets of Keys: Model Key and Project Secret Key in advance.<br>
 <br>
 #### Model Key
