@@ -27,8 +27,8 @@ The usage of the following four different models through both python3 and jupyte
     
 </ol>
 
-### Moduel Downloading
-Users can download model derectly from Nexus or export the trained model through Datature Hub. For the second method, users should get two sets of Keys: Model Key and Project Secret Key in advance.<br>
+### Module Downloading
+Users can download the model directly from Nexus or export the trained model through Datature Hub. For the second method, users should get two sets of Keys: Model Key and Project Secret Key in advance.<br>
 <br>
 #### Model Key
 To convert that artifact into an exported model for the prediction service, in Nexus select “Artifacts” under Project Overview. Within the artifacts page, select your chosen artifact and generate an API key for deployment by clicking the triple dots box, which is shown as below.<br> The API key is Model Key.
@@ -282,4 +282,3 @@ python -m notebook bbox.ipynb
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
-
