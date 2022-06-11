@@ -3,15 +3,18 @@ Prediction script for trained tensorflow PB model.
 """
 
 import os
+import cv2
 import time
 import glob
 import argparse
 import numpy as np
+import absl.logging
 import tensorflow as tf
-import cv2
 
 from PIL import Image
 
+## Disable unnecessary warnings for tensorflow
+absl.logging.set_verbosity(absl.logging.ERROR)
 ## Comment out next line to use GPU
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 ## Comment out to set verbose to true
@@ -35,7 +38,10 @@ def load_label_map(label_map_path):
             if "id" in line:
                 label_index = int(line.split(":")[-1])
                 label_name = next(label_file).split(":")[-1].strip().strip("'")
-                label_map[label_index] = {"id": label_index, "name": label_name}
+                label_map[label_index] = {
+                    "id": label_index,
+                    "name": label_name,
+                }
 
     return label_map
 
@@ -64,10 +70,14 @@ def args_parser():
         description="Datature Open Source Prediction Script"
     )
     parser.add_argument(
-        "--input", help="Path to folder that contains input images", required=True
+        "--input",
+        help="Path to folder that contains input images",
+        required=True,
     )
     parser.add_argument(
-        "--output", help="Path to folder to store predicted images", required=True
+        "--output",
+        help="Path to folder to store predicted images",
+        required=True,
     )
     parser.add_argument(
         "--size", help="Size of image to load into model", default="320x320"
@@ -79,15 +89,18 @@ def args_parser():
         "--model", help="Path to tensorflow pb model", default="./saved_model"
     )
     parser.add_argument(
-        "--label", help="Path to tensorflow label map", default="./label_map.pbtxt"
+        "--label",
+        help="Path to tensorflow label map",
+        default="./label_map.pbtxt",
     )
     return parser.parse_args()
 
 
 def main():
-    print('x')
     ## Load argument variables
     args = args_parser()
+
+    height, width = args.size.split("x")
 
     if os.path.exists(args.input) is False:
         raise Exception("Input Folder Path Do Not Exists")
@@ -103,7 +116,9 @@ def main():
     ## Load color map
     color_map = {}
     for each_class in range(len(category_index)):
-        color_map[each_class] = [int(i) for i in np.random.choice(range(256), size=3)]
+        color_map[each_class] = [
+            int(i) for i in np.random.choice(range(256), size=3)
+        ]
 
     ## Load model
     print("Loading model...")
@@ -114,8 +129,6 @@ def main():
     ## Run prediction on each image
     for each_image in glob.glob(os.path.join(args.input, "*")):
         print("Predicting for {}...".format(each_image))
-
-        height, width = args.size.split("x")
 
         ## Returned original_shape is in the format of width, height
         image_resized, origi_shape = load_image_into_numpy_array(
@@ -139,7 +152,9 @@ def main():
         detections["num_detections"] = num_detections
 
         ## Filter out predictions below threshold
-        indexes = np.where(detections["detection_scores"] > float(args.threshold))
+        indexes = np.where(
+            detections["detection_scores"] > float(args.threshold)
+        )
 
         ## Extract predictions
         bboxes = detections["detection_boxes"][indexes]
