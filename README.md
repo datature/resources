@@ -1,6 +1,6 @@
 <div id="top"></div>
 
-# resources
+# Datature Code and Resources Hub
 
 A repository of resources used in our tutorials and guides ⚡️
 
