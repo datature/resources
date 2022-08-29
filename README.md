@@ -17,7 +17,7 @@ The scripts & jupyter notebooks in this repository provide Nexus users a guideli
 Firstly, users should clone this repository and change to the resource folder directory.<br>
 
 ```
-git clone https://github.com/pxdn323/resources.git
+git clone https://github.com/datature/resources.git
 ```
 
 <br>
