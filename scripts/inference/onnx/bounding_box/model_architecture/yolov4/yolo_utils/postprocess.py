@@ -9,7 +9,6 @@ def yolo_decode(
     anchors,
     num_classes,
     input_shape,
-    scale_x_y,
 ):
     """Decode final layer features to bounding box parameters."""
     batch_size = np.shape(prediction)[0]
@@ -47,8 +46,9 @@ def yolo_decode(
     anchors = np.expand_dims(anchors, 0)
 
     ## Eliminate grid sensitivity
-    box_xy_tmp = (expit(prediction[..., :2]) * scale_x_y - (scale_x_y - 1) / 2)
-    box_xy = (box_xy_tmp + x_y_offset) / np.array(grid_shape)[::-1]
+    box_xy = (expit(prediction[..., :2]) +
+              x_y_offset) / np.array(grid_shape)[::-1]
+
     box_wh = (np.exp(prediction[..., 2:4]) *
               anchors) / np.array(input_shape)[::-1]
 
@@ -62,11 +62,12 @@ def yolo_decode(
     return np.concatenate([box_xy, box_wh, objectness, class_scores], axis=2)
 
 
-def yolov3v4_decode(predictions,
-                    anchors,
-                    num_classes,
-                    input_shape,
-                    elim_grid_sense=False):
+def yolov3v4_decode(
+    predictions,
+    anchors,
+    num_classes,
+    input_shape,
+):
     """
     YOLOv3/v4 Head to process predictions from YOLOv3/v4 models
 
@@ -84,10 +85,8 @@ def yolov3v4_decode(predictions,
 
     if len(predictions) == 3:
         anchor_mask = [[6, 7, 8], [3, 4, 5], [0, 1, 2]]
-        scale_x_y = [1.05, 1.1, 1.2] if elim_grid_sense else [None, None, None]
     elif len(predictions) == 2:
         anchor_mask = [[3, 4, 5], [0, 1, 2]]
-        scale_x_y = [1.05, 1.05] if elim_grid_sense else [None, None]
     else:
         raise ValueError("Unsupported prediction length: {}".format(
             len(predictions)))
@@ -101,7 +100,6 @@ def yolov3v4_decode(predictions,
                 anchors[anchor_mask[idx]],
                 num_classes,
                 input_shape,
-                scale_x_y[idx],
             ))
 
     return np.concatenate(results, axis=1)
@@ -283,7 +281,7 @@ def yolo_handle_predictions(predictions,
     ## Filter boxes with score threshold
     box_classes = np.argmax(box_scores, axis=-1)
     box_class_scores = np.max(box_scores, axis=-1)
-    pos = np.where(box_class_scores >= confidence)
+    pos = np.where(box_class_scores >= float(confidence))
 
     boxes = boxes[pos]
     classes = box_classes[pos]
@@ -319,20 +317,18 @@ def yolo_adjust_boxes(boxes, img_shape):
     image_shape = np.array(img_shape, dtype="float32")
     height, width = image_shape
 
-    print(height, width)
-
     adjusted_boxes = []
     for box in boxes:
         x, y, w, h = box
 
-        xmin = max(0, x / width)
-        ymin = max(0, y / height)
-        xmax = min(1, (x + w) / width)
-        ymax = min(1, (y + h) / height)
+        xmin = min(max(0, x / width), 1)
+        ymin = min(max(0, y / height), 1)
+        xmax = min(max(xmin, (x + w) / width), 1)
+        ymax = min(max(ymin, (y + h) / height), 1)
 
         adjusted_boxes.append([xmin, ymin, xmax, ymax])
 
-    return np.array(adjusted_boxes, dtype=np.int32)
+    return np.array(adjusted_boxes, dtype=np.float32)
 
 
 def yolov3v4_postprocess(
@@ -344,14 +340,12 @@ def yolov3v4_postprocess(
     max_boxes=100,
     confidence=0.1,
     iou_threshold=0.4,
-    elim_grid_sense=False,
 ):
     predictions = yolov3v4_decode(
         yolo_outputs,
         anchors,
         num_classes,
         input_shape=model_input_shape,
-        elim_grid_sense=elim_grid_sense,
     )
 
     predictions = yolo_correct_boxes(predictions, image_shape,

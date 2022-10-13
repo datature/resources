@@ -27,6 +27,7 @@ Users can download two kinds of model formats from Nexus currently: Tensorflow m
 - [Tensorflow Model - Bounding Box (Datature Hub Download)](#tensorflow-model---bounding-box)
 - [Tensorflow Model - Masks (Direct Download)](#tensorflow-model---masks)
 - [TFLite Model - Bounding Box (Direct Download)](#tflite-model---bounding-box)
+- [ONNX Model - Bounding Box (Direct Download)](#tflite-model---bounding-box)
 
 ### Download Model
 
@@ -309,9 +310,90 @@ python -m notebook tflite_xxx.ipynb
     <b><a href="#top">↥ back to top</a></b>
 </div>
 <br/>
-	
+
+</details>
 </details>
 
+## ONNX Models
+
+<details open>
+     <summary>Click to expand</summary><br>
+
+Under the `scripts/inference/onnx/` folder, there are subfolders of different types of computer vision models application or configuration, in `ONNX` format:
+
+- [ONNX Model - Bounding Box](#onnx-model---bounding-box)
+
+### File Structure
+
+Each of the subfolders contains a standard file structure. Below are descriptions for each file and folder regarding its content or purpose.
+
+- `input/`: Some sample test images for prediction
+- `output/`: Output folder to store predicted images
+- `requirements.txt`: Python3 dependencies
+- `model_architecture/`: All bounding box model architectures offered on Nexus platform
+  - `predict.py`: Python script to load downloaded model and obtain predictions
+  - `onnx_xxx.ipynb`: Jupyter notebook script to load model and obtain predictions
+
+### ONNX Model - Bounding Box
+
+<details>
+     <summary>Click to expand</summary><br>
+
+`xxx` in the subsequent command prompts represents chosen model architecture, which is also the name of the folders within the `model_architecture/` folder.
+
+### Command to run Downloaded Model Python script
+
+```
+cd scripts/inference/onnx/bounding_box/
+```
+
+```
+pip install -r requirements.txt
+```
+
+```
+cd model_architecture/xxx
+```
+
+```
+python predict.py --input "path_to_input_folder" --output "path_to_output_folder" --width 640 --height 640 --threshold 0.7 --model "path_to_model" --label "path_to_labelmap"
+```
+
+Sample default command
+
+```
+python predict.py --input "./input" --output "./output" --width 640 --height 640 --threshold 0.7 --model "./model.onnx" --label "./label_map.pbtxt"
+```
+
+Below is the list of modifiable script parameters and its description.
+
+```
+--input "path_to_input_folder" (Required)
+--output "path_to_output_folder" (Required)
+--model "path_to_model" (Required)
+--label "path_to_labelmap" (Required)
+--width "width of image to load" (Optional) (default: 640)
+--height "height of image to load" (Optional) (default: 640)
+--threshold "confidence threshold" (Optional) (default: 0.7)
+```
+
+### Command to run Jupyter Notebook
+
+```
+pip install jupyter
+```
+
+```
+python -m notebook onnx_xxx.ipynb
+```
+
+<br/>
+<div align="right">
+    <b><a href="#top">↥ back to top</a></b>
+</div>
+<br/>
+
+</details>
 </details>
 
 <!-- MARKDOWN LINKS & IMAGES -->

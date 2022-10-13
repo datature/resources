@@ -1,8 +1,6 @@
 """
-Prediction script for trained tensorflow .pb yolo model.
+Prediction script for trained onnx .onnx yolo model.
 """
-
-# import absl.logging
 
 import os
 import cv2
@@ -10,17 +8,16 @@ import time
 import glob
 import argparse
 import numpy as np
-import tensorflow as tf
+import absl.logging
+import onnxruntime as ort
 
 from PIL import Image
 from yolo_utils.postprocess import yolov3v4_postprocess
 
-## Disable unnecessary warnings for tensorflow
-tf.get_logger().setLevel("ERROR")
+## Disable unnecessary warnings
+absl.logging.set_verbosity(absl.logging.ERROR)
 ## Comment out next line to use GPU
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-## Comment out to set verbose to true
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 
 
 def get_anchors(anchors_path):
@@ -99,12 +96,12 @@ def args_parser():
     )
     parser.add_argument(
         "--model",
-        help="Path to tensorflow pb model",
+        help="Path to onnx model",
         required=True,
     )
     parser.add_argument(
         "--label",
-        help="Path to tensorflow yolo label map",
+        help="Path to yolo label map",
         required=True,
     )
     parser.add_argument(
@@ -163,7 +160,17 @@ def main():
     ## Load model
     print("Loading model...")
     start_time = time.time()
-    trained_model = tf.saved_model.load(args.model)
+    session = ort.InferenceSession(
+        args.model,
+        providers=["CUDAExecutionProvider"],
+    )
+
+    ## Save Input Output layer names
+    input_name = session.get_inputs()[0].name
+
+    output_names = [
+        single_output.name for single_output in session.get_outputs()
+    ]
     print("Model loaded, took {} seconds...".format(time.time() - start_time))
 
     ## Run prediction on each image
@@ -174,22 +181,17 @@ def main():
         image_resized, origi_shape = load_image_into_numpy_array(
             each_image, int(height), int(width))
 
-        ## The input needs to be a tensor, convert it using `tf.convert_to_tensor`.
-        input_tensor = tf.convert_to_tensor(image_resized / 255.0)
+        ## Normalize input image
+        input_image = (image_resized / 255.0).astype(np.float32)
 
-        ## The model expects a batch of images, so add an axis with `tf.newaxis`.
-        input_tensor = input_tensor[tf.newaxis, ...]
-
-        ## Feed image into model
-        detections_output = trained_model(input_tensor)
+        detections_output = session.run(
+            output_names, {input_name: np.expand_dims(input_image, axis=0)})
 
         bboxes, classes, scores = yolov3v4_postprocess(
-            detections_output,
-            (int(width), int(height)),
+            detections_output, (int(width), int(height)),
             anchors,
-            3,
-            (int(width), int(height)),
-        )
+            3, (int(width), int(height)),
+            confidence=args.threshold)
 
         ## Draw Predictions
         image_origi = np.array(
