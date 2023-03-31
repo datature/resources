@@ -1,6 +1,4 @@
-tensorflow==2.5.0
-numpy==1.18.5
-Pillow==7.2.0
-matplotlib==3.1.3
-opencv-python
-tf-slim
+Pillow==8.4.0
+opencv-python-headless==4.7.0.72
+numpy==1.21.6
+tensorflow==2.11.0
