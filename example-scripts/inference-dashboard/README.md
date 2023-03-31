@@ -1,6 +1,6 @@
 # Building an Inference Dashboard with Datature Hub & Streamlit
 
-This repository contains the code for building a simple inference dashboard with Datature Hub, Streamlit, Tensorflow, and OpenCV. The tutorial can be found [here](https://www.datature.io/blog/building-a-simple-inference-dashboard-with-streamlit).
+This repository contains the full code for building a simple inference dashboard with Datature Hub, Streamlit, Tensorflow, and OpenCV. The tutorial can be found [here](https://www.datature.io/blog/building-a-simple-inference-dashboard-with-streamlit).
 
 ## Getting Started
 

@@ -64,7 +64,7 @@ This section contains example scripts that can be used for integrating with our 
 This section contains guides and code snippets on how to use our Datature Python SDK for automating tasks without having to interact with our Nexus platform. The SDK is available on [PyPI](https://pypi.org/project/datature/). It can be installed by running the following command:
 
 ```bash
-pip install datature
+pip install -U datature
 ```
 
 The SDK can either be invoked in [Python](sdk-guides/python/), or through the [command line interface (CLI)](sdk-guides/cli/). For more information or advanced features on the SDK, please refer to the [SDK documentation](https://developers.datature.io/reference/getting-started).
