@@ -30,7 +30,12 @@ class Detection(object):
 
     """
 
-    def __init__(self, ltwh, confidence, feature, class_name=None, others=None):
+    def __init__(self,
+                 ltwh,
+                 confidence,
+                 feature,
+                 class_name=None,
+                 others=None):
         # def __init__(self, ltwh, feature):
         self.ltwh = np.asarray(ltwh, dtype=np.float)
         self.confidence = float(confidence)

@@ -127,7 +127,8 @@ class NearestNeighborDistanceMetric(object):
         elif metric == "cosine":
             self._metric = _nn_cosine_distance
         else:
-            raise ValueError("Invalid metric; must be either 'euclidean' or 'cosine'")
+            raise ValueError(
+                "Invalid metric; must be either 'euclidean' or 'cosine'")
         self.matching_threshold = matching_threshold
         self.budget = budget
         self.samples = {}
@@ -148,7 +149,7 @@ class NearestNeighborDistanceMetric(object):
         for feature, target in zip(features, targets):
             self.samples.setdefault(target, []).append(feature)
             if self.budget is not None:
-                self.samples[target] = self.samples[target][-self.budget :]
+                self.samples[target] = self.samples[target][-self.budget:]
         self.samples = {k: self.samples[k] for k in active_targets}
 
     def distance(self, features, targets):

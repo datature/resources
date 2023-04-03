@@ -1,11 +1,12 @@
 # vim: expandtab:ts=4:sw=4
 from __future__ import absolute_import
+
 import numpy as np
 
 # from sklearn.utils.linear_assignment_ import linear_assignment
 from scipy.optimize import linear_sum_assignment
-from . import kalman_filter
 
+from . import kalman_filter
 
 INFTY_COST = 1e5
 
@@ -59,7 +60,8 @@ def min_cost_matching(
     if len(detection_indices) == 0 or len(track_indices) == 0:
         return [], track_indices, detection_indices  # Nothing to match.
 
-    cost_matrix = distance_metric(tracks, detections, track_indices, detection_indices)
+    cost_matrix = distance_metric(tracks, detections, track_indices,
+                                  detection_indices)
     cost_matrix[cost_matrix > max_distance] = max_distance + 1e-5
     # indices = linear_assignment(cost_matrix)
     indices = np.vstack(linear_sum_assignment(cost_matrix)).T
@@ -139,7 +141,8 @@ def matching_cascade(
             break
 
         track_indices_l = [
-            k for k in track_indices if tracks[k].time_since_update == 1 + level
+            k for k in track_indices
+            if tracks[k].time_since_update == 1 + level
         ]
         if len(track_indices_l) == 0:  # Nothing to match at this level
             continue
@@ -203,11 +206,11 @@ def gate_cost_matrix(
     """
     gating_dim = 2 if only_position else 4
     gating_threshold = kalman_filter.chi2inv95[gating_dim]
-    measurements = np.asarray([detections[i].to_xyah() for i in detection_indices])
+    measurements = np.asarray(
+        [detections[i].to_xyah() for i in detection_indices])
     for row, track_idx in enumerate(track_indices):
         track = tracks[track_idx]
-        gating_distance = kf.gating_distance(
-            track.mean, track.covariance, measurements, only_position
-        )
+        gating_distance = kf.gating_distance(track.mean, track.covariance,
+                                             measurements, only_position)
         cost_matrix[row, gating_distance > gating_threshold] = gated_cost
     return cost_matrix

@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
@@ -17,7 +17,7 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    packages=find_packages(exclude=("test",)),
+    packages=find_packages(exclude=("test", )),
     package_data={
         "deep_sort_realtime.embedder": [
             "weights/mobilenetv2_bottleneck_wts.pt",

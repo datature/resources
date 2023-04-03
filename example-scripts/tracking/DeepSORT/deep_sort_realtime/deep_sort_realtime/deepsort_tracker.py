@@ -1,9 +1,8 @@
-import time
 import logging
+import time
 
 import cv2
 import numpy as np
-
 from deep_sort_realtime.deep_sort import nn_matching
 from deep_sort_realtime.deep_sort.detection import Detection
 from deep_sort_realtime.deep_sort.tracker import Tracker
@@ -23,6 +22,7 @@ EMBEDDER_CHOICES = [
 
 
 class DeepSort(object):
+
     def __init__(
         self,
         max_age=30,
@@ -71,8 +71,7 @@ class DeepSort(object):
         """
         self.nms_max_overlap = nms_max_overlap
         metric = nn_matching.NearestNeighborDistanceMetric(
-            "cosine", max_cosine_distance, nn_budget
-        )
+            "cosine", max_cosine_distance, nn_budget)
         self.tracker = Tracker(
             metric,
             max_age=max_age,
@@ -85,8 +84,7 @@ class DeepSort(object):
                 raise Exception(f"Embedder {embedder} is not a valid choice.")
             if embedder == "mobilenet":
                 from deep_sort_realtime.embedder.embedder_tf import (
-                    MobileNetv2_Embedder as Embedder,
-                )
+                    MobileNetv2_Embedder as Embedder, )
 
                 self.embedder = Embedder(
                     max_batch_size=16,
@@ -97,8 +95,7 @@ class DeepSort(object):
                 )
             else:
                 from deep_sort_realtime.embedder.embedder_clip import (
-                    Clip_Embedder as Embedder,
-                )
+                    Clip_Embedder as Embedder, )
 
                 model_name = "_".join(embedder.split("_")[1:])
                 self.embedder = Embedder(
@@ -123,11 +120,17 @@ class DeepSort(object):
             f'- overriding track class : {"No" if override_track_class is None else "Yes"}'
         )
         logger.info(f'- today given : {"No" if today is None else "Yes"}')
-        logger.info(f'- in-build embedder : {"No" if self.embedder is None else "Yes"}')
-        logger.info(f'- polygon detections : {"No" if polygon is False else "Yes"}')
+        logger.info(
+            f'- in-build embedder : {"No" if self.embedder is None else "Yes"}'
+        )
+        logger.info(
+            f'- polygon detections : {"No" if polygon is False else "Yes"}')
 
-    def update_tracks(self, raw_detections, embeds=None, frame=None, today=None):
-
+    def update_tracks(self,
+                      raw_detections,
+                      embeds=None,
+                      frame=None,
+                      today=None):
         """Run multi-target tracker on a particular sequence.
 
         Parameters
@@ -158,7 +161,9 @@ class DeepSort(object):
                 raise Exception("either embeddings or frame must be given!")
 
         if not self.polygon:
-            raw_detections = [d for d in raw_detections if d[0][2] > 0 and d[0][3] > 0]
+            raw_detections = [
+                d for d in raw_detections if d[0][2] > 0 and d[0][3] > 0
+            ]
 
             if embeds is None:
                 embeds = self.generate_embeds(frame, raw_detections)
@@ -169,12 +174,12 @@ class DeepSort(object):
             polygons, bounding_rects = self.process_polygons(raw_detections[0])
 
             if embeds is None:
-                embeds = self.generate_embeds_poly(frame, polygons, bounding_rects)
+                embeds = self.generate_embeds_poly(frame, polygons,
+                                                   bounding_rects)
 
             # Proper deep sort detection objects that consist of bbox, confidence and embedding.
-            detections = self.create_detections_poly(
-                raw_detections, embeds, bounding_rects
-            )
+            detections = self.create_detections_poly(raw_detections, embeds,
+                                                     bounding_rects)
 
         # Run non-maxima suppression.
         boxes = np.array([d.ltwh for d in detections])
@@ -220,18 +225,20 @@ class DeepSort(object):
             y = max(0, y)
             bbox = [x, y, w, h]
             detection_list.append(
-                Detection(bbox, score, embed, class_name=cl, others=raw_polygon)
-            )
+                Detection(bbox,
+                          score,
+                          embed,
+                          class_name=cl,
+                          others=raw_polygon))
         return detection_list
 
     @staticmethod
     def process_polygons(raw_polygons):
-        polygons = [
-            [polygon[x : x + 2] for x in range(0, len(polygon), 2)]
-            for polygon in raw_polygons
-        ]
+        polygons = [[polygon[x:x + 2] for x in range(0, len(polygon), 2)]
+                    for polygon in raw_polygons]
         bounding_rects = [
-            cv2.boundingRect(np.array([polygon]).astype(int)) for polygon in polygons
+            cv2.boundingRect(np.array([polygon]).astype(int))
+            for polygon in polygons
         ]
         return polygons, bounding_rects
 

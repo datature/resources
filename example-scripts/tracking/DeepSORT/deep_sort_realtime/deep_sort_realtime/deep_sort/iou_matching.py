@@ -1,6 +1,8 @@
 # vim: expandtab:ts=4:sw=4
 from __future__ import absolute_import
+
 import numpy as np
+
 from . import linear_assignment
 
 
@@ -27,20 +29,17 @@ def iou(bbox, candidates):
     candidates_tl = candidates[:, :2]
     candidates_br = candidates[:, :2] + candidates[:, 2:]
 
-    tl = np.c_[
-        np.maximum(bbox_tl[0], candidates_tl[:, 0])[:, np.newaxis],
-        np.maximum(bbox_tl[1], candidates_tl[:, 1])[:, np.newaxis],
-    ]
-    br = np.c_[
-        np.minimum(bbox_br[0], candidates_br[:, 0])[:, np.newaxis],
-        np.minimum(bbox_br[1], candidates_br[:, 1])[:, np.newaxis],
-    ]
+    tl = np.c_[np.maximum(bbox_tl[0], candidates_tl[:, 0])[:, np.newaxis],
+               np.maximum(bbox_tl[1], candidates_tl[:, 1])[:, np.newaxis], ]
+    br = np.c_[np.minimum(bbox_br[0], candidates_br[:, 0])[:, np.newaxis],
+               np.minimum(bbox_br[1], candidates_br[:, 1])[:, np.newaxis], ]
     wh = np.maximum(0.0, br - tl)
 
     area_intersection = wh.prod(axis=1)
     area_bbox = bbox[2:].prod()
     area_candidates = candidates[:, 2:].prod(axis=1)
-    return area_intersection / (area_bbox + area_candidates - area_intersection)
+    return area_intersection / (area_bbox + area_candidates -
+                                area_intersection)
 
 
 def iou_cost(tracks, detections, track_indices=None, detection_indices=None):

@@ -221,9 +221,8 @@ class Track:
 
         """
         self.original_ltwh = detection.get_ltwh()
-        self.mean, self.covariance = kf.update(
-            self.mean, self.covariance, detection.to_xyah()
-        )
+        self.mean, self.covariance = kf.update(self.mean, self.covariance,
+                                               detection.to_xyah())
         self.features.append(detection.feature)
         self.det_conf = detection.confidence
         self.det_class = detection.class_name

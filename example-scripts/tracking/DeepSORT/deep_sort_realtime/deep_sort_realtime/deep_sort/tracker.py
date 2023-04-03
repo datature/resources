@@ -1,10 +1,11 @@
 # vim: expandtab:ts=4:sw=4
 from __future__ import absolute_import
+
 from datetime import datetime
+
 import numpy as np
-from . import kalman_filter
-from . import linear_assignment
-from . import iou_matching
+
+from . import iou_matching, kalman_filter, linear_assignment
 from .track import Track
 
 
@@ -91,7 +92,8 @@ class Tracker:
                 self._next_id = 1
 
         # Run matching cascade.
-        matches, unmatched_tracks, unmatched_detections = self._match(detections)
+        matches, unmatched_tracks, unmatched_detections = self._match(
+            detections)
 
         # Update track set.
         for track_idx, detection_idx in matches:
@@ -119,23 +121,25 @@ class Tracker:
             features += track.features
             targets += [track.track_id for _ in track.features]
             track.features = [track.features[-1]]
-        self.metric.partial_fit(
-            np.asarray(features), np.asarray(targets), active_targets
-        )
+        self.metric.partial_fit(np.asarray(features), np.asarray(targets),
+                                active_targets)
 
     def _match(self, detections):
+
         def gated_metric(tracks, dets, track_indices, detection_indices):
             features = np.array([dets[i].feature for i in detection_indices])
             targets = np.array([tracks[i].track_id for i in track_indices])
             cost_matrix = self.metric.distance(features, targets)
             cost_matrix = linear_assignment.gate_cost_matrix(
-                self.kf, cost_matrix, tracks, dets, track_indices, detection_indices
-            )
+                self.kf, cost_matrix, tracks, dets, track_indices,
+                detection_indices)
 
             return cost_matrix
 
         # Split track set into confirmed and unconfirmed tracks.
-        confirmed_tracks = [i for i, t in enumerate(self.tracks) if t.is_confirmed()]
+        confirmed_tracks = [
+            i for i, t in enumerate(self.tracks) if t.is_confirmed()
+        ]
         unconfirmed_tracks = [
             i for i, t in enumerate(self.tracks) if not t.is_confirmed()
         ]
@@ -156,10 +160,12 @@ class Tracker:
 
         # Associate remaining tracks together with unconfirmed tracks using IOU.
         iou_track_candidates = unconfirmed_tracks + [
-            k for k in unmatched_tracks_a if self.tracks[k].time_since_update == 1
+            k for k in unmatched_tracks_a
+            if self.tracks[k].time_since_update == 1
         ]
         unmatched_tracks_a = [
-            k for k in unmatched_tracks_a if self.tracks[k].time_since_update != 1
+            k for k in unmatched_tracks_a
+            if self.tracks[k].time_since_update != 1
         ]
         (
             matches_b,
@@ -196,8 +202,7 @@ class Tracker:
                 feature=detection.feature,
                 det_class=detection.class_name,
                 det_conf=detection.confidence,
-            )
-        )
+            ))
         self._next_id += 1
 
     def delete_all_tracks(self):

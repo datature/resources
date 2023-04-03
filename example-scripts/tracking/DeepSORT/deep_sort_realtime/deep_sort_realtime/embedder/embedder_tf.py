@@ -1,5 +1,5 @@
-import os
 import logging
+import os
 from pathlib import Path
 
 import cv2
@@ -7,8 +7,7 @@ import numpy as np
 import pkg_resources
 import tensorflow as tf
 from tensorflow.python.framework.convert_to_constants import (
-    convert_variables_to_constants_v2,
-)
+    convert_variables_to_constants_v2, )
 
 MOBILENETV2_BOTTLENECK_WTS = pkg_resources.resource_filename(
     "deep_sort_realtime",
@@ -24,7 +23,6 @@ if gpus:
         tf.config.experimental.set_memory_growth(gpu, True)
 
 INPUT_WIDTH = 224
-
 
 # def batch(iterable, bs=1):
 # l = len(iterable)
@@ -62,9 +60,12 @@ class MobileNetv2_Embedder(object):
     - gpu (optional, Bool) : boolean flag indicating if gpu is enabled or not
     """
 
-    def __init__(
-        self, model_wts_path=None, max_batch_size=16, bgr=True, gpu=True, model=None
-    ):
+    def __init__(self,
+                 model_wts_path=None,
+                 max_batch_size=16,
+                 bgr=True,
+                 gpu=True,
+                 model=None):
 
         if not gpu:
             os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
@@ -75,9 +76,8 @@ class MobileNetv2_Embedder(object):
             if model_wts_path is None:
                 model_wts_path = MOBILENETV2_BOTTLENECK_WTS
             model_wts_path = Path(model_wts_path)
-            assert (
-                model_wts_path.is_file()
-            ), f"Mobilenetv2 model path {model_wts_path} does not exists!"
+            assert (model_wts_path.is_file(
+            )), f"Mobilenetv2 model path {model_wts_path} does not exists!"
             self.model = get_mobilenetv2_with_preproc(wts=model_wts_path)
 
         self.max_batch_size = max_batch_size
