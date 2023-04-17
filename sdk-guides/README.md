@@ -1,4 +1,4 @@
-# SDK Guides
+# Datature SDK Guides
 
 This section contains guides for using our SDK in Python and via the command line.
 
