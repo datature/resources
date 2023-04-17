@@ -48,3 +48,7 @@ Users can currently run inference on the following model formats from Nexus in t
 | [TFLite](./tflite/segmentation/semantic/README.md) | DeepLabV3, U-Net, FCN |
 | [ONNX](./onnx/segmentation/semantic/README.md) | DeepLabV3, U-Net, FCN |
 | [PyTorch](./pytorch/segmentation/semantic/README.md) | DeepLabV3, U-Net, FCN |
+
+## Legacy Models
+
+Our model format support is constantly evolving. Models trained before [TBD] are not directly supported by the scripts in this folder. However, we still maintain support for these models in the legacy folder. Please refer to the [legacy README](./legacy/README.md) for more information.
