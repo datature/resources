@@ -10,24 +10,26 @@
 @Version :   1.0
 @Contact :   hello@datature.io
 @License :   Apache License 2.0
-@Desc    :   Datature inference dashboard built using Streamlit for prediction visualisations.
+@Desc    :   Datature inference dashboard built using Streamlit for prediction visualisations (legacy).
 '''
 
 import json
 import os
 from io import BytesIO
-from zipfile import ZipFile
 
 import absl.logging
 import cv2
-import datature
 import numpy as np
 import streamlit as st
 import tensorflow as tf
-import wget
-from helper import load_image_into_numpy_array, load_label_map, nms_boxes
+from datature_hub.hub import HubModel
+from helper import (
+    apply_mask,
+    load_image_into_numpy_array,
+    load_label_map,
+    reframe_box_masks_to_image_masks,
+)
 from PIL import Image
-from streamlit import session_state as state
 
 ## Disable unnecessary warnings for tensorflow
 absl.logging.set_verbosity(absl.logging.ERROR)
@@ -39,69 +41,51 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 
 def load_local_model():
     """Load model locally using model path and label map path."""
-    if state.local_hash != state.model_path + state.label_map_path:
+    if st.session_state.local_hash != st.session_state.model_path + st.session_state.label_map_path:
         with st.spinner('Loading model...'):
             ## Load Tensorflow model
-            state.trained_model = tf.saved_model.load(
-                state.model_path).signatures["serving_default"]
-            state.output_name = list(
-                state.trained_model.structured_outputs.keys())[0]
+            st.session_state.trained_model = tf.saved_model.load(
+                st.session_state.model_path)
 
             ## Load label map
-            state.category_index = load_label_map(state.label_map_path)
+            st.session_state.category_index = load_label_map(
+                st.session_state.label_map_path)
 
             ## Load color map
-            state.color_map = {}
-            for each_class in range(len(state["category_index"])):
-                state.color_map[each_class] = [
+            for each_class in range(len(st.session_state["category_index"])):
+                st.session_state.color_map = {}
+                st.session_state.color_map[each_class] = [
                     int(i) for i in np.random.choice(range(256), size=3)
                 ]
-        state.local_hash = state.model_path + state.label_map_path
+        st.session_state.local_hash = st.session_state.model_path + st.session_state.label_map_path
         st.success('Model loaded successfully!')
 
 
-def load_sdk_model():
-    """Load model from Nexus using Datature SDK with project secret."""
-    if "artifact_id" not in state or state.artifact != state.artifact_names[
-            state.artifact_id]:
-        state.artifact_id = [
-            key for key in state.artifact_names
-            if state.artifact_names[key] == state.artifact
-        ][-1]
-        exported_artifact = list(
-            datature.Artifact.list_exported(state.artifact_id))[-1]
+def load_hub_model():
+    """Load model from Datature Hub using model key and project secret."""
+    if st.session_state.hub_hash != st.session_state.project_secret + st.session_state.model_key:
+        with st.spinner('Loading model...'):
+            ## Initialise Datature Hub
+            st.session_state.hub: HubModel = HubModel(
+                model_key=st.session_state.model_key,
+                project_secret=st.session_state.project_secret,
+            )
 
-        url = exported_artifact["download"]["url"]
-        dir_name = os.path.join(os.path.expanduser("~"), ".datature",
-                                url.split("/")[-1].split(".")[0])
-        out_fname = f"{dir_name}.zip"
+            ## Load Tensorflow model
+            st.session_state.trained_model = st.session_state.hub.load_tf_model(
+            ).signatures["serving_default"]
 
-        if state.local_hash != state.secret_key + dir_name:
-            with st.spinner("Loading model..."):
-                if not os.path.isdir(dir_name):
-                    wget.download(url, out=out_fname)
-                    os.mkdir(dir_name)
-                    with ZipFile(out_fname, "r") as zip_ref:
-                        zip_ref.extractall(dir_name)
+            ## Load label map
+            st.session_state.category_index = st.session_state.hub.load_label_map(
+            )
 
-                ## Load Tensorflow model
-                state.trained_model = tf.saved_model.load(
-                    os.path.join(dir_name,
-                                 "saved_model")).signatures["serving_default"]
-                state.output_name = list(
-                    state.trained_model.structured_outputs.keys())[0]
-
-                ## Load label map
-                state.category_index = load_label_map(
-                    os.path.join(dir_name, "label_map.pbtxt"))
-
-                ## Load color map
-                state.color_map = {}
-                for each_class in range(len(state["category_index"])):
-                    state.color_map[each_class] = [
-                        int(i) for i in np.random.choice(range(256), size=3)
-                    ]
-        state.local_hash = state.secret_key + dir_name
+            ## Load color map
+            for each_class in range(len(st.session_state["category_index"])):
+                st.session_state.color_map = {}
+                st.session_state.color_map[each_class] = [
+                    int(i) for i in np.random.choice(range(256), size=3)
+                ]
+        st.session_state.hub_hash = st.session_state.project_secret + st.session_state.model_key
         st.success('Model loaded successfully!')
 
 
@@ -117,7 +101,9 @@ def upload_images():
         key="uploaded_imgs",
     )
 
-    state.file_names = [each_file.name for each_file in state.uploaded_imgs]
+    st.session_state.file_names = [
+        each_file.name for each_file in st.session_state.uploaded_imgs
+    ]
 
 
 def predict(img_path):
@@ -130,26 +116,37 @@ def predict(img_path):
     """
     ## Load argument variables
     image = Image.open(img_path).convert("RGB")
-    width, height = state.model_input_size.split(",")
+    width, height = image.size
     image_resized, origi_shape = load_image_into_numpy_array(
         image, int(height), int(width))
-    input_image = np.expand_dims(image_resized.astype(np.float32), 0)
+
+    ## The input needs to be a tensor, convert it using `tf.convert_to_tensor`.
+    input_tensor = tf.convert_to_tensor(image_resized)
+
+    ## The model expects a batch of images, so add an axis with `tf.newaxis`.
+    input_tensor = input_tensor[tf.newaxis, ...]
 
     ## Feed image into model
-    detections_output = state.trained_model(inputs=input_image)
-    detections_output = np.array(detections_output[state.output_name][0])
+    detections_output = st.session_state.trained_model(input_tensor)
 
-    return np.array(image), origi_shape, detections_output
+    num_detections = int(detections_output.pop("num_detections"))
+    detections = {
+        key: value[0, :num_detections].numpy()
+        for key, value in detections_output.items()
+    }
+    detections["num_detections"] = num_detections
+
+    return np.array(image), origi_shape, detections
 
 
 def predict_all():
     """Predict all the uploaded images and store the predictions in the session state."""
     with st.spinner('Running predictions...'):
-        for each_file in state.uploaded_imgs:
-            if each_file.name not in state.prediction_cache.keys():
+        for each_file in st.session_state.uploaded_imgs:
+            if each_file.name not in st.session_state.prediction_cache.keys():
                 origi_image, origi_shape, detections = predict(each_file)
 
-                state.prediction_cache.update({
+                st.session_state.prediction_cache.update({
                     each_file.name: {
                         "img": origi_image,
                         "shape": origi_shape,
@@ -159,29 +156,34 @@ def predict_all():
 
 
 def draw_detections(origi_image, origi_shape, detections):
-    """Draw the predictions on the image.
+    """Apply the given mask to the image and draw the predictions on the image.
     Args:
         origi_image: original image
         origi_shape: shape of the original image (img_height, img_width)
         detections: model predictions
     Returns:
-        Output image with predictions drawn on it.
+        output image with predictions drawn on it
     """
-    for each_bbox, each_class, each_score in list(
-            zip(detections["boxes"], detections["classes"],
-                detections["scores"])):
-        color = state.color_map.get(each_class - 1)
+    if "detection_masks_reframed" in detections:
+        ## Extract predictions
+        masks = detections["detection_masks_reframed"]
 
+    for idx, (each_bbox, each_class, each_score) in enumerate(
+            zip(detections["detection_boxes"], detections["detection_classes"],
+                detections["detection_scores"])):
+        color = st.session_state.color_map.get(each_class - 1)
+        if "detection_masks_reframed" in detections:
+            origi_image = apply_mask(origi_image, masks[idx], color)
         ## Draw bounding box
         cv2.rectangle(
             origi_image,
             (
-                int(each_bbox[1] * origi_shape[0]),
-                int(each_bbox[0] * origi_shape[1]),
+                int(each_bbox[1] * origi_shape[1]),
+                int(each_bbox[0] * origi_shape[0]),
             ),
             (
-                int(each_bbox[3] * origi_shape[0]),
-                int(each_bbox[2] * origi_shape[1]),
+                int(each_bbox[3] * origi_shape[1]),
+                int(each_bbox[2] * origi_shape[0]),
             ),
             color,
             2,
@@ -190,12 +192,12 @@ def draw_detections(origi_image, origi_shape, detections):
         cv2.rectangle(
             origi_image,
             (
-                int(each_bbox[1] * origi_shape[0]),
-                int(each_bbox[2] * origi_shape[1]),
+                int(each_bbox[1] * origi_shape[1]),
+                int(each_bbox[2] * origi_shape[0]),
             ),
             (
-                int(each_bbox[3] * origi_shape[0]),
-                int(each_bbox[2] * origi_shape[1] + 15),
+                int(each_bbox[3] * origi_shape[1]),
+                int(each_bbox[2] * origi_shape[0] + 15),
             ),
             color,
             -1,
@@ -204,12 +206,12 @@ def draw_detections(origi_image, origi_shape, detections):
         cv2.putText(
             origi_image,
             "Class: {}, Score: {}".format(
-                str(state.category_index[each_class]["name"]),
+                str(st.session_state.category_index[each_class]["name"]),
                 str(round(each_score, 2)),
             ),
             (
-                int(each_bbox[1] * origi_shape[0]),
-                int(each_bbox[2] * origi_shape[1] + 10),
+                int(each_bbox[1] * origi_shape[1]),
+                int(each_bbox[2] * origi_shape[0] + 10),
             ),
             cv2.FONT_HERSHEY_SIMPLEX,
             0.3,
@@ -231,8 +233,8 @@ def get_json_output(detections):
     json_output = {"predictions": []}
 
     for idx, (each_bbox, each_class, each_score) in enumerate(
-            zip(detections["boxes"], detections["classes"],
-                detections["scores"])):
+            zip(detections["detection_boxes"], detections["detection_classes"],
+                detections["detection_scores"])):
         ## [y_min, x_min, y_max, x_max]
         xmin = float(each_bbox[1])
         ymin = float(each_bbox[0])
@@ -250,7 +252,8 @@ def get_json_output(detections):
             "contourType": None,
             "tag": {
                 "id": int(each_class),
-                "name": str(state.category_index[each_class]["name"])
+                "name":
+                str(st.session_state.category_index[each_class]["name"])
             }
         }
 
@@ -262,8 +265,8 @@ def get_json_output(detections):
 def visualise():
     """Perform visualisation by filtering out predictions with scores below a threshold,
     drawing the thresholded predictions on the image and generating JSON output."""
-    for each_file_name in state.prediction_cache.keys():
-        if each_file_name in state.file_names:
+    for each_file_name in st.session_state.prediction_cache.keys():
+        if each_file_name in st.session_state.file_names:
             st.slider(f"Threshold_{each_file_name}",
                       min_value=0.0,
                       max_value=1.0,
@@ -273,44 +276,41 @@ def visualise():
                       help="Threshold",
                       key=f"threshold_{each_file_name}")
 
-            origi_image = state.prediction_cache[each_file_name]["img"]
-            origi_shape = state.prediction_cache[each_file_name]["shape"]
-            detections = state.prediction_cache[each_file_name]["detections"]
+            origi_image = st.session_state.prediction_cache[each_file_name][
+                "img"]
+            origi_shape = st.session_state.prediction_cache[each_file_name][
+                "shape"]
+            detections = st.session_state.prediction_cache[each_file_name][
+                "detections"]
 
-            ## Filter detections
-            slicer = detections[:, -1]
-            output = detections[:, :6][slicer != 0]
-            scores = output[:, 4]
-            output = output[scores > state[f"threshold_{each_file_name}"]]
-            classes = output[:, 5]
-            output = output[classes != 0]
+            threshold_detections = {}
+            indexes = np.where(detections["detection_scores"] > float(
+                st.session_state[f"threshold_{each_file_name}"]))
+            threshold_detections["detection_boxes"] = detections[
+                "detection_boxes"][indexes]
+            threshold_detections["detection_classes"] = detections[
+                "detection_classes"][indexes].astype(np.int64)
+            threshold_detections["detection_scores"] = detections[
+                "detection_scores"][indexes]
 
-            ## Postprocess detections
-            boxes = output[:, :4]
-            classes = output[:, 5].astype(np.int32)
-            scores = output[:, 4]
-            boxes[:, 0], boxes[:, 1] = (boxes[:, 1] * origi_shape[1],
-                                        boxes[:, 0] * origi_shape[0])
-            boxes[:, 2], boxes[:, 3] = (boxes[:, 3] * origi_shape[1],
-                                        boxes[:, 2] * origi_shape[0])
-            boxes, classes, scores = nms_boxes(boxes, classes, scores, 0.1)
-            boxes = [[
-                bbox[1] / origi_shape[1],
-                bbox[0] / origi_shape[0],
-                bbox[3] / origi_shape[1],
-                bbox[2] / origi_shape[0],
-            ] for bbox in boxes]  # y1, x1, y2, x2
-
-            threshold_detections = {
-                "boxes": boxes,
-                "classes": classes,
-                "scores": scores
-            }
+            if "detection_masks" in detections:
+                ## Reframe the the bbox mask to the image size.
+                detection_masks_reframed = reframe_box_masks_to_image_masks(
+                    tf.convert_to_tensor(detections["detection_masks"]),
+                    detections["detection_boxes"],
+                    origi_shape[0],
+                    origi_shape[1],
+                )
+                detection_masks_reframed = tf.cast(
+                    detection_masks_reframed > 0.5, tf.uint8).numpy()
+                threshold_detections[
+                    "detection_masks_reframed"] = detection_masks_reframed[
+                        indexes]
 
             ## Don't show labels if hide labels checkbox is checked
-            if f"hide_labels_{each_file_name}" not in state:
-                state[f"hide_labels_{each_file_name}"] = False
-            if not state[f"hide_labels_{each_file_name}"]:
+            if f"hide_labels_{each_file_name}" not in st.session_state:
+                st.session_state[f"hide_labels_{each_file_name}"] = False
+            if not st.session_state[f"hide_labels_{each_file_name}"]:
                 output_image = draw_detections(origi_image.copy(), origi_shape,
                                                threshold_detections)
             else:
@@ -365,47 +365,35 @@ if __name__ == "__main__":
     st.set_page_config(page_title="Datature Inference Dashboard",
                        layout="wide")
 
-    if "local_hash" not in state:
-        state.local_hash = ""
-    if "prediction_cache" not in state:
-        state.prediction_cache = {}
+    if "hub_hash" not in st.session_state:
+        st.session_state.hub_hash = ""
+    if "local_hash" not in st.session_state:
+        st.session_state.local_hash = ""
+    if "prediction_cache" not in st.session_state:
+        st.session_state.prediction_cache = {}
 
     st.header("Datature Inference Dashboard")
     st.write("Please fill in the project secret and model key to get started.")
 
-    st.radio("Select model loading method", ["SDK", "Local"], key="method")
-    st.text_input("Model Input Size (WIDTH,HEIGHT)", key="model_input_size")
-
-    if state.method == "Local":
+    st.radio("Select model loading method", ["Hub", "Local"], key="method")
+    if st.session_state.method == "Local":
         st.text_input("Model Path", key="model_path")
         st.text_input("Label Map Path", key="label_map_path")
 
-        if len(state.model_path) > 0 and len(state.label_map_path) > 0 and len(
-                state.model_input_size) > 0:
+        if len(st.session_state.model_path) > 0 and len(
+                st.session_state.label_map_path) > 0:
             load_local_model()
             upload_images()
             predict_all()
             visualise()
 
-    elif state.method == "SDK":
-        st.text_input("Project Secret Key", key="secret_key")
+    elif st.session_state.method == "Hub":
+        st.text_input("Project Secret", key="project_secret")
+        st.text_input("Model Key", key="model_key")
 
-        if len(state.secret_key) > 0:
-            if "artifact_names" not in state:
-                datature.secret_key = state.secret_key
-                artifacts = datature.Artifact.list()
-                state.artifact_names = {
-                    each_artifact["id"]:
-                    f"{each_artifact['flow_title']}: {each_artifact['artifact']}"
-                    for each_artifact in artifacts
-                    if "tensorflow" in each_artifact["exportable_formats"]
-                }
-            st.selectbox("Select model",
-                         state.artifact_names.values(),
-                         key="artifact")
-
-            if state.artifact is not None and len(state.model_input_size) > 0:
-                load_sdk_model()
-                upload_images()
-                predict_all()
-                visualise()
+        if (len(st.session_state.model_key) > 0
+                and len(st.session_state.project_secret) > 0):
+            load_hub_model()
+            upload_images()
+            predict_all()
+            visualise()

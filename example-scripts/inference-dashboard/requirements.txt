@@ -4,3 +4,4 @@ opencv-python==4.6.0.66
 Pillow==9.3.0
 streamlit==1.15.2
 tensorflow==2.11.0
+wget==3.2
