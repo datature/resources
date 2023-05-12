@@ -1,0 +1,9 @@
+albumentations==1.3.0
+datature==1.0.1
+diffusers==0.16.1
+imantics==0.1.12
+matplotlib==3.7.1
+numpy==1.24.3
+opencv-python==4.7.0.72
+Pillow==9.5.0
+wget==3.2
