@@ -4,7 +4,7 @@ This folder contains example scripts that can be used for integrating with our p
 
 ## Getting Started
 
-To run juptyer notebooks, simply clone this repository and open the notebooks in your local environment. They can be run on Google Colab as well.
+To run jupyter notebooks, simply clone this repository and open the notebooks in your local environment. They can be run on Google Colab as well.
 
 For other Python scripts, please refer to the `README.md` file in each folder for more information on the prerequisites and usage.
 
