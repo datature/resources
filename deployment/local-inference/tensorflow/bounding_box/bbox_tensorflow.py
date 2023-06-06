@@ -22,8 +22,8 @@ from typing import Dict, List
 
 import cv2
 import numpy as np
-from PIL import Image
 import tensorflow as tf
+from PIL import Image
 
 HEIGHT, WIDTH = NotImplemented, NotImplemented
 
@@ -82,9 +82,9 @@ def nms_boxes(
     sigma=0.5,
 ):
     """Carry out non-max supression on the detected bboxes"""
-    use_diou=True
-    is_soft=False
-    use_exp=False
+    use_diou = True
+    is_soft = False
+    use_exp = False
 
     nboxes, nclasses, nscores = [], [], []
     for cls in set(classes):
@@ -114,7 +114,7 @@ def nms_boxes(
             s_nms[[i, 0]] = s_nms[[0, i]]
 
             iou = box_diou(b_nms)
-                
+
             # drop the last line since it has been record
             b_nms = b_nms[1:]
             c_nms = c_nms[1:]

@@ -1,7 +1,7 @@
 # Datature Legacy Inference Scripts
 
 > **Warning**:
-> This folder contains legacy scripts for making predictions with Datature's legacy models. These scripts are not actively maintained as our model architectures have been updated. If you have recently exported a model from Datature, please use the scripts in the `deployment/local-inference` folder instead.
+> This folder contains legacy scripts for making predictions with Datature's legacy models. These scripts are not actively maintained as our model architectures have been updated. If you have recently exported a model from Datature (after April 2023), please use the scripts in the `deployment/local-inference` folder instead.
 
 The scripts & jupyter notebooks in this folder provide Nexus users a guideline for those who may want to load a model for prediction and integrate them into their codebase or modify some parameters instead of using [Portal](https://github.com/datature/portal) to predict directly.
 

@@ -5,7 +5,7 @@ This guide is for carrying out predictions using exported Datature ONNX Bounding
 
 ## Requirements
 
-To use GPU, the CUDA requirement is >= 11.4. 
+To use GPU, the CUDA requirement is >= 11.4.
 
 Install the required packages using:
 
@@ -22,7 +22,7 @@ python3 predict.py \
     -o output_folder_path \
     -m model_path \
     -l label_map_path \
-    -t threshold 
+    -t threshold
 ```
 
 **input_folder_path** refers to the path to the folder where the images for prediction are stored.
@@ -33,4 +33,4 @@ python3 predict.py \
 
 **label_map_path** refers to the path to the label map file (not the label map file directory)
 
-**threshold** refers to the threshold value in range (0.0, 1.0) for the prediction score. Only predictions with scores above the threshold value will be shown on the output image. 
+**threshold** refers to the threshold value in range (0.0, 1.0) for the prediction score. Only predictions with scores above the threshold value will be shown on the output image.

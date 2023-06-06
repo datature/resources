@@ -2,9 +2,11 @@
 
 This section contains scripts for deploying your trained model in various ways. We currently support the following deployment methods:
 
-- [Inference API](inference-api/), for hosting your models on our servers and performing inference through API calls.
-- [Edge](edge/), for deploying your models on edge devices such as Raspberry Pi.
-- [Local Inference](local-inference/), for running inference on your local machine.
+| Method | Description |
+| :--- | :--- |
+| [Edge](deployment/edge/) | For deploying models on edge devices such as Raspberry Pi & NVIDIA Jetson. |
+| [Inference API](deployment/inference-api/) | Where models are hosted on our servers and inference can be performed through API calls. |
+| [Local Inference](deployment/local-inference/) | For running simple inference scripts on your local machine. |
 
 ## Getting Started
 
