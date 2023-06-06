@@ -1,0 +1,8 @@
+numpy
+scipy
+dataclasses
+opencv-python
+Pillow
+torch
+torchvision
+typing-extensions

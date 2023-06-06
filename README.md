@@ -2,316 +2,77 @@
 
 <div id="top"></div>
 
-# Datature Code and Resources Hub
+# Datature Script Library
 
 A repository of resources used in our tutorials and guides ⚡️
 
-<!-- INTRODUCTION -->
+This library is a collection of useful scripts that can be used for integrating with our platform tools, or for general CV application purposes. The scripts are written in various programming languages and are available under the MIT License.
 
-The scripts & jupyter notebooks in this repository provide Nexus users a guideline for those who may want to load a model for prediction and integrate them into their codebase or modify some parameters instead of using [Portal](https://github.com/datature/portal) to predict directly.
+## Table of Contents
 
-<!-- GETTING STARTED -->
+- [Datature Script Library](#datature-script-library)
+  - [Table of Contents](#table-of-contents)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Usage](#usage)
+    - [Contributing](#contributing)
+  - [Script Categories](#script-categories)
+    - [Example Scripts](#example-scripts)
+    - [SDK Guides](#sdk-guides)
+    - [Deployment](#deployment)
 
 ## Getting Started
 
-Firstly, users should clone this repository and change to the resource folder directory.<br>
+### Prerequisites
 
-```
+Firstly, users should clone this repository and change to the resource folder directory.
+
+```bash
 git clone https://github.com/datature/resources.git
+cd resources
 ```
 
-<br>
-Users can download two kinds of model formats from Nexus currently: Tensorflow model and TFlite model.<br><br>
+In each folder, there will be a `requirements.txt` file that contains the dependencies required for Python scripts to run. Users can install the dependencies by running the following command:
 
-- [Tensorflow Model - Bounding Box (Direct Download)](#tensorflow-model---bounding-box)
-- [Tensorflow Model - Bounding Box (Datature Hub Download)](#tensorflow-model---bounding-box)
-- [Tensorflow Model - Masks (Direct Download)](#tensorflow-model---masks)
-- [TFLite Model - Bounding Box (Direct Download)](#tflite-model---bounding-box)
-
-### Download Model
-
-Users can download their trained model directly from [Nexus](https://nexus.datature.io/) or port the trained model through Datature Hub. Users need two sets of keys for the second method: `Model Key` and `Project Secret Key`.<br>
-
-#### Model Key
-
-To convert that artifact into an exported model for the prediction service, in Nexus, select `Artifacts` under Project Overview. Within the artifacts page, select your chosen artifact and model format to generate a model key for deployment by clicking the triple dots box shown below.
-
-![modelkey](/assets/modelkey.png)
-
-#### Project Secret Key
-
-You can generate the project secret key on the Nexus platform by going to `API Management` and selecting the `Generate New Secret` button, as shown below.
-
-![projectsecret](/assets/projectsecret.png)
-
-### Environment Requirements
-
-python 3.7 =< version =<3.9<br>
-Jupyter Notebook<br>
-tensorflow >= 2.5.0<br>
-
-<!-- Predict with Different Model -->
-
-## Tensorflow Models
-
-<details open>
-     <summary>Click to expand</summary><br>
-
-Under the `scripts/inference/tensorflow/` folder, there are subfolders of different types of computer vision models application or configuration, in `Tensorflow` format:
-
-- [Tensorflow Model - Bounding Box](#tensorflow-model---bounding-box)
-- [Tensorflow Model - Masks](#tensorflow-model---masks)
-
-### File Structure
-
-Each of the subfolders contains a standard file structure. Below are descriptions for each file and folder regarding its content or purpose.
-
-- `input/`: Some sample test images for prediction
-- `output/`: Output folder to store predicted images
-- `requirements.txt`: Python3 dependencies
-- `model_architecture/`: All bounding box model architectures offered on Nexus platform
-  - `predict.py`: Python script to load downloaded model and obtain predictions
-  - `tf_xxx.ipynb`: Jupyter notebook script to load model and obtain predictions
-  - `predict_hub.py`: Python script to load model directly from Nexus platform
-
-### Tensorflow Model - Bounding Box
-
-<details>
-     <summary>Click to expand</summary><br>
-
-`xxx` in the subsequent command prompts represents chosen model architecture, which is also the name of the folders within the `model_architecture/` folder.
-
-### Command to run Downloaded Model Python script
-
-```
-cd scripts/inference/tensorflow/bounding_box/
-```
-
-```
+```bash
 pip install -r requirements.txt
 ```
 
-```
-cd model_architecture/xxx
-```
+It is recommended to use a virtual environment to install the dependencies. For more information on virtual environments, please refer to [Python venv](https://docs.python.org/3/tutorial/venv.html).
 
-```
-python predict.py --input "path_to_input_folder" --output "path_to_output_folder" --width 640 --height 640 --threshold 0.7 --model "path_to_model" --label "path_to_labelmap"
-```
+### Usage
 
-Sample default command
+Each folder contains a `README.md` file that contains the instructions for running the scripts. Please refer to the `README.md` file for more information.
 
-```
-python predict.py --input "./input" --output "./output" --width 640 --height 640 --threshold 0.7 --model "./saved_model" --label "./label_map.pbtxt"
-```
+### Contributing
 
-Below is the list of modifiable script parameters and its description.
+We welcome contributions to this repository. Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) for more information on what areas you can contribute in and coding best practice guidelines.
 
-```
---input "path_to_input_folder" (Required)
---output "path_to_output_folder" (Required)
---model "path_to_model" (Required)
---label "path_to_labelmap" (Required)
---width "width of image to load" (Optional) (default: 640)
---height "height of image to load" (Optional) (default: 640)
---threshold "confidence threshold" (Optional) (default: 0.7)
-```
+## Script Categories
 
-### Command to run Jupyter Notebook
+### Example Scripts
 
-```
-pip install jupyter
+This section contains example scripts that can be used for integrating with our platform tools, or for general CV application purposes.
+
+- [Active Learning](example-scripts/active-learning/), for performing active learning on your dataset.
+- [Data Preprocessing](example-scripts/data-preprocessing/), useful tools for preprocessing your data.
+- [Inference Dashboard](example-scripts/inference-dashboard/), for easy visualizations of inference results.
+- [Learning](example-scripts/learning/), sample scripts for one-shot and few-shot learning.
+- [Tracking](example-scripts/tracking/), for single and multi-object tracking in videos.
+### SDK Guides
+
+This section contains guides and code snippets on how to use our Datature Python SDK for automating tasks without having to interact with our Nexus platform. The SDK is available on [PyPI](https://pypi.org/project/datature/). It can be installed by running the following command:
+
+```bash
+pip install -U datature
 ```
 
-```
-python -m notebook tf_xxx.ipynb
-```
+The SDK can either be invoked in [Python](sdk-guides/python/), or through the [command line interface (CLI)](sdk-guides/cli/). For more information or advanced features on the SDK, please refer to the [SDK documentation](https://developers.datature.io/reference/getting-started).
 
-### Command to run Datature Hub Python script
+### Deployment
 
-```
-cd scripts/inference/tensorflow/bounding_box/
-```
+This section contains scripts on how to deploy your models trained on Nexus for inference. We currently support the following deployment methods:
 
-```
-pip install -r requirements.txt
-```
-
-```
-cd model_architecture/xxx
-```
-
-```
-python predict_hub.py --input "path_to_input_folder" --output "path_to_output_folder"  --threshold 0.7 --secret "Project_secret" --key "Your_model_key"
-```
-
-Sample default command
-
-```
-python predict_hub.py --input "./input" --output "./output" --secret "76d97105923491bfa13c84d74eb5457b3b04dceda19ca009d7af111bd7d05344" --key "f2324a0064025c01da8fe3482177a83a"
-```
-
-Below is the list of modifiable script parameters and its description.
-
-```
---input "Path to folder that contains input images" (Required) (default:"./input")
---output "Path to folder to store predicted images" (Required)(default:"./output")
---threshold "Prediction confidence threshold" (Optional) (default: 0.7)
---secret "Datature Nexus project secret key" (Required)
---key "Datature Nexus model key" (Required)
-```
-
-<br/>
-<div align="right">
-    <b><a href="#top">↥ back to top</a></b>
-</div>
-<br/>
-</details>
-
-### Tensorflow Model - Masks
-
-<details>
-     <summary>Click to expand</summary><br>
-
-`xxx` in the subsequent command prompts represents chosen model architecture, which is also the name of the folders within the `model_architecture/` folder.
-
-### Command to run Downloaded Model Python script
-
-```
-cd scripts/inference/tensorflow/tensorflow/segmentation/
-```
-
-```
-pip install -r requirements.txt
-```
-
-```
-cd model_architecture/xxx
-```
-
-```
-python predict.py --input "path_to_input_folder" --output "path_to_output_folder" --width 1024 --height 1024 --threshold 0.7 --model "path_to_model" --label "path_to_labelmap"
-```
-
-Sample default command
-
-```
-python predict.py --input "./input" --output "./output" --width 1024 --height 1024 --threshold 0.7 --model "./saved_model" --label "./label_map.pbtxt"
-```
-
-Below is the list of modifiable script parameters and its description.
-
-```
---input "path_to_input_folder" (Required)
---output "path_to_output_folder" (Required)
---model "path_to_model" (Required)
---label "path_to_labelmap" (Required)
---width "width of image to load" (Optional) (default: 1024)
---height "height of image to load" (Optional) (default: 1024)
---threshold "confidence threshold" (Optional) (default: 0.7)
-
-```
-
-### Command to run Jupyter Notebook
-
-```
-pip install jupyter
-```
-
-```
-python -m notebook tf_xxx.ipynb
-```
-
-<br/>
-<div align="right">
-    <b><a href="#top">↥ back to top</a></b>
-</div>
-<br/>
-	
-</details>
-</details>
-
-## TFLite Models
-
-<details open>
-     <summary>Click to expand</summary><br>
-
-Under the `scripts/inference/tflite/` folder, there are subfolders of different types of computer vision models application or configuration, in `TFLite` format:
-
-- [TFLite Model - Bounding Box](#tflite-model---bounding-box)
-
-### File Structure
-
-Each of the subfolders contains a standard file structure. Below are descriptions for each file and folder regarding its content or purpose.
-
-- `input/`: Some sample test images for prediction
-- `output/`: Output folder to store predicted images
-- `requirements.txt`: Python3 dependencies
-- `model_architecture/`: All bounding box model architectures offered on Nexus platform
-  - `predict.py`: Python script to load downloaded model and obtain predictions
-  - `tflite_xxx.ipynb`: Jupyter notebook script to load model and obtain predictions
-
-### TFLite Model - Bounding Box
-
-<details>
-     <summary>Click to expand</summary><br>
-
-`xxx` in the subsequent command prompts represents chosen model architecture, which is also the name of the folders within the `model_architecture/` folder.
-
-### Command to run Downloaded Model Python script
-
-```
-cd scripts/inference/tflite/bounding_box/
-```
-
-```
-pip install -r requirements.txt
-```
-
-```
-cd model_architecture/xxx
-```
-
-```
-python predict.py --input "path_to_input_folder" --output "path_to_output_folder" --width 640 --height 640 --threshold 0.7 --model "path_to_model" --label "path_to_labelmap"
-```
-
-Sample default command
-
-```
-python predict.py --input "./input" --output "./output" --width 640 --height 640 --threshold 0.7 --model "./tf.lite" --label "./label_map.pbtxt"
-```
-
-Below is the list of modifiable script parameters and its description.
-
-```
---input "path_to_input_folder" (Required)
---output "path_to_output_folder" (Required)
---model "path_to_model" (Required)
---label "path_to_labelmap" (Required)
---width "width of image to load" (Optional) (default: 640)
---height "height of image to load" (Optional) (default: 640)
---threshold "confidence threshold" (Optional) (default: 0.7)
-```
-
-### Command to run Jupyter Notebook
-
-```
-pip install jupyter
-```
-
-```
-python -m notebook tflite_xxx.ipynb
-```
-
-<br/>
-<div align="right">
-    <b><a href="#top">↥ back to top</a></b>
-</div>
-<br/>
-	
-</details>
-
-</details>
-
-<!-- MARKDOWN LINKS & IMAGES -->
+- [Edge Deployment](deployment/edge/), for deploying models on edge devices such as Raspberry Pi.
+- [Inference API](deployment/inference-api/), where models are hosted on our servers and inference can be performed through API calls.
+- [Local Inference](deployment/local-inference/), for running simple inference scripts on your local machine.
