@@ -175,7 +175,9 @@ Each folder contains a `README.md` file that contains the instructions for runni
 
 ### :pencil2: Contributing
 
-We welcome contributions to this repository. Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) for more information on what areas you can contribute in and coding best practice guidelines.
+Do let us know via an [issue](https://github.com/datature/resources/issues) if there are any bugs or something is not working, and we will rectify it as soon as we can! Alternatively, you can also submit a [pull request](https://github.com/datature/resources/pulls) with your changes and our team will review it.
+
+We also welcome new contributions to this repository if there are any interesting cutting-edge techniques that we might not have spotted. Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) for more information on what areas you can contribute in and coding best practice guidelines.
 
 [blog]: https://img.shields.io/badge/%98-Blog%20Article-blue?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAQAAADlauupAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAAAqo0jMgAAAAlwSFlzAAAAYAAAAGAA8GtCzwAAAAd0SU1FB+cHFAkfFHKffC4AAAHBSURBVDjLnZKxS7JRFMaf8/aSFhROtdobONRYNDREURAF/QlNjU5t0RToEjQEjUFz1FAOBgVuLY1tFRQlCBEFqVhmvPfXoJ8J+jX4wF3Oub9zznPulboQzvehr68bVrjFRXh7g+9vSCZNkiAaFTMzsni8HSkUzLLZ+r2lJenkROztyUolaX1dEI/DzQ1UKrj7+7bD+fk/GKpVSKVwvb2QzcLVlSCTweVyuIGB/47dBmcyUCjgEglBqYRbWfnb8+cnbG/X4dNTeH6GsbFGdYDZWdzUFBwe4o6OYHm5npuYgI8PSKfbOjfkN1tZrSa9v8vMpK+venB3Vzo7k9Jp2fGxNDkp5ubMu7tr8deYgJ4eCAIIAlwkghsaAudwOztwfQ35PC6RgJERiMU6FFhbo6lUCkZHIQyhWMTt7+OGh+s7ubiAzc12Czo4kHI5yfOkpyezMMTFYrJKxTznfq1GIpLf5Lxm3MDs8dHs4cEsDCXJvHLZ7BfGDQ5K4+PS7W2HCSTcwoIsCDo/aH+/tLoqvbxImUxLgWJRmp6G+XlpY0Pk8x15K5ely0uxtWVetdqyxGQSajV4ff3rQ/0piEZxvt8N+wOn2FbAnieNTgAAAABJRU5ErkJggg==&style=plastic&logoColor=blue
 
