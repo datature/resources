@@ -1,4 +1,4 @@
-<center>
+<div align="center">
 
 # :books: Datature Script Library :books:
 
@@ -8,12 +8,9 @@
 
 This library is a collection of useful scripts and tutorials that can be used for integrating with our platform tools on [Datature Nexus](https://www.datature.io/nexus), or for general Computer Vision application purposes. We also showcase demos of some of the state-of-the-art (SOTA) techniques in areas like [Generative AI](example-scripts/generative-ai/), [Multiple Object Tracking (MOT)](example-scripts/tracking/), and many others.
 
+</div>
 
-
-<iframe class="media" width="720" height="315" style="-webkit-border-radius: 20px;
--moz-border-radius: 20px; border-radius: 20px;" src="https://www.youtube.com/embed/KA4RGtnabDk" frameborder="0" allowfullscreen></iframe>
-
-</center>
+---
 
 <!-- ## Table of Contents
 
@@ -28,25 +25,37 @@ This library is a collection of useful scripts and tutorials that can be used fo
     - [SDK Guides](#sdk-guides)
     - [Deployment](#deployment) -->
 
-## :pushpin: Script Categories
+<div align="center">
+  
+## :pushpin: Script Categories :pushpin:
+
+</div>
 
 ### :bookmark_tabs: Example Scripts
 
 This section contains example scripts that can be used for integrating with our platform tools, or for general CV application purposes.
 
+<div align="center">
+
 | Topic | Description | Links |
 | :---: | :---: | :---: |
 | <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/6459cc4f41c3238ae0c33305_aa69999d.png alt="Active Learning" width="240" height="135"> | <h3>Active Learning</h3> For performing active learning on your dataset. | [![Read Blog Article][blog]](https://www.datature.io/blog/leveraging-active-learning-to-optimize-your-computer-vision-pipeline) <br> [![Open Jupyter Notebook][notebook]](example-scripts/active-learning/active_learning_demo.ipynb) <br> [![Open in Google Colab][colab]](example-scripts/active-learning/active_learning_demo.ipynb) |
 | <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/6348fd075a352e11722ede90_image-augmentation-workflow.gif alt="Data Preprocessing" width="240" height="135"> | <h3>Data Preprocessing</h3> Useful tools for preprocessing your data. | [![Read Blog Article][blog]](https://www.datature.io/blog/performing-image-augmentation-for-machine-learning) <br> [![Repo][repo]](example-scripts/data-preprocessing/) |
-| <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/646b35988a08e9c914fc737d_fda0e507.png alt="Generative AI" width="240" height="135"> | <h3>Generative AI</h3> Learn how to implement a pipeline for synthetic data generation to boost your dataset. | [![Read Blog Article][blog]](https://www.datature.io/blog/how-to-build-your-own-ai-generated-image-with-controlnet-and-stable-diffusion) <br> [![Open Jupyter Notebook][notebook]](example-scripts/generative-ai/product_generation_demo.ipynb) <br> [![Open in Google Colab][colab]](example-scripts/generative-ai/product_generation_demo.ipynb) |
+| <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/646b35988a08e9c914fc737d_fda0e507.png alt="Generative AI" width="240" height="135"> | <h3>Generative AI</h3> Synthetic data generation to boost your dataset. | [![Read Blog Article][blog]](https://www.datature.io/blog/how-to-build-your-own-ai-generated-image-with-controlnet-and-stable-diffusion) <br> [![Open Jupyter Notebook][notebook]](example-scripts/generative-ai/product_generation_demo.ipynb) <br> [![Open in Google Colab][colab]](example-scripts/generative-ai/product_generation_demo.ipynb) |
 | <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/639ac53974ff57de326c2ae8_frame_generic_dark%20(3)%20(1).png alt="Inference Dashboard" width="240" height="135"> | <h3>Inference Dashboard</h3> For easy visualizations of inference results. | [![Read Blog Article][blog]](https://www.datature.io/blog/building-a-simple-inference-dashboard-with-streamlit) <br> [![Repo][repo]](example-scripts/inference-dashboard/) |
 | <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/63f303e148a58b3b04c3f893_frame_generic_dark-_58_.webp alt="Industry Use Cases" width="240" height="135"> | <h3>Industry Use Cases</h3> For industry-specific use cases. | [![Repo][repo]](example-scripts/industry-use-cases/) |
 | <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/6305e066b785a97cc6814e60_N-Way%20K-Shot%20Learning%20.png alt="K-Shot Learning" width="240" height="135"> | <h3>K-Shot Learning</h3> Sample scripts for one-shot and few-shot learning. | [![Read Blog Article][blog]](https://www.datature.io/blog/zero-shot-and-k-shot-learning) <br> [![Repo][repo]](example-scripts/learning/) |
-| <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/6458934a46eea35e1d72cab1_c8619fb4.gif alt="Tracking" width="240" height="135"> | <h3>Tracking</h3> For single and multi-object tracking in videos. | [![Read Blog Article][blog]](https://www.datature.io/blog/introduction-to-multiple-object-tracking-and-recent-developments) <br> [![Repo][repo]](example-scripts/tracking/) |
+| <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/64588a9e604430f4ba6a2e36_2b6b5e0b.gif alt="Tracking" width="240" height="135"> | <h3>Tracking</h3> For single and multi-object tracking in videos. | [![Read Blog Article][blog]](https://www.datature.io/blog/introduction-to-multiple-object-tracking-and-recent-developments) <br> [![Repo][repo]](example-scripts/tracking/) |
 
 <!-- | <img src=<https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/63f303e148a58b3b04c3f893_frame_generic_dark-_58_.webp> alt="Industry Use Cases" width="240" height="135"> | **Medical** | [![Read Blog Article][blog]](<https://datature.io/community>) <br> [![Open Jupyter Notebook][notebook]](example-scripts/industry-use-cases/brain_tumor/brain_tumor_demo.ipynb) <br> [![Open in Google Colab][colab]](example-scripts/industry-use-cases/brain_tumor/brain_tumor_demo.ipynb) | -->
 
+</div>
+
+---
+
 ### :hammer: SDK Guides
+
+[![PyPI version](https://badge.fury.io/py/datature.svg)](https://badge.fury.io/py/datature) [![Downloads](https://static.pepy.tech/personalized-badge/datature?period=total&units=international_system&left_color=black&right_color=blue&left_text=Downloads)](https://pepy.tech/project/datature)
 
 This section contains guides and code snippets on how to use our Datature Python SDK for automating tasks without having to interact with our Nexus platform. The SDK is available on [PyPI](https://pypi.org/project/datature/). It can be installed by running the following command:
 
@@ -56,17 +65,29 @@ pip install -U datature
 
 The SDK can either be invoked in [Python](sdk-guides/python/), or through the [command line interface (CLI)](sdk-guides/cli/). For more information or advanced features on the SDK, please refer to the [SDK documentation](https://developers.datature.io/reference/getting-started).
 
+---
+
 ### :factory: Deployment
 
 This section contains scripts on how to deploy your models trained on Nexus for inference. We currently support the following deployment methods:
 
+<div align="center">
+
 | Topic | Description | Links |
 | :---: | :---: | :---: |
-| <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/6392d19f79479968bdce3784_ezgif.com-gif-maker%20(5).gif alt="Edge Deployment" width="240" height="135"> | <h3>Edge Deployment</h3> For deploying models on edge devices such as [Raspberry Pi]() and [NVIDIA Jetson Orin](). | [![Read Blog Article][blog]](https://www.datature.io/blog/zero-shot-and-k-shot-learning) <br> [![Repo][repo]](deployment/edge) |
-| <img src=assets/inference-api.png alt="Inference API" width="240" height="135"> | <h3>Inference API</h3> Where models are hosted on our servers and inference can be performed through API calls. | [![Read Blog Article][blog]](https://www.datature.io/blog/zero-shot-and-k-shot-learning) <br> [![Repo][repo]](deployment/inference-api) |
-| <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/6305e066b785a97cc6814e60_N-Way%20K-Shot%20Learning%20.png alt="Local Inference" width="240" height="135"> | <h3>Local Inference</h3> For running simple inference scripts on your local machine. | [![Read Blog Article][blog]](https://www.datature.io/blog/zero-shot-and-k-shot-learning) <br> [![Repo][repo]](deployment/local-inference) |
+| <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/6392d19f79479968bdce3784_ezgif.com-gif-maker%20(5).gif alt="Edge Deployment" width="240" height="135"> | <h3>Edge Deployment</h3> For deploying models on edge devices such as <br> [Raspberry Pi]() and [NVIDIA Jetson Orin](). | [![Read Blog Article][blog]](https://www.datature.io/blog/how-to-load-vision-models-on-raspberry-pi-for-edge-deployment) <br> [![Repo][repo]](deployment/edge) |
+| <img src=assets/inference-api.png alt="Inference API" width="240" height="135"> | <h3>Inference API</h3> Where models are hosted on our servers and inference <br> can be performed through API calls. | [![Repo][repo]](deployment/inference-api) |
+| <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/6305e066b785a97cc6814e60_N-Way%20K-Shot%20Learning%20.png alt="Local Inference" width="240" height="135"> | <h3>Local Inference</h3> For running simple inference scripts <br> on your local machine. | [![Repo][repo]](deployment/local-inference) |
 
-## :rocket: Getting Started
+</div>
+
+---
+
+<div align="center">
+
+## :rocket: Getting Started :rocket:
+
+</div>
 
 ### :gear: Prerequisites
 
