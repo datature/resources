@@ -46,7 +46,7 @@
     />
 </a>
 <img src="assets/transparent.png" width="3%"/>
-<a href="https://twitter.com/DatatureAI">
+<a href="https://datature.io/community">
     <img
       src="assets/slack.png"
       width="3%"
