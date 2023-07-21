@@ -77,7 +77,7 @@ This section contains scripts on how to deploy your models trained on Nexus for 
 | :---: | :---: | :---: |
 | <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/6392d19f79479968bdce3784_ezgif.com-gif-maker%20(5).gif alt="Edge Deployment" width="240" height="135"> | <h3>Edge Deployment</h3> For deploying models on edge devices such as <br> [Raspberry Pi]() and [NVIDIA Jetson Orin](). | [![Read Blog Article][blog]](https://www.datature.io/blog/how-to-load-vision-models-on-raspberry-pi-for-edge-deployment) <br> [![Repo][repo]](deployment/edge) |
 | <img src=assets/inference-api.png alt="Inference API" width="240" height="135"> | <h3>Inference API</h3> Where models are hosted on our servers and inference <br> can be performed through API calls. | [![Repo][repo]](deployment/inference-api) |
-| <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/6305e066b785a97cc6814e60_N-Way%20K-Shot%20Learning%20.png alt="Local Inference" width="240" height="135"> | <h3>Local Inference</h3> For running simple inference scripts <br> on your local machine. | [![Repo][repo]](deployment/local-inference) |
+| <img src=https://raw.githubusercontent.com/datature/portal/develop/docs/images/nexus-rb.gif alt="Local Inference" width="240" height="135"> | <h3>Local Inference</h3> For running simple inference scripts <br> on your local machine. | [![Repo][repo]](deployment/local-inference) |
 
 </div>
 
