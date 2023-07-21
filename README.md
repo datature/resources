@@ -1,12 +1,65 @@
 <div align="center">
 
-# :books: Datature Script Library :books:
+# :books: Datature Resources :books:
 
 [![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=plastic)](http://makeapullrequest.com) [![Join Datature Slack](https://img.shields.io/badge/Join%20The%20Community-Datature%20Slack-blueviolet?style=plastic)](https://datature.io/community) [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg?style=plastic)](https://lbesson.mit-license.org/)
 
+<a href="https://datature.io">
+    <img
+      src="assets/datature.svg"
+      width="3%"
+    />
+</a>
+<img src="assets/transparent.png" width="3%"/>
+<a href="https://www.datature.io/blog">
+    <img
+      src="assets/blog.svg"
+      width="3%"
+    />
+</a>
+<img src="assets/transparent.png" width="3%"/>
+<a href="https://developers.datature.io/">
+    <img
+      src="https://cdn.simpleicons.org/readme/#018EF5"
+      width="3%"
+    />
+</a>
+<img src="assets/transparent.png" width="3%"/>
+<a href="https://www.youtube.com/channel/UCd3UQZ9piasi0vgfg5xI59w">
+    <img
+      src="https://cdn.simpleicons.org/youtube/#FF0000"
+      width="3%"
+    />
+</a>
+<img src="assets/transparent.png" width="3%"/>
+<a href="https://www.linkedin.com/company/datature/">
+    <img
+      src="https://cdn.simpleicons.org/linkedin/#0A66C2"
+      width="3%"
+    />
+</a>
+<img src="assets/transparent.png" width="3%"/>
+<a href="https://twitter.com/DatatureAI">
+    <img
+      src="https://cdn.simpleicons.org/twitter/#1D9BF0"
+      width="3%"
+    />
+</a>
+<img src="assets/transparent.png" width="3%"/>
+<a href="https://twitter.com/DatatureAI">
+    <img
+      src="assets/slack.png"
+      width="3%"
+    />
+</a>
+
+<br>
+
 :zap: A repository of resources used in our tutorials and guides :zap:
 
-This library is a collection of useful scripts and tutorials that can be used for integrating with our platform tools on [Datature Nexus](https://www.datature.io/nexus), or for general Computer Vision application purposes. We also showcase demos of some of the state-of-the-art (SOTA) techniques in areas like [Generative AI](example-scripts/generative-ai/), [Multiple Object Tracking (MOT)](example-scripts/tracking/), and many others.
+:wave: Hey there! This library is a collection of useful scripts and tutorials that can be used for integrating with our platform tools on [Datature Nexus](https://www.datature.io/nexus), or for general Computer Vision application purposes. We also showcase demos of some of the state-of-the-art (SOTA) techniques in areas like [Generative AI](example-scripts/generative-ai/), [Multiple Object Tracking (MOT)](example-scripts/tracking/), and many others.
+
+Made with :heart: by [Datature](https://datature.io/)
 
 </div>
 
@@ -26,7 +79,7 @@ This library is a collection of useful scripts and tutorials that can be used fo
     - [Deployment](#deployment) -->
 
 <div align="center">
-  
+
 ## :pushpin: Script Categories :pushpin:
 
 </div>
@@ -39,8 +92,8 @@ This section contains example scripts that can be used for integrating with our 
 
 | Topic | Description | Links |
 | :---: | :---: | :---: |
-| <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/6459cc4f41c3238ae0c33305_aa69999d.png alt="Active Learning" width="240" height="135"> | <h3>Active Learning</h3> For performing active learning on your dataset. | [![Read Blog Article][blog]](https://www.datature.io/blog/leveraging-active-learning-to-optimize-your-computer-vision-pipeline) <br> [![Open Jupyter Notebook][notebook]](example-scripts/active-learning/active_learning_demo.ipynb) <br> [![Open in Google Colab][colab]](example-scripts/active-learning/active_learning_demo.ipynb) |
-| <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/6348fd075a352e11722ede90_image-augmentation-workflow.gif alt="Data Preprocessing" width="240" height="135"> | <h3>Data Preprocessing</h3> Useful tools for preprocessing your data. | [![Read Blog Article][blog]](https://www.datature.io/blog/performing-image-augmentation-for-machine-learning) <br> [![Repo][repo]](example-scripts/data-preprocessing/) |
+| <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/6459cc4f41c3238ae0c33305_aa69999d.png alt="Active Learning" width="240" height="135"> | <h3>Active Learning</h3> For performing active learning on your dataset. | [![Read Blog Article][blog]](https://www.datature.io/blog/leveraging-active-learning-to-optimize-your-computer-vision-pipeline) <br> [![Open Jupyter Notebook][notebook]](example-scripts/active-learning/active_learning_demo.ipynb) <br> [![Open in Google Colab][colab]](example-scripts/active-learning/active_learning_demo.ipynb) <br> [![Documentation][docs]](https://developers.datature.io/docs/making-api-calls-to-your-deployed-api#additional-ingressegress-routines-for-api-requests) |
+| <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/6348fd075a352e11722ede90_image-augmentation-workflow.gif alt="Data Preprocessing" width="240" height="135"> | <h3>Data Preprocessing</h3> Useful tools for preprocessing your data. | [![Read Blog Article][blog]](https://www.datature.io/blog/performing-image-augmentation-for-machine-learning) <br> [![Repo][repo]](example-scripts/data-preprocessing/) <br> [![Documentation][docs]](https://developers.datature.io/docs/augmentations) |
 | <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/646b35988a08e9c914fc737d_fda0e507.png alt="Generative AI" width="240" height="135"> | <h3>Generative AI</h3> Synthetic data generation to boost your dataset. | [![Read Blog Article][blog]](https://www.datature.io/blog/how-to-build-your-own-ai-generated-image-with-controlnet-and-stable-diffusion) <br> [![Open Jupyter Notebook][notebook]](example-scripts/generative-ai/product_generation_demo.ipynb) <br> [![Open in Google Colab][colab]](example-scripts/generative-ai/product_generation_demo.ipynb) |
 | <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/639ac53974ff57de326c2ae8_frame_generic_dark%20(3)%20(1).png alt="Inference Dashboard" width="240" height="135"> | <h3>Inference Dashboard</h3> For easy visualizations of inference results. | [![Read Blog Article][blog]](https://www.datature.io/blog/building-a-simple-inference-dashboard-with-streamlit) <br> [![Repo][repo]](example-scripts/inference-dashboard/) |
 | <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/63f303e148a58b3b04c3f893_frame_generic_dark-_58_.webp alt="Industry Use Cases" width="240" height="135"> | <h3>Industry Use Cases</h3> For industry-specific use cases. | [![Repo][repo]](example-scripts/industry-use-cases/) |
@@ -63,7 +116,7 @@ This section contains guides and code snippets on how to use our Datature Python
 pip install -U datature
 ```
 
-The SDK can either be invoked in [Python](sdk-guides/python/), or through the [command line interface (CLI)](sdk-guides/cli/). For more information or advanced features on the SDK, please refer to the [SDK documentation](https://developers.datature.io/reference/getting-started).
+The SDK can either be invoked in [Python](sdk-guides/python/), or through the [command line interface (CLI)](sdk-guides/cli/). Installing the pip package will install both the SDK and CLI together. For more information or advanced features on the SDK, please refer to the [SDK documentation](https://developers.datature.io/docs/management-api).
 
 ---
 
@@ -75,9 +128,9 @@ This section contains scripts on how to deploy your models trained on Nexus for 
 
 | Topic | Description | Links |
 | :---: | :---: | :---: |
-| <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/6392d19f79479968bdce3784_ezgif.com-gif-maker%20(5).gif alt="Edge Deployment" width="240" height="135"> | <h3>Edge Deployment</h3> For deploying models on edge devices such as <br> [Raspberry Pi]() and [NVIDIA Jetson Orin](). | [![Read Blog Article][blog]](https://www.datature.io/blog/how-to-load-vision-models-on-raspberry-pi-for-edge-deployment) <br> [![Repo][repo]](deployment/edge) |
-| <img src=assets/inference-api.png alt="Inference API" width="240" height="135"> | <h3>Inference API</h3> Where models are hosted on our servers and inference <br> can be performed through API calls. | [![Repo][repo]](deployment/inference-api) |
-| <img src=https://raw.githubusercontent.com/datature/portal/develop/docs/images/nexus-rb.gif alt="Local Inference" width="240" height="135"> | <h3>Local Inference</h3> For running simple inference scripts <br> on your local machine. | [![Repo][repo]](deployment/local-inference) |
+| <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/6392d19f79479968bdce3784_ezgif.com-gif-maker%20(5).gif alt="Edge Deployment" width="240" height="135"> | <h3>Edge Deployment</h3> For deploying models on edge devices such as <br> [Raspberry Pi](https://www.raspberrypi.org/) and [NVIDIA Jetson Orin](https://www.nvidia.com/en-sg/autonomous-machines/embedded-systems/jetson-orin/). | [![Read Blog Article][blog]](https://www.datature.io/blog/how-to-load-vision-models-on-raspberry-pi-for-edge-deployment) <br> [![Repo][repo]](deployment/edge) <br> [![Documentation][docs]](https://developers.datature.io/docs/datature-edge) |
+| <img src=assets/inference-api.png alt="Inference API" width="240" height="135"> | <h3>Inference API</h3> Where models are hosted on our servers and inference <br> can be performed through API calls. | [![Repo][repo]](deployment/inference-api) <br> [![Documentation][docs]](https://developers.datature.io/docs/deployments) |
+| <img src=https://raw.githubusercontent.com/datature/portal/develop/docs/images/nexus-rb.gif alt="Local Inference" width="240" height="135"> | <h3>Local Inference</h3> For running simple inference scripts <br> on your local machine. | [![Repo][repo]](deployment/local-inference) <br> [![Documentation][docs]](https://developers.datature.io/docs/generating-predictions) |
 
 </div>
 
@@ -133,3 +186,5 @@ We welcome contributions to this repository. Please refer to [CONTRIBUTING.md](C
 [colab]: https://img.shields.io/badge/%98-Open%20in%20Colab-F9AB00?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAADtUExURQAAAPqqAPqsAPmqAPmsAPmsAPmqAPqrAPqsAPquAP+AAPqrAPmrAPmrAPuuAPmrAPmrAOhxCfGUBPmrAPmrAOyDB+hxCuhxCvOYBPiqAPSqAPanAPmrAParAPmrAPmrAPWtAPSmAPmrAO2FB+hxCudyC/irAPmsAOhxC+t2CvmsAORtCfmrAPmsAOhyCvisAOhyC/SYBPaqAPmrAO+JBehwCuVyCehxCvGVBPmqAO+LBehxCvmrAPurAOlyCuhxCulyCfmqAPmrAPmrAPmsAPitAOZzDelxCedxCuhxCudxCehxC/mrAOhxCv///1ljstIAAABMdFJOUwAwkLiKKCq6jS8CjP37PID8h7zVer+F/Lx1GB2DWPh9GRd2uvt3c4d4Gp8cnit7cXm8V/e8hB35u3i//vk6f/2JLba0gSIoiLe5jC0XRfiQAAAAAWJLR0ROGWFx3wAAAAd0SU1FB+cHFAoDCfWo8/MAAACvSURBVBjTpZDVEsJADEUD3SKLFZeiRYtbcXfJ/v/vsFn+AO7LuXNmkskE4Pe43JrGdAAP07w+vxQ8EESZUDhiEIOMQzRGDeMJ/CaZgrTIZHNmvlBEo1SuWFVRAyHqtLCB2CS2hJDKptpG1Im2Uh2qXcQesaNUn+oAkRGHUtXEyCqb+fEEp87Mrs/lemfxPWK5WgsVBzhTp262uzSJ/YHL8SM7nS9XgNv98Xy9//jMB/JfIhll5skzAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTA3LTIwVDEwOjAyOjM3KzAwOjAweTTYGAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wNy0yMFQxMDowMjozNyswMDowMAhpYKQAAAAodEVYdGRhdGU6dGltZXN0YW1wADIwMjMtMDctMjBUMTA6MDM6MDkrMDA6MDBuDlb7AAAAAElFTkSuQmCC&style=plastic
 
 [youtube]: https://img.shields.io/badge/%98-YouTube-FF0000?logo=youtube&logoColor=FF0000&style=plastic
+
+[docs]: https://img.shields.io/badge/%98-Docs-018EF5?logo=readme&logoColor=018EF5&style=plastic
