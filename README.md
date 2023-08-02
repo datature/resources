@@ -65,19 +65,6 @@ Made with :heart: by [Datature](https://datature.io/)
 
 ---
 
-<!-- ## Table of Contents
-
-- [Datature Script Library](#datature-script-library)
-  - [Table of Contents](#table-of-contents)
-  - [Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Usage](#usage)
-    - [Contributing](#contributing)
-  - [Script Categories](#script-categories)
-    - [Example Scripts](#example-scripts)
-    - [SDK Guides](#sdk-guides)
-    - [Deployment](#deployment) -->
-
 <div align="center">
 
 ## :pushpin: Script Categories :pushpin:
@@ -92,11 +79,11 @@ This section contains example scripts that can be used for integrating with our 
 
 | Topic | Description | Links |
 | :---: | :---: | :---: |
-| <img src=assets/active-learning.png alt="Active Learning" width="240" height="135"> | <h3>Active Learning</h3> For performing active learning on your dataset. | [![Read Blog Article][blog]](https://www.datature.io/blog/leveraging-active-learning-to-optimize-your-computer-vision-pipeline) <br> [![Open Jupyter Notebook][notebook]](example-scripts/active-learning/active_learning_demo.ipynb) <br> [![Open in Google Colab][colab]](example-scripts/active-learning/active_learning_demo.ipynb) <br> [![Documentation][docs]](https://developers.datature.io/docs/making-api-calls-to-your-deployed-api#additional-ingressegress-routines-for-api-requests) |
+| <img src=assets/active-learning.png alt="Active Learning" width="240" height="135"> | <h3>Active Learning</h3> For performing active learning on your dataset. | [![Read Blog Article][blog]](https://www.datature.io/blog/leveraging-active-learning-to-optimize-your-computer-vision-pipeline) <br> [![Open Jupyter Notebook][notebook]](example-scripts/active-learning/active_learning_demo.ipynb) <br> [![Open in Google Colab][colab]](https://colab.research.google.com/drive/1NRTf3bHJHU9GrecIOJ_uMtRgA8Td2ucm) <br> [![Documentation][docs]](https://developers.datature.io/docs/making-api-calls-to-your-deployed-api#additional-ingressegress-routines-for-api-requests) |
 | <img src=https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/6348fd075a352e11722ede90_image-augmentation-workflow.gif alt="Data Preprocessing" width="240" height="135"> | <h3>Data Preprocessing</h3> Useful tools for preprocessing your data. | [![Read Blog Article][blog]](https://www.datature.io/blog/performing-image-augmentation-for-machine-learning) <br> [![Repo][repo]](example-scripts/data-preprocessing/) <br> [![Documentation][docs]](https://developers.datature.io/docs/augmentations) |
-| <img src=assets/generative-ai.png alt="Generative AI" width="240" height="135"> | <h3>Generative AI</h3> Synthetic data generation to boost your dataset. | [![Read Blog Article][blog]](https://www.datature.io/blog/how-to-build-your-own-ai-generated-image-with-controlnet-and-stable-diffusion) <br> [![Open Jupyter Notebook][notebook]](example-scripts/generative-ai/product_generation_demo.ipynb) <br> [![Open in Google Colab][colab]](example-scripts/generative-ai/product_generation_demo.ipynb) <br> [![arXiv](https://img.shields.io/badge/arXiv-2112.10752-b31b1b.svg)](https://arxiv.org/abs/2112.10752) |
+| <img src=assets/generative-ai.png alt="Generative AI" width="240" height="135"> | <h3>Generative AI</h3> Synthetic data generation to boost your dataset. | [![Read Blog Article][blog]](https://www.datature.io/blog/how-to-build-your-own-ai-generated-image-with-controlnet-and-stable-diffusion) <br> [![Open Jupyter Notebook][notebook]](example-scripts/generative-ai/product_generation_demo.ipynb) <br> [![Open in Google Colab][colab]](https://colab.research.google.com/drive/1egqm7n8B1iFwpFcZxbx4uY_MU7qw13px) <br> [![arXiv](https://img.shields.io/badge/arXiv-2112.10752-b31b1b.svg)](https://arxiv.org/abs/2112.10752) |
 | <img src=assets/inference-dashboard.png alt="Inference Dashboard" width="240" height="135"> | <h3>Inference Dashboard</h3> For easy visualizations of inference results. | [![Read Blog Article][blog]](https://www.datature.io/blog/building-a-simple-inference-dashboard-with-streamlit) <br> [![Repo][repo]](example-scripts/inference-dashboard/) |
-| <img src=assets/industry.png alt="Industry Use Cases" width="240" height="135"> | <h3>Industry Use Cases</h3> For industry-specific use cases. | [![Repo][repo]](example-scripts/industry-use-cases/) |
+| <img src=assets/industry.png alt="Industry Use Cases" width="240" height="135"> | <h3>Industry Use Cases</h3> For industry-specific use cases. | [![Read Blog Article][blog]](https://www.datature.io/blog/) [![Repo][repo]](example-scripts/industry-use-cases/) |
 | <img src=assets/learning.png alt="K-Shot Learning" width="240" height="135"> | <h3>K-Shot Learning</h3> Sample scripts for one-shot and few-shot learning. | [![Read Blog Article][blog]](https://www.datature.io/blog/zero-shot-and-k-shot-learning) <br> [![Repo][repo]](example-scripts/learning/) |
 | <img src=assets/tracking.png alt="Tracking" width="240" height="135"> | <h3>Tracking</h3> For single and multi-object tracking in videos. | [![Read Blog Article][blog]](https://www.datature.io/blog/introduction-to-multiple-object-tracking-and-recent-developments) <br> [![Repo][repo]](example-scripts/tracking/) |
 
@@ -108,7 +95,7 @@ This section contains example scripts that can be used for integrating with our 
 
 ### :hammer: SDK Guides
 
-[![PyPI version](https://badge.fury.io/py/datature.svg)](https://badge.fury.io/py/datature) [![Downloads](https://static.pepy.tech/personalized-badge/datature?period=total&units=international_system&left_color=black&right_color=blue&left_text=Downloads)](https://pepy.tech/project/datature)
+[![PyPI version](https://badge.fury.io/py/datature.svg?style=plastic)](https://badge.fury.io/py/datature) [![Downloads](https://static.pepy.tech/personalized-badge/datature?period=total&units=international_system&left_color=black&right_color=blue&left_text=Downloads&style=plastic)](https://pepy.tech/project/datature) [![Open Jupyter Notebook][notebook]](sdk-guides/python/python-sdk-guide.ipynb) [![Open in Google Colab][colab]](https://colab.research.google.com/drive/1JZrFgoxOCMGMbSw_gSa568Dvrok6KdkK)
 
 <img src=assets/sdk.png alt="K-Shot Learning" width="480" height="240"><br>
 
