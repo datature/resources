@@ -6,8 +6,6 @@ The scripts & jupyter notebooks in this folder provide Nexus users a guideline f
 
 Each folder for the various model formats is structured accordingly:
 
-- `input/`: Some sample test images for prediction
-- `output/`: Output folder to store predicted images
 - `requirements.txt`: Python3 dependencies
 - `<bound_type>_<model_format>.py`: Python script to load model, run inference, and overlay predictions on images
 - `README.md`: Instructions for running the script
@@ -29,8 +27,8 @@ Users can currently run inference on the following model formats from Nexus in t
 | :--- | :--- |
 | [Tensorflow](./tensorflow/bounding_box/README.md) | Faster R-CNN, ResNet, EfficientDet, MobileNet, YOLOv4 |
 | [TFLite](./tflite/bounding_box/README.md) | Faster R-CNN, ResNet, EfficientDet, MobileNet, YOLOv4 |
-| [ONNX](./onnx/bounding_box/README.md) | Faster R-CNN, ResNet, EfficientDet, MobileNet, YOLOv4 |
-| [PyTorch](./pytorch/bounding_box/README.md) | Faster R-CNN, ResNet, EfficientDet, MobileNet, YOLOv4 |
+| [ONNX](./onnx/bounding_box/README.md) | Faster R-CNN, ResNet, EfficientDet, MobileNet, YOLOv4, [YOLOv8 (New!)](./yolov8/bounding_box) |
+| [PyTorch](./pytorch/bounding_box/README.md) | Faster R-CNN, ResNet, EfficientDet, MobileNet, YOLOv4, [YOLOv8 (New!)](./yolov8/bounding_box) |
 
 ### Instance Segmentation Models
 
@@ -38,7 +36,8 @@ Users can currently run inference on the following model formats from Nexus in t
 | :--- | :--- |
 | [Tensorflow](./tensorflow/segmentation/instance/README.md) | Mask R-CNN |
 | [TFLite](./tflite/segmentation/instance/README.md) | Mask R-CNN |
-| [ONNX](./onnx/segmentation/instance/README.md) | Mask R-CNN |
+| [ONNX](./onnx/segmentation/instance/README.md) | Mask R-CNN, [YOLOv8 (New!)](./yolov8/segmentation) |
+| [PyTorch](./pytorch/bounding_box/README.md) | [YOLOv8 (New!)](./yolov8/segmentation) |
 
 ### Semantic Segmentation Models
 

@@ -54,11 +54,14 @@ We welcome contributions to this repository. Please refer to [CONTRIBUTING.md](C
 
 This section contains example scripts that can be used for integrating with our platform tools, or for general CV application purposes.
 
-- [Active Learning](example-scripts/active-learning/), for performing active learning on your dataset.
-- [Data Preprocessing](example-scripts/data-preprocessing/), useful tools for preprocessing your data.
-- [Inference Dashboard](example-scripts/inference-dashboard/), for easy visualizations of inference results.
-- [Learning](example-scripts/learning/), sample scripts for one-shot and few-shot learning.
-- [Tracking](example-scripts/tracking/), for single and multi-object tracking in videos.
+| Topic | Description |
+| :--- | :--- |
+| [Active Learning](example-scripts/active-learning/) | For performing active learning on your dataset. |
+| [Data Preprocessing](example-scripts/data-preprocessing/) | Useful tools for preprocessing your data. |
+| [Inference Dashboard](example-scripts/inference-dashboard/) | For easy visualizations of inference results. |
+| [Learning](example-scripts/learning/) | Sample scripts for one-shot and few-shot learning. |
+| [Tracking](example-scripts/tracking/) | For single and multi-object tracking in videos. |
+
 ### SDK Guides
 
 This section contains guides and code snippets on how to use our Datature Python SDK for automating tasks without having to interact with our Nexus platform. The SDK is available on [PyPI](https://pypi.org/project/datature/). It can be installed by running the following command:
@@ -73,6 +76,8 @@ The SDK can either be invoked in [Python](sdk-guides/python/), or through the [c
 
 This section contains scripts on how to deploy your models trained on Nexus for inference. We currently support the following deployment methods:
 
-- [Edge Deployment](deployment/edge/), for deploying models on edge devices such as Raspberry Pi.
-- [Inference API](deployment/inference-api/), where models are hosted on our servers and inference can be performed through API calls.
-- [Local Inference](deployment/local-inference/), for running simple inference scripts on your local machine.
+| Method | Description |
+| :--- | :--- |
+| [Edge Deployment](deployment/edge/) | For deploying models on edge devices such as Raspberry Pi & NVIDIA Jetson. |
+| [Inference API](deployment/inference-api/) | Where models are hosted on our servers and inference can be performed through API calls. |
+| [Local Inference](deployment/local-inference/) | For running simple inference scripts on your local machine. |
