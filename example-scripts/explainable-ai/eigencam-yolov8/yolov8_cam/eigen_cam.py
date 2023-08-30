@@ -6,18 +6,16 @@ from yolov8_cam.utils.svd_on_activations import get_2d_projection
 
 
 class EigenCAM(BaseCAM):
-
     def __init__(
-            self,
-            model,
-            target_layers,
-            task: str = 'od',  #use_cuda=False,
-            reshape_transform=None):
-        super().__init__(model,
-                         target_layers,
-                         task,
-                         reshape_transform,
-                         uses_gradients=False)
+        self,
+        model,
+        target_layers,
+        task: str = "od",  # use_cuda=False,
+        reshape_transform=None,
+    ):
+        super().__init__(
+            model, target_layers, task, reshape_transform, uses_gradients=False
+        )
 
-    def get_cam_image(self, activations):
-        return get_2d_projection(activations)
+    def get_cam_image(self, activations, principal_comp=[0]):
+        return get_2d_projection(activations, principal_comp=principal_comp)
