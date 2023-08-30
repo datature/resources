@@ -41,14 +41,11 @@ def scale_cam_image(cam, target_size=None):
     """Scales the cam image to be between 0 and 1."""
     result = []
     for img in cam:
-        indiv_components = []
-        for i in range(img.shape[2]):
-            indiv_img = img[:,:,i]
-            indiv_img = indiv_img - np.min(indiv_img)
-            indiv_img = indiv_img / (1e-7 + np.max(indiv_img))
-            if target_size is not None:
-                indiv_img = cv2.resize(indiv_img, target_size)
-            indiv_components.append(indiv_img)
-        result.append(indiv_components)
-    result = np.transpose(np.float32(result), axes=(0,2,3,1))
+        img = img - np.min(img)
+        img = img / (1e-7 + np.max(img))
+        if target_size is not None:
+            img = cv2.resize(img, target_size)
+        result.append(img)
+    result = np.float32(result)
+
     return result
