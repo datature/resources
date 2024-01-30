@@ -29,6 +29,7 @@ Users can currently run inference on the following model formats from Nexus in t
 | [TFLite](./tflite/bounding_box/README.md) | Faster R-CNN, ResNet, EfficientDet, MobileNet, YOLOv4 |
 | [ONNX](./onnx/bounding_box/README.md) | Faster R-CNN, ResNet, EfficientDet, MobileNet, YOLOv4, [YOLOv8 (New!)](./yolov8/bounding_box) |
 | [PyTorch](./pytorch/bounding_box/README.md) | Faster R-CNN, ResNet, EfficientDet, MobileNet, YOLOv4, [YOLOv8 (New!)](./yolov8/bounding_box) |
+| CV2.DNN | [YOLOv8 (New!)](./yolov8/cv2_dnn/) |
 
 ### Instance Segmentation Models
 
