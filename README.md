@@ -57,7 +57,7 @@
 
 :zap: A repository of resources used in our tutorials and guides :zap:
 
-:wave: Hey there! This library is a collection of useful scripts and tutorials that can be used for integrating with our platform tools on [Datature Nexus](https://www.datature.io/nexus), or for general Computer Vision application purposes. We also showcase demos of some of the state-of-the-art (SOTA) techniques in areas like [Generative AI](example-scripts/generative-ai/), [Multiple Object Tracking (MOT)](example-scripts/tracking/), and many others.
+:wave: Hey there! This library is a collection of useful scripts and tutorials that can be used for integrating with our platform tools on [Datature Nexus](https://www.datature.io/nexus), or for general Computer Vision application purposes. We also showcase demos of some of the state-of-the-art (SOTA) techniques in areas like [Generative AI](example-scripts/generative-ai/), [Multiple Object Tracking (MOT)](example-scripts/tracking/), [Sliding Window for Small Object](example-scripts/sahi), and many others.
 
 Made with :heart: by [Datature](https://datature.io/)
 
@@ -88,6 +88,7 @@ This section contains example scripts that can be used for integrating with our 
 | <img src=assets/industry.png alt="Industry Use Cases" width="240" height="135"> | <h3>Industry Use Cases</h3> For industry-specific use cases. | [![Read Blog Article][blog]](https://www.datature.io/blog/) [![Repo][repo]](example-scripts/industry-use-cases/) |
 | <img src=assets/learning.png alt="K-Shot Learning" width="240" height="135"> | <h3>K-Shot Learning</h3> Sample scripts for one-shot and few-shot learning. | [![Read Blog Article][blog]](https://www.datature.io/blog/zero-shot-and-k-shot-learning) <br> [![Repo][repo]](example-scripts/learning/) |
 | <img src=assets/tracking.png alt="Tracking" width="240" height="135"> | <h3>Tracking</h3> For single and multi-object tracking in videos. | [![Read Blog Article][blog]](https://www.datature.io/blog/introduction-to-multiple-object-tracking-and-recent-developments) <br> [![Repo][repo]](example-scripts/tracking/) |
+| <img src=assets/sahi.png alt="SAHI" width="240" height="135"> | <h3>Small Object Detection</h3> Leveraging sliding window techniques to detect small objects in large images. | [![Read Blog Article][blog]](https://www.datature.io/blog/sahi-and-sliding-window-functions-for-small-object-detections) <br> [![Open Jupyter Notebook][notebook]](example-scripts/sahi/sahi.ipynb) <br> [![Open in Google Colab][colab]](https://colab.research.google.com/drive/1DIzlutlLcsz-V5w7kku-tbDzHQOe6YD3) <br> [![arXiv](https://img.shields.io/badge/arXiv-2202.06934-b31b1b.svg)](https://arxiv.org/abs/2202.06934) <br> [![Documentation][docs]](https://developers.datature.io/docs/module-dataset#sliding-window-setup) |
 
 <!-- | <img src=<https://uploads-ssl.webflow.com/62e939ff79009c74307c8d3e/63f303e148a58b3b04c3f893_frame_generic_dark-_58_.webp> alt="Industry Use Cases" width="240" height="135"> | **Medical** | [![Read Blog Article][blog]](<https://datature.io/community>) <br> [![Open Jupyter Notebook][notebook]](example-scripts/industry-use-cases/brain_tumor/brain_tumor_demo.ipynb) <br> [![Open in Google Colab][colab]](example-scripts/industry-use-cases/brain_tumor/brain_tumor_demo.ipynb) | -->
 
