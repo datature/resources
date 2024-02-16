@@ -4,60 +4,19 @@
 
 [![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=plastic)](http://makeapullrequest.com) [![Join Datature Slack](https://img.shields.io/badge/Join%20The%20Community-Datature%20Slack-blueviolet?style=plastic)](https://datature.io/community) [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg?style=plastic)](https://lbesson.mit-license.org/)
 
-<a href="https://datature.io">
-    <img
-      src="assets/datature.svg"
-      width="3%"
-    />
-</a>
-<img src="assets/transparent.png" width="3%"/>
-<a href="https://www.datature.io/blog">
-    <img
-      src="assets/blog.svg"
-      width="3%"
-    />
-</a>
-<img src="assets/transparent.png" width="3%"/>
-<a href="https://developers.datature.io/">
-    <img
-      src="https://cdn.simpleicons.org/readme/#018EF5"
-      width="3%"
-    />
-</a>
-<img src="assets/transparent.png" width="3%"/>
-<a href="https://www.youtube.com/channel/UCd3UQZ9piasi0vgfg5xI59w">
-    <img
-      src="https://cdn.simpleicons.org/youtube/#FF0000"
-      width="3%"
-    />
-</a>
-<img src="assets/transparent.png" width="3%"/>
-<a href="https://www.linkedin.com/company/datature/">
-    <img
-      src="https://cdn.simpleicons.org/linkedin/#0A66C2"
-      width="3%"
-    />
-</a>
-<img src="assets/transparent.png" width="3%"/>
-<a href="https://twitter.com/DatatureAI">
-    <img
-      src="https://cdn.simpleicons.org/twitter/#1D9BF0"
-      width="3%"
-    />
-</a>
-<img src="assets/transparent.png" width="3%"/>
-<a href="https://datature.io/community">
-    <img
-      src="assets/slack.png"
-      width="3%"
-    />
-</a>
+<a href="https://datature.io"><img src="assets/datature.svg" width="3%"/></a><img src="assets/transparent.png" width="3%"/>
+<a href="https://www.datature.io/blog"><img src="assets/blog.svg" width="3%"/></a><img src="assets/transparent.png" width="3%"/>
+<a href="https://developers.datature.io/"><img src="https://cdn.simpleicons.org/readme/#018EF5" width="3%"/></a><img src="assets/transparent.png" width="3%"/>
+<a href="https://www.youtube.com/channel/UCd3UQZ9piasi0vgfg5xI59w"><img src="https://cdn.simpleicons.org/youtube/#FF0000" width="3%"/></a><img src="assets/transparent.png" width="3%"/>
+<a href="https://www.linkedin.com/company/datature/"><img src="https://cdn.simpleicons.org/linkedin/#0A66C2" width="3%"/></a><img src="assets/transparent.png" width="3%"/>
+<a href="https://twitter.com/DatatureAI"><img src="https://cdn.simpleicons.org/twitter/#1D9BF0" width="3%"/></a><img src="assets/transparent.png" width="3%"/>
+<a href="https://datature.io/community"><img src="assets/slack.png" width="3%"/></a>
 
 ---
 
 :zap: A repository of resources used in our tutorials and guides :zap:
 
-:wave: Hey there! This library is a collection of useful scripts and tutorials that can be used for integrating with our platform tools on [Datature Nexus](https://www.datature.io/nexus), or for general Computer Vision application purposes. We also showcase demos of some of the state-of-the-art (SOTA) techniques in areas like [Generative AI](example-scripts/generative-ai/), [Multiple Object Tracking (MOT)](example-scripts/tracking/), [Sliding Window for Small Object](example-scripts/sahi), and many others.
+:wave: Hey there! This library is a collection of useful scripts and tutorials that can be used for integrating with our platform tools on [Datature Nexus](https://www.datature.io/nexus), or for general Computer Vision application purposes. We also showcase demos of some of the state-of-the-art (SOTA) techniques in areas like [Generative AI](example-scripts/generative-ai/), [Multiple Object Tracking (MOT)](example-scripts/tracking/), [Sliding Window for Small Objects](example-scripts/sahi), and many others.
 
 Made with :heart: by [Datature](https://datature.io/)
 
