@@ -20,28 +20,28 @@
 <img src="assets/transparent.png" width="3%"/>
 <a href="https://developers.datature.io/">
     <img
-      src="https://cdn.simpleicons.org/readme/#018EF5"
+      src="https://cdn.simpleicons.org/readme/018EF5"
       width="3%"
     />
 </a>
 <img src="assets/transparent.png" width="3%"/>
 <a href="https://www.youtube.com/channel/UCd3UQZ9piasi0vgfg5xI59w">
     <img
-      src="https://cdn.simpleicons.org/youtube/#FF0000"
+      src="https://cdn.simpleicons.org/youtube/FF0000"
       width="3%"
     />
 </a>
 <img src="assets/transparent.png" width="3%"/>
 <a href="https://www.linkedin.com/company/datature/">
     <img
-      src="https://cdn.simpleicons.org/linkedin/#0A66C2"
+      src="https://cdn.simpleicons.org/linkedin/0A66C2"
       width="3%"
     />
 </a>
 <img src="assets/transparent.png" width="3%"/>
-<a href="https://twitter.com/DatatureAI">
+<a href="https://x.com/DatatureAI">
     <img
-      src="https://cdn.simpleicons.org/twitter/#1D9BF0"
+      src="https://cdn.simpleicons.org/x/1D9BF0"
       width="3%"
     />
 </a>
