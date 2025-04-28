@@ -13,7 +13,7 @@ This section contains scripts for deploying your trained model in various ways. 
 Please refer to the `README.md` file in each folder for more information on how to use the scripts.
 ## Download Model
 
-Users can download their trained model directly from [Nexus](https://nexus.datature.io/) or port the trained model through Datature Hub. Users need two sets of keys for the second method: `Model Key` and `Project Secret Key`.<br>
+Users can download their trained model directly from [Nexus](https://nexus.datature.com/) or port the trained model through Datature Hub. Users need two sets of keys for the second method: `Model Key` and `Project Secret Key`.<br>
 
 ### Model Key
 

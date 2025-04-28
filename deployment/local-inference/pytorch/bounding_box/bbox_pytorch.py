@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*-coding:utf-8 -*-
-'''
+"""
   ████
 ██    ██   Datature
   ██  ██   Powering Breakthrough AI
@@ -9,10 +9,10 @@
 @File    :   predict.py
 @Author  :   Marcus Neo
 @Version :   1.0
-@Contact :   hello@datature.io
+@Contact :   hello@datature.com
 @License :   Apache License 2.0
 @Desc    :   Simple predictor script for bounding box PyTorch models.
-'''
+"""
 
 import argparse
 import copy
@@ -22,8 +22,8 @@ from typing import Dict, List
 
 import cv2
 import numpy as np
-from PIL import Image
 import torch
+from PIL import Image
 
 HEIGHT, WIDTH = NotImplemented, NotImplemented
 
@@ -82,9 +82,9 @@ def nms_boxes(
     sigma=0.5,
 ):
     """Carry out non-max supression on the detected bboxes"""
-    use_diou=True
-    is_soft=False
-    use_exp=False
+    use_diou = True
+    is_soft = False
+    use_exp = False
 
     nboxes, nclasses, nscores = [], [], []
     for cls in set(classes):
@@ -130,8 +130,7 @@ def nms_boxes(
                     # score refresh formula:
                     # score = score * (1 - iou) if iou > threshold
                     depress_mask = np.where(iou > iou_threshold)[0]
-                    s_nms[depress_mask] = s_nms[depress_mask] * (
-                        1 - iou[depress_mask])
+                    s_nms[depress_mask] = s_nms[depress_mask] * (1 - iou[depress_mask])
                 keep_mask = np.where(s_nms >= confidence)[0]
             else:
                 # normal Hard-NMS
@@ -187,7 +186,8 @@ def box_diou(boxes):
     x_center = x_pos + wid / 2
     y_center = y_pos + hei / 2
     center_distance = np.power(x_center[1:] - x_center[0], 2) + np.power(
-        y_center[1:] - y_center[0], 2)
+        y_center[1:] - y_center[0], 2
+    )
 
     # get enclosed area
     enclose_xmin = np.minimum(x_pos[1:], x_pos[0])
@@ -199,15 +199,15 @@ def box_diou(boxes):
     # get enclosed diagonal distance
     enclose_diagonal = np.power(enclose_w, 2) + np.power(enclose_h, 2)
     # calculate DIoU, add epsilon in denominator to avoid dividing by 0
-    diou = iou - 1.0 * (center_distance) / (enclose_diagonal +
-                                            np.finfo(float).eps)
+    diou = iou - 1.0 * (center_distance) / (enclose_diagonal + np.finfo(float).eps)
 
     return diou
 
 
 parser = argparse.ArgumentParser(
     prog="Datature Bounding Box PyTorch Predictor",
-    description="Predictor to Predict Bounding Box Torch Model.")
+    description="Predictor to Predict Bounding Box Torch Model.",
+)
 parser.add_argument("-i", "--input_folder_path")
 parser.add_argument("-o", "--output_folder_path")
 parser.add_argument("-m", "--model_path")
@@ -229,9 +229,7 @@ def main():
     ## Load color map
     color_map = {}
     for each_class in range(len(category_index)):
-        color_map[each_class] = [
-            int(i) for i in np.random.choice(range(256), size=3)
-        ]
+        color_map[each_class] = [int(i) for i in np.random.choice(range(256), size=3)]
 
     ## Load model
     model = torch.load(model_path)
@@ -239,15 +237,15 @@ def main():
     ## Run prediction on each image
     for each_image in glob.glob(os.path.join(input_path, "*")):
         if ".jpg" not in each_image and ".png" not in each_image:
-            print(
-                f"Only .jpg and .png files can be used, {each_image} skipped")
+            print(f"Only .jpg and .png files can be used, {each_image} skipped")
             continue
         print("Predicting for {}...".format(each_image))
 
         ## Resize image and
         ## return original image shape in the format (width, height)
         image_resized, origi_shape = load_image_into_numpy_array(
-            each_image, int(HEIGHT), int(WIDTH))
+            each_image, int(HEIGHT), int(WIDTH)
+        )
         input_image = np.expand_dims(image_resized.astype(np.float32), 0)
 
         ## Feed image into model
@@ -268,21 +266,23 @@ def main():
         bboxes = output[:, :4].numpy()
         classes = output[:, 5].numpy().astype(np.int32)
         scores = output[:, 4].numpy()
-        bboxes[:, 0], bboxes[:,
-                             1] = (bboxes[:, 1] * WIDTH, bboxes[:, 0] * HEIGHT)
-        bboxes[:, 2], bboxes[:,
-                             3] = (bboxes[:, 3] * WIDTH, bboxes[:, 2] * HEIGHT)
+        bboxes[:, 0], bboxes[:, 1] = (bboxes[:, 1] * WIDTH, bboxes[:, 0] * HEIGHT)
+        bboxes[:, 2], bboxes[:, 3] = (bboxes[:, 3] * WIDTH, bboxes[:, 2] * HEIGHT)
         bboxes, classes, scores = nms_boxes(bboxes, classes, scores, 0.1)
-        bboxes = [[
-            bbox[1] / WIDTH,
-            bbox[0] / HEIGHT,
-            bbox[3] / WIDTH,
-            bbox[2] / HEIGHT,
-        ] for bbox in bboxes]  # y1, x1, y2, x2
+        bboxes = [
+            [
+                bbox[1] / WIDTH,
+                bbox[0] / HEIGHT,
+                bbox[3] / WIDTH,
+                bbox[2] / HEIGHT,
+            ]
+            for bbox in bboxes
+        ]  # y1, x1, y2, x2
 
         ## Draw Predictions
         image_origi = Image.fromarray(image_resized).resize(
-            (origi_shape[1], origi_shape[0]))
+            (origi_shape[1], origi_shape[0])
+        )
         image_origi = np.array(image_origi)
 
         if len(bboxes) != 0:

@@ -9,7 +9,7 @@
 @File    :   helper.py
 @Author  :   Wei Loon Cheng
 @Version :   1.0
-@Contact :   hello@datature.io
+@Contact :   hello@datature.com
 @License :   Apache License 2.0
 @Desc    :   Helper functions for preprocessing and postprocessing.
 """

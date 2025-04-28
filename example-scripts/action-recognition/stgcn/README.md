@@ -1,6 +1,6 @@
 # Action Recognition with ST-GCN++ and YOLOv8-Pose
 
-This folder contains the code and resources used in the guide [How to Perform Action Recognition with YOLOv8 and ST-GCN++](https://www.datature.io/blog/) on a custom-trained models on the sit-stand subset of the [NTU-RGB+D](https://github.com/shahroudy/NTURGB-D) dataset.
+This folder contains the code and resources used in the guide [How to Perform Action Recognition with YOLOv8 and ST-GCN++](https://www.datature.com/blog/) on a custom-trained models on the sit-stand subset of the [NTU-RGB+D](https://github.com/shahroudy/NTURGB-D) dataset.
 
 ## Install Prerequisites
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*-coding:utf-8 -*-
-'''
+"""
   ████
 ██    ██   Datature
   ██  ██   Powering Breakthrough AI
@@ -9,18 +9,18 @@
 @File    :   predict.py
 @Author  :   Marcus Neo
 @Version :   1.0
-@Contact :   hello@datature.io
+@Contact :   hello@datature.com
 @License :   Apache License 2.0
 @Desc    :   Simple predictor script for semantic segementation PyTorch models.
-'''
+"""
 
 import argparse
 import os
 
 import cv2
 import numpy as np
-from PIL import Image
 import torch
+from PIL import Image
 
 HEIGHT, WIDTH = NotImplemented, NotImplemented
 
@@ -32,7 +32,6 @@ def get_binary_mask(mask: np.ndarray) -> np.ndarray:
         if class_id > 0:
             binary_mask[np.where(class_mask > 0.0)] = class_id
     return binary_mask
-
 
 
 class Predictor:
@@ -52,7 +51,7 @@ class Predictor:
 
     def predict(self, image: np.ndarray) -> np.ndarray:
         """Send an image for prediction, then process it to be returned
-            afterwards.
+        afterwards.
         """
         preprocessed = self.preprocess(image)
         predicted = self.model(preprocessed)[0].detach()
@@ -62,7 +61,8 @@ class Predictor:
 
 parser = argparse.ArgumentParser(
     prog="Datature Semantic Segmentation ONNX Predictor",
-    description="Predictor to Predict Semantic Segmentation ONNX Model.")
+    description="Predictor to Predict Semantic Segmentation ONNX Model.",
+)
 parser.add_argument("-i", "--input_folder_path")
 parser.add_argument("-o", "--output_folder_path")
 parser.add_argument("-m", "--model_path")
@@ -77,8 +77,7 @@ if __name__ == "__main__":
 
     for image_name in os.listdir(input_path):
         if ".jpg" not in image_name and ".png" not in image_name:
-            print(
-                f"Only .jpg and .png files can be used, {image_name} skipped")
+            print(f"Only .jpg and .png files can be used, {image_name} skipped")
             continue
         img = Image.open(os.path.join(input_path, image_name)).convert("RGB")
         img_array = np.array(img)
@@ -89,8 +88,9 @@ if __name__ == "__main__":
             output_mask = np.tile(output_mask, 3)
             output_mask *= 127
             output_mask = np.clip(output_mask, 0, 255).astype(np.uint8)
-            output_mask = cv2.resize(output_mask,
-                                     (img_array.shape[1], img_array.shape[0]))
+            output_mask = cv2.resize(
+                output_mask, (img_array.shape[1], img_array.shape[0])
+            )
             img_array = img_array.astype(np.int64)
             img_array += output_mask
             img_array = np.clip(img_array, 0, 255)

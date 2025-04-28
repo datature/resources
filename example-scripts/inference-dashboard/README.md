@@ -1,6 +1,6 @@
 # Building an Inference Dashboard with Datature Hub & Streamlit
 
-This repository contains the full code for building a simple inference dashboard with Streamlit, Tensorflow, and OpenCV. The tutorial can be found [here](https://www.datature.io/blog/building-a-simple-inference-dashboard-with-streamlit).
+This repository contains the full code for building a simple inference dashboard with Streamlit, Tensorflow, and OpenCV. The tutorial can be found [here](https://www.datature.com/blog/building-a-simple-inference-dashboard-with-streamlit).
 
 ## Getting Started
 
@@ -31,7 +31,7 @@ The dashboard should be running on your local machine at http://localhost:8501. 
 
 ![sdk](/example-scripts/inference-dashboard/assets/load_sdk_model.png)
 
-We leverage Datature SDK to export and download your model from Nexus. To do so, ensure that you have an exported Tensorflow artifact in your Nexus project. You can then enter your [secret key](https://developers.datature.io/docs/hub-and-api) in the `Project Secret Key` field provided. A list of all Tensorflow exported artifacts will be listed in the `Select Model` dropdown. Select the model you wish to load and it will automatically be downloaded and loaded into the dashboard.
+We leverage Datature SDK to export and download your model from Nexus. To do so, ensure that you have an exported Tensorflow artifact in your Nexus project. You can then enter your [secret key](https://developers.datature.com/docs/hub-and-api) in the `Project Secret Key` field provided. A list of all Tensorflow exported artifacts will be listed in the `Select Model` dropdown. Select the model you wish to load and it will automatically be downloaded and loaded into the dashboard.
 
 #### Loading from Local Directory
 

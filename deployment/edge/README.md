@@ -1,12 +1,12 @@
 # Datature Edge
 
-[![Join Datature Slack](https://img.shields.io/badge/Join%20The%20Community-Datature%20Slack-blueviolet)](https://datature.io/community)
+[![Join Datature Slack](https://img.shields.io/badge/Join%20The%20Community-Datature%20Slack-blueviolet)](https://datature.com/community)
 
 **Edge pushes your inference pipeline to the very edge**. Most often than not, we do not have access to servers or cloud resources to deploy our models. We created Edge to help engineers and teams to run inference on-premise, so say goodbye to expensive GPUs and high latencies.
 
-Edge is an open-source inference framework primarily written in Python. It is heavily designed to be used with [Nexus, our MLOps platform](https://www.datature.io/nexus), but can be used independently and integrated with your own MLOps pipeline.
+Edge is an open-source inference framework primarily written in Python. It is heavily designed to be used with [Nexus, our MLOps platform](https://www.datature.com/nexus), but can be used independently and integrated with your own MLOps pipeline.
 
-Made with `♥` by [Datature](https://datature.io)
+Made with `♥` by [Datature](https://datature.com)
 
 <br>
 <p align="center">
@@ -350,7 +350,7 @@ class CustomPreprocessor(AbstractPreprocessor):
 <details>
      <summary>Click to expand</summary><br>
 
-Edge supports all models trained on Datature [Nexus](https://www.datature.io/nexus). You can load your model from Nexus using Datature Hub by providing your [project secret](https://developers.datature.io/docs/hub-and-api#locating-the-project-secret) and your corresponding [model key](https://developers.datature.io/docs/hub-and-api#locating-the-model-key). Alternatively, you can load your own custom model locally by providing the path to your model file and the path to your label file. The model formats that we currently support are listed below:
+Edge supports all models trained on Datature [Nexus](https://www.datature.com/nexus). You can load your model from Nexus using Datature Hub by providing your [project secret](https://developers.datature.com/docs/hub-and-api#locating-the-project-secret) and your corresponding [model key](https://developers.datature.com/docs/hub-and-api#locating-the-model-key). Alternatively, you can load your own custom model locally by providing the path to your model file and the path to your label file. The model formats that we currently support are listed below:
 
 <u>Object Detection</u>
 
@@ -379,7 +379,7 @@ Edge supports all models trained on Datature [Nexus](https://www.datature.io/nex
 
 If you wish to build your own inference module, you can create a class that inherits from the [`InferenceEngine`](./src/edge/python/core/components/inference/engine.py) class. This class should contain a [Loader](#model-loading) class and a [Predictor](#model-predictions) class to load the model and run the prediction function respectively.
 
-Note: Creating a custom inference module is for advanced users only, since you will likely need to customize other modules in the inference pipeline to support your custom model. If you are unsure about how to proceed, feel free to join our [Community Slack](https://datature.io/community?ref=datature-blog) to post questions and get help from our team.
+Note: Creating a custom inference module is for advanced users only, since you will likely need to customize other modules in the inference pipeline to support your custom model. If you are unsure about how to proceed, feel free to join our [Community Slack](https://datature.com/community?ref=datature-blog) to post questions and get help from our team.
 
 ```python
 class CustomInferenceEngine(InferenceEngine):

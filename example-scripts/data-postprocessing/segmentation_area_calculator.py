@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*-coding:utf-8 -*-
-'''
+"""
   ████
 ██    ██   Datature
   ██  ██   Powering Breakthrough AI
@@ -9,11 +9,11 @@
 @File    :   predict.py
 @Author  :   Leonard So
 @Version :   1.0
-@Contact :   hello@datature.io
+@Contact :   hello@datature.com
 @License :   Apache License 2.0
 @Desc    :   Simple predictor script for semantic segmentation TF models
              with area calculation overlaid on top of the saved image.
-'''
+"""
 
 import argparse
 import os
@@ -21,16 +21,17 @@ from typing import Dict, List
 
 import cv2
 import numpy as np
-from PIL import Image, ImageDraw, ImageFont
 import tensorflow as tf
+from PIL import Image, ImageDraw, ImageFont
 
 HEIGHT, WIDTH = 1024, 1024
 PIXEL_LENGTH = 205
 TRUE_LENGTH = 20
 
 
-def calculate_true_area(pixel_area: float, pixel_length: int,
-                        true_length: float) -> float:
+def calculate_true_area(
+    pixel_area: float, pixel_length: int, true_length: float
+) -> float:
     """
     Args:
         pixel_area: This is the area of the object based on pixels
@@ -70,13 +71,13 @@ def draw_area(mask: np.ndarray, origi_image: Image.Image) -> Image.Image:
         fontsize = 50
         font = ImageFont.truetype("./arial.ttf", fontsize)
         if M["m00"] != 0:
-            cx = int(M['m10'] / M['m00'])
-            cy = int(M['m01'] / M['m00'])
+            cx = int(M["m10"] / M["m00"])
+            cy = int(M["m01"] / M["m00"])
             draw.text(
-                (cx - font.getsize(f"area: {int(true_area)} sq-ft")[0] / 2,
-                 cy),
+                (cx - font.getsize(f"area: {int(true_area)} sq-ft")[0] / 2, cy),
                 f"area: {int(true_area)} sq-ft",
-                font=font)
+                font=font,
+            )
     return image
 
 
@@ -87,8 +88,7 @@ def label_map(label_path: str) -> Dict[str, str]:
         for line in label_file:
             if "id" in line:
                 label_index = int(line.split(":")[-1])
-                label_name = next(label_file).split(":")[-1].strip().strip(
-                    "'\"")
+                label_name = next(label_file).split(":")[-1].strip().strip("'\"")
                 return_label_map[int(label_index)] = label_name
     return_label_map[0] = "Background"
     return return_label_map
@@ -129,7 +129,7 @@ class Predictor:
 
     def predict(self, image: np.ndarray) -> np.ndarray:
         """Send an image for prediction, then process it to be returned
-            afterwards.
+        afterwards.
         """
         preprocessed = self.preprocess(image)
         predicted = self.model(inputs=preprocessed)
@@ -139,7 +139,8 @@ class Predictor:
 
 parser = argparse.ArgumentParser(
     prog="Datature Semantic Segmentation TF Predictor",
-    description="Predictor to Predict Semantic Segmentation TF Saved Model.")
+    description="Predictor to Predict Semantic Segmentation TF Saved Model.",
+)
 parser.add_argument("-i", "--input_folder_path")
 parser.add_argument("-o", "--output_folder_path")
 parser.add_argument("-m", "--model_path")
@@ -156,22 +157,20 @@ if __name__ == "__main__":
     loaded = tf.saved_model.load(model_path)
     loaded_model = loaded.signatures["serving_default"]
     loaded_output_name = list(loaded_model.structured_outputs.keys())[0]
-    predictor = Predictor(loaded_model, HEIGHT, WIDTH, loaded_output_name,
-                          threshold)
+    predictor = Predictor(loaded_model, HEIGHT, WIDTH, loaded_output_name, threshold)
 
     category_map = label_map(label_map_path)
     color_map = {}
     num_classes = len(category_map)
     for each_class in range(1, num_classes):
         color_map[each_class] = np.array(
-            [int(i) for i in np.random.choice(range(256), size=3)],
-            dtype=np.uint8)
+            [int(i) for i in np.random.choice(range(256), size=3)], dtype=np.uint8
+        )
     color_map[0] = np.array([0, 0, 0], dtype=np.uint8)
 
     for image_name in os.listdir(input_path):
         if ".jpg" not in image_name and ".png" not in image_name:
-            print(
-                f"Only .jpg and .png files can be used, {image_name} skipped")
+            print(f"Only .jpg and .png files can be used, {image_name} skipped")
             continue
         img = Image.open(os.path.join(input_path, image_name)).convert("RGB")
         img_array = np.array(img)
@@ -184,15 +183,18 @@ if __name__ == "__main__":
             output_mask = np.zeros_like(predicted_mask, dtype=np.uint8)
             class_mask_list = []
             for num, item in enumerate(unique):
-                output_mask = np.where(predicted_mask != item, output_mask,
-                                       color_map[item])
+                output_mask = np.where(
+                    predicted_mask != item, output_mask, color_map[item]
+                )
                 binary_class_mask = cv2.resize(
                     np.where(original_mask == item, 255, 0).astype(np.uint8),
-                    (img_array.shape[1], img_array.shape[0]))
+                    (img_array.shape[1], img_array.shape[0]),
+                )
                 class_mask_list.append(binary_class_mask)
 
-            output_mask = cv2.resize(output_mask,
-                                     (img_array.shape[1], img_array.shape[0]))
+            output_mask = cv2.resize(
+                output_mask, (img_array.shape[1], img_array.shape[0])
+            )
             img_array = img_array.astype(np.uint8)
             pil_img = Image.fromarray(img_array)
             pil_mask = Image.fromarray(output_mask)

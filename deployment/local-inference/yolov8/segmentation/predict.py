@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*-coding:utf-8 -*-
-'''
+"""
   ████
 ██    ██   Datature
   ██  ██   Powering Breakthrough AI
@@ -9,10 +9,10 @@
 @File    :   predict.py
 @Author  :   Marcus Neo
 @Version :   1.0
-@Contact :   hello@datature.io
+@Contact :   hello@datature.com
 @License :   Apache License 2.0
 @Desc    :   Simple predictor script for YOLOv8 models.
-'''
+"""
 import argparse
 
 from ultralytics import YOLO
@@ -28,13 +28,14 @@ def predict(model, input_folder, threshold):
         conf=threshold,
         imgsz=[WIDTH, HEIGHT],
         save=True,
-        task='segment',
+        task="segment",
     )
 
 
 parser = argparse.ArgumentParser(
     prog="Datature-Ultralytics YOLOV8 Predictor",
-    description="Predictor to Predict with Datature-Ultralytics YOLOV8 Model.")
+    description="Predictor to Predict with Datature-Ultralytics YOLOV8 Model.",
+)
 
 parser.add_argument("-i", "--input_folder_path")
 parser.add_argument("-m", "--model_path")

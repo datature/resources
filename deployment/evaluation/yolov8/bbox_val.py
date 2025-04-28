@@ -9,7 +9,7 @@
 @File    :   bbox_val.py
 @Author  :   Tze Lynn Kho
 @Version :   1.0
-@Contact :   hello@datature.io
+@Contact :   hello@datature.com
 @License :   Apache License 2.0
 @Desc    :   Evaluate performance of YOLOv8 object detection
              models on a validation set.

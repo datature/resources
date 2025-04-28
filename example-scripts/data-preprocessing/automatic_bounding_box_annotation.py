@@ -9,13 +9,14 @@
 @File    :   annotation_maker.py
 @Author  :   Leonard So
 @Version :   1.0
-@Contact :   hello@datature.io
+@Contact :   hello@datature.com
 @License :   Apache License 2.0
 @Desc    :   Automatic bounding box annotation creation for whole image.
 """
-import os
-import csv
 import argparse
+import csv
+import os
+
 from PIL import Image
 
 

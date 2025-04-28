@@ -45,4 +45,4 @@ python3 <TASK>_val.py \
 
 ## Documentation
 
-For more information around other training settings, please refer to [Datature's documentation](https://developers.datature.io/docs/model-selection-and-options).
+For more information around other training settings, please refer to [Datature's documentation](https://developers.datature.com/docs/model-selection-and-options).

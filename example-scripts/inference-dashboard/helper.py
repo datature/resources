@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*-coding:utf-8 -*-
-'''
+"""
   ████
 ██    ██   Datature
   ██  ██   Powering Breakthrough AI
@@ -9,10 +9,10 @@
 @File    :   helper.py
 @Author  :   Wei Loon Cheng
 @Version :   1.0
-@Contact :   hello@datature.io
+@Contact :   hello@datature.com
 @License :   Apache License 2.0
 @Desc    :   Datature inference dashboard helper functions.
-'''
+"""
 
 import copy
 import os
@@ -52,11 +52,9 @@ def load_label_map(label_path):
     return label_map
 
 
-def reframe_box_masks_to_image_masks(box_masks,
-                                     boxes,
-                                     image_height,
-                                     image_width,
-                                     resize_method="bilinear"):
+def reframe_box_masks_to_image_masks(
+    box_masks, boxes, image_height, image_width, resize_method="bilinear"
+):
     """Transforms the box masks back to full image masks.
 
     Embeds masks in bounding boxes of larger masks whose shapes correspond to
@@ -96,9 +94,7 @@ def reframe_box_masks_to_image_masks(box_masks,
 
         box_masks_expanded = tf.expand_dims(box_masks, axis=3)
         num_boxes = tf.shape(box_masks_expanded)[0]
-        unit_boxes = tf.concat(
-            [tf.zeros([num_boxes, 2]),
-             tf.ones([num_boxes, 2])], 1)
+        unit_boxes = tf.concat([tf.zeros([num_boxes, 2]), tf.ones([num_boxes, 2])], 1)
         reverse_boxes = transform_boxes_relative_to_boxes(unit_boxes, boxes)
 
         resized_crops = tf.image.crop_and_resize(
@@ -213,8 +209,7 @@ def nms_boxes(
                     # score refresh formula:
                     # score = score * (1 - iou) if iou > threshold
                     depress_mask = np.where(iou > iou_threshold)[0]
-                    s_nms[depress_mask] = s_nms[depress_mask] * (
-                        1 - iou[depress_mask])
+                    s_nms[depress_mask] = s_nms[depress_mask] * (1 - iou[depress_mask])
                 keep_mask = np.where(s_nms >= confidence)[0]
             else:
                 # normal Hard-NMS
@@ -270,7 +265,8 @@ def box_diou(boxes):
     x_center = x_pos + wid / 2
     y_center = y_pos + hei / 2
     center_distance = np.power(x_center[1:] - x_center[0], 2) + np.power(
-        y_center[1:] - y_center[0], 2)
+        y_center[1:] - y_center[0], 2
+    )
 
     # get enclosed area
     enclose_xmin = np.minimum(x_pos[1:], x_pos[0])
@@ -282,7 +278,6 @@ def box_diou(boxes):
     # get enclosed diagonal distance
     enclose_diagonal = np.power(enclose_w, 2) + np.power(enclose_h, 2)
     # calculate DIoU, add epsilon in denominator to avoid dividing by 0
-    diou = iou - 1.0 * (center_distance) / (enclose_diagonal +
-                                            np.finfo(float).eps)
+    diou = iou - 1.0 * (center_distance) / (enclose_diagonal + np.finfo(float).eps)
 
     return diou

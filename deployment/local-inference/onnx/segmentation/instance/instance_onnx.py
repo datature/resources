@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*-coding:utf-8 -*-
-'''
+"""
   ████
 ██    ██   Datature
   ██  ██   Powering Breakthrough AI
@@ -9,10 +9,10 @@
 @File    :   predict.py
 @Author  :   Marcus Neo
 @Version :   1.0
-@Contact :   hello@datature.io
+@Contact :   hello@datature.com
 @License :   Apache License 2.0
 @Desc    :   Simple predictor script for instance segmentation ONNX models.
-'''
+"""
 
 import argparse
 import os
@@ -33,8 +33,7 @@ def label_map(label_path: str) -> Dict[str, str]:
         for line in label_file:
             if "id" in line:
                 label_index = int(line.split(":")[-1])
-                label_name = next(label_file).split(":")[-1].strip().strip(
-                    "'\"")
+                label_name = next(label_file).split(":")[-1].strip().strip("'\"")
                 return_label_map[int(label_index)] = label_name
     return_label_map[0] = "Background"
     return return_label_map
@@ -54,8 +53,7 @@ class Predictor:
         self.model_inputs = self.model.get_inputs()
         self.model_input_names = list(map(lambda x: x.name, self.model_inputs))
         self.model_outputs = self.model.get_outputs()
-        self.model_output_names = list(
-            map(lambda x: x.name, self.model_outputs))
+        self.model_output_names = list(map(lambda x: x.name, self.model_outputs))
         model_shape = self.model_inputs[0].shape
         self.model_height = model_shape[1]
         self.model_width = model_shape[2]
@@ -63,8 +61,9 @@ class Predictor:
 
     def feed_forward(self, instance: List[np.ndarray]) -> List[np.ndarray]:
         """Single Onnx feed-forward pipeline"""
-        result = self.model.run(self.model_output_names,
-                                dict(zip(self.model_input_names, instance)))
+        result = self.model.run(
+            self.model_output_names, dict(zip(self.model_input_names, instance))
+        )
         return result
 
     def preprocess(self, input_image: np.ndarray) -> List[np.ndarray]:
@@ -102,7 +101,7 @@ class Predictor:
 
     def predict(self, image: np.ndarray) -> List:
         """Send an image for prediction, then process it to be returned
-            afterwards.
+        afterwards.
         """
         preprocessed = self.preprocess(image)
         predicted = self.feed_forward(preprocessed)
@@ -112,7 +111,8 @@ class Predictor:
 
 parser = argparse.ArgumentParser(
     prog="Datature Instance Segmentation ONNX Predictor",
-    description="Predictor to Predict Instance Segmentation ONNX Model.")
+    description="Predictor to Predict Instance Segmentation ONNX Model.",
+)
 parser.add_argument("-i", "--input_folder_path")
 parser.add_argument("-o", "--output_folder_path")
 parser.add_argument("-m", "--model_path")
@@ -136,15 +136,12 @@ if __name__ == "__main__":
     color_map = {}
     num_classes = 3
     for each_class in range(1, num_classes):
-        color_map[each_class] = [
-            int(i) for i in np.random.choice(range(256), size=3)
-        ]
+        color_map[each_class] = [int(i) for i in np.random.choice(range(256), size=3)]
     category_map = label_map(label_map_path)
 
     for image_name in os.listdir(input_path):
         if ".jpg" not in image_name and ".png" not in image_name:
-            print(
-                f"Only .jpg and .png files can be used, {image_name} skipped")
+            print(f"Only .jpg and .png files can be used, {image_name} skipped")
             continue
         print("\nPredicting for", image_name)
 

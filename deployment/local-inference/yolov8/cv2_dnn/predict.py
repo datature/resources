@@ -9,7 +9,7 @@
 @File    :   predict.py
 @Author  :   Wei Loon Cheng
 @Version :   1.0
-@Contact :   hello@datature.io
+@Contact :   hello@datature.com
 @License :   Apache License 2.0
 @Desc    :   Datature prediction script for YOLOv8 ONNX models
              using OpenCV DNN

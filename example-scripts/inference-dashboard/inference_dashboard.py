@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*-coding:utf-8 -*-
-'''
+"""
   ████
 ██    ██   Datature
   ██  ██   Powering Breakthrough AI
@@ -8,10 +8,10 @@
 @File    :   inference_dashboard.py
 @Author  :   Wei Loon Cheng
 @Version :   1.0
-@Contact :   hello@datature.io
+@Contact :   hello@datature.com
 @License :   Apache License 2.0
 @Desc    :   Datature inference dashboard built using Streamlit for prediction visualisations.
-'''
+"""
 
 import json
 import os
@@ -40,12 +40,12 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 def load_local_model():
     """Load model locally using model path and label map path."""
     if state.local_hash != state.model_path + state.label_map_path:
-        with st.spinner('Loading model...'):
+        with st.spinner("Loading model..."):
             ## Load Tensorflow model
-            state.trained_model = tf.saved_model.load(
-                state.model_path).signatures["serving_default"]
-            state.output_name = list(
-                state.trained_model.structured_outputs.keys())[0]
+            state.trained_model = tf.saved_model.load(state.model_path).signatures[
+                "serving_default"
+            ]
+            state.output_name = list(state.trained_model.structured_outputs.keys())[0]
 
             ## Load label map
             state.category_index = load_label_map(state.label_map_path)
@@ -57,23 +57,26 @@ def load_local_model():
                     int(i) for i in np.random.choice(range(256), size=3)
                 ]
         state.local_hash = state.model_path + state.label_map_path
-        st.success('Model loaded successfully!')
+        st.success("Model loaded successfully!")
 
 
 def load_sdk_model():
     """Load model from Nexus using Datature SDK with project secret."""
-    if "artifact_id" not in state or state.artifact != state.artifact_names[
-            state.artifact_id]:
+    if (
+        "artifact_id" not in state
+        or state.artifact != state.artifact_names[state.artifact_id]
+    ):
         state.artifact_id = [
-            key for key in state.artifact_names
+            key
+            for key in state.artifact_names
             if state.artifact_names[key] == state.artifact
         ][-1]
-        exported_artifact = list(
-            datature.Artifact.list_exported(state.artifact_id))[-1]
+        exported_artifact = list(datature.Artifact.list_exported(state.artifact_id))[-1]
 
         url = exported_artifact["download"]["url"]
-        dir_name = os.path.join(os.path.expanduser("~"), ".datature",
-                                url.split("/")[-1].split(".")[0])
+        dir_name = os.path.join(
+            os.path.expanduser("~"), ".datature", url.split("/")[-1].split(".")[0]
+        )
         out_fname = f"{dir_name}.zip"
 
         if state.local_hash != state.secret_key + dir_name:
@@ -86,14 +89,16 @@ def load_sdk_model():
 
                 ## Load Tensorflow model
                 state.trained_model = tf.saved_model.load(
-                    os.path.join(dir_name,
-                                 "saved_model")).signatures["serving_default"]
-                state.output_name = list(
-                    state.trained_model.structured_outputs.keys())[0]
+                    os.path.join(dir_name, "saved_model")
+                ).signatures["serving_default"]
+                state.output_name = list(state.trained_model.structured_outputs.keys())[
+                    0
+                ]
 
                 ## Load label map
                 state.category_index = load_label_map(
-                    os.path.join(dir_name, "label_map.pbtxt"))
+                    os.path.join(dir_name, "label_map.pbtxt")
+                )
 
                 ## Load color map
                 state.color_map = {}
@@ -102,7 +107,7 @@ def load_sdk_model():
                         int(i) for i in np.random.choice(range(256), size=3)
                     ]
         state.local_hash = state.secret_key + dir_name
-        st.success('Model loaded successfully!')
+        st.success("Model loaded successfully!")
 
 
 def upload_images():
@@ -110,7 +115,7 @@ def upload_images():
     ## Upload images
     st.sidebar.file_uploader(
         "Image uploader",
-        type=['jpg', 'png', 'jpeg'],
+        type=["jpg", "png", "jpeg"],
         accept_multiple_files=True,
         label_visibility="collapsed",
         help="Upload image(s) to predict. Supported file types: jpg, png, jpeg",
@@ -132,7 +137,8 @@ def predict(img_path):
     image = Image.open(img_path).convert("RGB")
     width, height = state.model_input_size.split(",")
     image_resized, origi_shape = load_image_into_numpy_array(
-        image, int(height), int(width))
+        image, int(height), int(width)
+    )
     input_image = np.expand_dims(image_resized.astype(np.float32), 0)
 
     ## Feed image into model
@@ -144,18 +150,20 @@ def predict(img_path):
 
 def predict_all():
     """Predict all the uploaded images and store the predictions in the session state."""
-    with st.spinner('Running predictions...'):
+    with st.spinner("Running predictions..."):
         for each_file in state.uploaded_imgs:
             if each_file.name not in state.prediction_cache.keys():
                 origi_image, origi_shape, detections = predict(each_file)
 
-                state.prediction_cache.update({
-                    each_file.name: {
-                        "img": origi_image,
-                        "shape": origi_shape,
-                        "detections": detections
+                state.prediction_cache.update(
+                    {
+                        each_file.name: {
+                            "img": origi_image,
+                            "shape": origi_shape,
+                            "detections": detections,
+                        }
                     }
-                })
+                )
 
 
 def draw_detections(origi_image, origi_shape, detections):
@@ -168,8 +176,8 @@ def draw_detections(origi_image, origi_shape, detections):
         Output image with predictions drawn on it.
     """
     for each_bbox, each_class, each_score in list(
-            zip(detections["boxes"], detections["classes"],
-                detections["scores"])):
+        zip(detections["boxes"], detections["classes"], detections["scores"])
+    ):
         color = state.color_map.get(each_class - 1)
 
         ## Draw bounding box
@@ -231,8 +239,8 @@ def get_json_output(detections):
     json_output = {"predictions": []}
 
     for idx, (each_bbox, each_class, each_score) in enumerate(
-            zip(detections["boxes"], detections["classes"],
-                detections["scores"])):
+        zip(detections["boxes"], detections["classes"], detections["scores"])
+    ):
         ## [y_min, x_min, y_max, x_max]
         xmin = float(each_bbox[1])
         ymin = float(each_bbox[0])
@@ -250,8 +258,8 @@ def get_json_output(detections):
             "contourType": None,
             "tag": {
                 "id": int(each_class),
-                "name": str(state.category_index[each_class]["name"])
-            }
+                "name": str(state.category_index[each_class]["name"]),
+            },
         }
 
         json_output["predictions"].append(prediction)
@@ -264,14 +272,16 @@ def visualise():
     drawing the thresholded predictions on the image and generating JSON output."""
     for each_file_name in state.prediction_cache.keys():
         if each_file_name in state.file_names:
-            st.slider(f"Threshold_{each_file_name}",
-                      min_value=0.0,
-                      max_value=1.0,
-                      value=0.7,
-                      step=0.01,
-                      label_visibility="collapsed",
-                      help="Threshold",
-                      key=f"threshold_{each_file_name}")
+            st.slider(
+                f"Threshold_{each_file_name}",
+                min_value=0.0,
+                max_value=1.0,
+                value=0.7,
+                step=0.01,
+                label_visibility="collapsed",
+                help="Threshold",
+                key=f"threshold_{each_file_name}",
+            )
 
             origi_image = state.prediction_cache[each_file_name]["img"]
             origi_shape = state.prediction_cache[each_file_name]["shape"]
@@ -289,30 +299,38 @@ def visualise():
             boxes = output[:, :4]
             classes = output[:, 5].astype(np.int32)
             scores = output[:, 4]
-            boxes[:, 0], boxes[:, 1] = (boxes[:, 1] * origi_shape[1],
-                                        boxes[:, 0] * origi_shape[0])
-            boxes[:, 2], boxes[:, 3] = (boxes[:, 3] * origi_shape[1],
-                                        boxes[:, 2] * origi_shape[0])
+            boxes[:, 0], boxes[:, 1] = (
+                boxes[:, 1] * origi_shape[1],
+                boxes[:, 0] * origi_shape[0],
+            )
+            boxes[:, 2], boxes[:, 3] = (
+                boxes[:, 3] * origi_shape[1],
+                boxes[:, 2] * origi_shape[0],
+            )
             boxes, classes, scores = nms_boxes(boxes, classes, scores, 0.1)
-            boxes = [[
-                bbox[1] / origi_shape[1],
-                bbox[0] / origi_shape[0],
-                bbox[3] / origi_shape[1],
-                bbox[2] / origi_shape[0],
-            ] for bbox in boxes]  # y1, x1, y2, x2
+            boxes = [
+                [
+                    bbox[1] / origi_shape[1],
+                    bbox[0] / origi_shape[0],
+                    bbox[3] / origi_shape[1],
+                    bbox[2] / origi_shape[0],
+                ]
+                for bbox in boxes
+            ]  # y1, x1, y2, x2
 
             threshold_detections = {
                 "boxes": boxes,
                 "classes": classes,
-                "scores": scores
+                "scores": scores,
             }
 
             ## Don't show labels if hide labels checkbox is checked
             if f"hide_labels_{each_file_name}" not in state:
                 state[f"hide_labels_{each_file_name}"] = False
             if not state[f"hide_labels_{each_file_name}"]:
-                output_image = draw_detections(origi_image.copy(), origi_shape,
-                                               threshold_detections)
+                output_image = draw_detections(
+                    origi_image.copy(), origi_shape, threshold_detections
+                )
             else:
                 output_image = Image.fromarray(origi_image, mode="RGB")
 
@@ -323,15 +341,18 @@ def visualise():
 
             ## Display original image
             with col1:
-                st.markdown('<p style="text-align: center;">Original</p>',
-                            unsafe_allow_html=True)
+                st.markdown(
+                    '<p style="text-align: center;">Original</p>',
+                    unsafe_allow_html=True,
+                )
                 st.image(origi_image, use_column_width="auto")
                 st.caption(each_file_name)
 
             ## Display output image with prediction overlaid
             with col2:
-                st.markdown('<p style="text-align: center;">Output</p>',
-                            unsafe_allow_html=True)
+                st.markdown(
+                    '<p style="text-align: center;">Output</p>', unsafe_allow_html=True
+                )
                 st.image(output_image, use_column_width="auto")
                 st.checkbox("Hide labels", key=f"hide_labels_{each_file_name}")
 
@@ -346,12 +367,15 @@ def visualise():
                     data=download_image(),
                     file_name=f"{each_file_name.split('.')[0]}_output.png",
                     mime="image/png",
-                    key=f"download_{each_file_name}")
+                    key=f"download_{each_file_name}",
+                )
 
             ## Display JSON output of predictions
             with col3:
-                st.markdown('<p style="text-align: center;">JSON Output</p>',
-                            unsafe_allow_html=True)
+                st.markdown(
+                    '<p style="text-align: center;">JSON Output</p>',
+                    unsafe_allow_html=True,
+                )
                 st.download_button(
                     label="Download JSON",
                     file_name="predictions_output.json",
@@ -362,8 +386,7 @@ def visualise():
 
 
 if __name__ == "__main__":
-    st.set_page_config(page_title="Datature Inference Dashboard",
-                       layout="wide")
+    st.set_page_config(page_title="Datature Inference Dashboard", layout="wide")
 
     if "local_hash" not in state:
         state.local_hash = ""
@@ -380,8 +403,11 @@ if __name__ == "__main__":
         st.text_input("Model Path", key="model_path")
         st.text_input("Label Map Path", key="label_map_path")
 
-        if len(state.model_path) > 0 and len(state.label_map_path) > 0 and len(
-                state.model_input_size) > 0:
+        if (
+            len(state.model_path) > 0
+            and len(state.label_map_path) > 0
+            and len(state.model_input_size) > 0
+        ):
             load_local_model()
             upload_images()
             predict_all()
@@ -395,14 +421,13 @@ if __name__ == "__main__":
                 datature.secret_key = state.secret_key
                 artifacts = datature.Artifact.list()
                 state.artifact_names = {
-                    each_artifact["id"]:
-                    f"{each_artifact['flow_title']}: {each_artifact['artifact']}"
+                    each_artifact[
+                        "id"
+                    ]: f"{each_artifact['flow_title']}: {each_artifact['artifact']}"
                     for each_artifact in artifacts
                     if "tensorflow" in each_artifact["exportable_formats"]
                 }
-            st.selectbox("Select model",
-                         state.artifact_names.values(),
-                         key="artifact")
+            st.selectbox("Select model", state.artifact_names.values(), key="artifact")
 
             if state.artifact is not None and len(state.model_input_size) > 0:
                 load_sdk_model()
